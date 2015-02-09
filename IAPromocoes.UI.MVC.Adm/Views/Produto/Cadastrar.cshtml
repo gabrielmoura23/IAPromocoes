@@ -1,0 +1,470 @@
+﻿@model IAPromocoes.Application.ViewModels.ProdutoViewModel
+
+@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/__LayoutInterno.cshtml";
+}
+
+@section PageLevelStyles {
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/select2/select2.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+}
+
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            Widget settings form goes here
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn blue">Save changes</button>
+                            <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="#">Home</a><i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <a href="/Produto/Index">Produtos</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li class="active">
+                    Cadastrar
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("Cadastrar", "Produto", FormMethod.Post, new { @class = "horizontal-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.HiddenFor(model => model.IdProduto, new { @Value = Guid.NewGuid() })
+                        @Html.HiddenFor(model => model.IdUsuarioCadastro, new { @Value = Guid.NewGuid() })
+                        @Html.HiddenFor(model => model.DtCadastro, new { @Value = System.DateTime.Now.ToString("dd/MM/yyyy") })
+
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-basket font-green-sharp"></i>
+                                    <span class="caption-subject font-green-sharp bold uppercase">
+                                        Cadastrar Produto
+                                    </span>
+                                    <span class="caption-helper"></span>
+                                </div>
+                                <div class="actions btn-set">
+                                    <a href="/Produto/Index" class="btn btn-default btn-circle">
+                                        <i class="fa fa-angle-left"></i>
+                                        Voltar
+                                    </a>
+                                    <button type="submit" class="btn green-haze btn-circle" name="Command" value="Submit"><i class="fa fa-check"></i> Salvar</button>
+                                    <button type="submit" class="btn green-haze btn-circle" name="Command" value="Save"><i class="fa fa-check-circle"></i> Salvar & Continuar Editando</button>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#tab_general" data-toggle="tab">
+                                                Geral
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_images" data-toggle="tab">
+                                                Imagens
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content no-space">
+                                        <div class="tab-pane active" id="tab_general">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Descrição</label>
+                                                            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", @placeholder = "Descrição" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Sub Descrição</label>
+                                                            @Html.TextAreaFor(model => model.SubDescricao, new { @class = "form-control", @placeholder = "Sub Descrição" })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.SubDescricao, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                                <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Link Imagem</label>
+                                                            @Html.EditorFor(model => model.LinkImagem, new { htmlAttributes = new { @class = "form-control", @placeholder = "http://" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.LinkImagem, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Atração</label>
+                                                            @Html.EditorFor(model => model.Atracao, new { htmlAttributes = new { @class = "form-control", @placeholder = "Atração" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Atracao, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                                <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Dia (Texto)</label>
+                                                            @Html.EditorFor(model => model.Dia, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dia" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Dia, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Data (Texto)</label>
+                                                            @Html.EditorFor(model => model.DataTexto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Data" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.DataTexto, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                                <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group date-picker input-daterange" data-date-format="dd/mm/yyyy">
+                                                            <label class="control-label">Data</label>
+                                                            <!--<div class="input-group input-large date-picker input-daterange" data-date-format="mm/dd/yyyy">-->
+                                                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control", @placeholder = "dd/mm/aaaa" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Hora</label>
+                                                            @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:mm" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        &nbsp;
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                                <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Local</label>
+                                                            @Html.EditorFor(model => model.Local, new { htmlAttributes = new { @class = "form-control", @placeholder = "Local" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.Local, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Instruções</label>
+                                                            @Html.EditorFor(model => model.InstrucoesOutros, new { htmlAttributes = new { @class = "form-control", @placeholder = "Instruções" } })
+                                                            <span class="help-block">
+                                                                @Html.ValidationMessageFor(model => model.InstrucoesOutros, "", new { @class = "text-danger" })
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                                <!--/row-->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Categoria</label>
+                                                            @Html.DropDownList("IdCategoria", null, "(Selecione)", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ativo?</label>
+                                                            <div class="radio-list">
+                                                                <label class="radio-inline">
+                                                                    @Html.RadioButtonFor(model => model.FlgAtivo, true, new { @checked = "checked" }) Sim
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    @Html.RadioButtonFor(model => model.FlgAtivo, false) Não
+                                                                </label>
+                                                                @Html.ValidationMessageFor(model => model.FlgAtivo, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label">
+                                                                Disponibilidade: <span class="required">
+                                                                    *
+                                                                </span>
+                                                            </label>
+
+                                                            <div class="input-group input-large date-picker input-daterange" data-date-format="dd/mm/yyyy">
+                                                                @Html.EditorFor(model => model.DataDisponibilidadeInicial, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control", @placeholder = "dd/mm/aaaa" } })
+                                                                <span class="help-block">
+                                                                    @Html.ValidationMessageFor(model => model.DataDisponibilidadeInicial, "", new { @class = "text-danger" })
+                                                                </span>
+
+                                                                <span class="input-group-addon">
+                                                                    até
+                                                                </span>
+                                                                @Html.EditorFor(model => model.DataDisponibilidadeFinal, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control", @placeholder = "dd/mm/aaaa" } })
+                                                                <span class="help-block">
+                                                                    @Html.ValidationMessageFor(model => model.DataDisponibilidadeFinal, "", new { @class = "text-danger" })
+                                                                </span>
+                                                            </div>
+                                                            <span class="help-block">
+                                                                data início e fim da disponibilidade.
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        &nbsp;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_images">
+                                            <div class="alert alert-success margin-bottom-10">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                                <i class="fa fa-warning fa-lg"></i> Aceita apenas arquivos .GIF e com tamanho de até 50kb e dimensões 10x20.
+                                            </div>
+                                            <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
+                                                <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn yellow">
+                                                    <i class="fa fa-plus"></i> Selecionar Aquivos
+                                                </a>
+                                                <a id="tab_images_uploader_uploadfiles" href="javascript:;" class="btn green">
+                                                    <i class="fa fa-share"></i> Upload Arquivos
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12">
+                                                </div>
+                                            </div>
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr role="row" class="heading">
+                                                        <th width="8%">
+                                                            Image
+                                                        </th>
+                                                        <th width="25%">
+                                                            Label
+                                                        </th>
+                                                        <th width="8%">
+                                                            Sort Order
+                                                        </th>
+                                                        <th width="10%">
+                                                            Base Image
+                                                        </th>
+                                                        <th width="10%">
+                                                            Small Image
+                                                        </th>
+                                                        <th width="10%">
+                                                            Thumbnail
+                                                        </th>
+                                                        <th width="10%">
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="~/assets/admin/pages/media/works/img1.jpg" class="fancybox-button" data-rel="fancybox-button">
+                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img1.jpg" alt="">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][1][label]" value="Thumbnail image">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][1][sort_order]" value="1">
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][1][image_type]" value="1">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][1][image_type]" value="2">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][1][image_type]" value="3" checked>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn default btn-sm">
+                                                                <i class="fa fa-times"></i> Remove
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="~/assets/admin/pages/media/works/img2.jpg" class="fancybox-button" data-rel="fancybox-button">
+                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img2.jpg" alt="">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][2][label]" value="Product image #1">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][2][sort_order]" value="1">
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][2][image_type]" value="1">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][2][image_type]" value="2" checked>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][2][image_type]" value="3">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn default btn-sm">
+                                                                <i class="fa fa-times"></i> Remove
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="~/assets/admin/pages/media/works/img3.jpg" class="fancybox-button" data-rel="fancybox-button">
+                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img3.jpg" alt="">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][3][label]" value="Product image #2">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="product[images][3][sort_order]" value="1">
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][3][image_type]" value="1" checked>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][3][image_type]" value="2">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="radio" name="product[images][3][image_type]" value="3">
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:;" class="btn default btn-sm">
+                                                                <i class="fa fa-times"></i> Remove
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+@section PageLevelPlugins {
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script type="text/javascript" src="~/assets/global/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script src="~/assets/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+}
+
+@section PageLevelScripts {
+    <script src="~/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="~/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
+    <script src="~/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+    <script src="~/assets/global/scripts/datatable.js"></script>
+    <script src="~/assets/admin/pages/scripts/ecommerce-products-edit.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            EcommerceProductsEdit.init();
+        });
+    </script>
+}
