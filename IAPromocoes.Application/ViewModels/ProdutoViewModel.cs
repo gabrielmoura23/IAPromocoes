@@ -11,6 +11,7 @@ namespace IAPromocoes.Application.ViewModels
         {
             this.ItensPedidoViewModel = new List<ItemPedidoViewModel>();
             this.ProdutoPrecosViewModel = new List<ProdutoPrecoViewModel>();
+            this.ProdutoImagensViewModel = new List<ProdutoImagemViewModel>();
         }
 
         [Key]
@@ -102,5 +103,6 @@ namespace IAPromocoes.Application.ViewModels
         public CategoriaViewModel CategoriaViewModel { get; set; }
         public ICollection<ItemPedidoViewModel> ItensPedidoViewModel { get; set; }
         public ICollection<ProdutoPrecoViewModel> ProdutoPrecosViewModel { get; set; }
+        public ICollection<ProdutoImagemViewModel> ProdutoImagensViewModel { get; set; }
     }
 }

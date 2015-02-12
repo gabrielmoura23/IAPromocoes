@@ -60,10 +60,6 @@ Login page
   border-left: 0;
 }
 
-.login .content .forget-form {
-  display: none;
-}
-
 .login .content .register-form {
   display: none;
 }

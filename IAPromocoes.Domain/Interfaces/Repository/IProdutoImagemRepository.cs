@@ -6,6 +6,6 @@ namespace IAPromocoes.Domain.Interfaces.Repository
 {
     public interface IProdutoImagemRepository : IRepositoryBase<ProdutoImagem>
     {
-        
+        IEnumerable<ProdutoImagem> BuscarImagensPorIdProduto(Guid idProduto);
     }
 }

@@ -72,5 +72,11 @@ namespace IAPromocoes.Application.Services
         {
             _modelService.Dispose();
         }
+
+
+        public IEnumerable<ProdutoImagemViewModel> BuscarImagensPorIdProduto(Guid idProduto)
+        {
+            return Mapper.Map<IEnumerable<ProdutoImagem>, IEnumerable<ProdutoImagemViewModel>>(_modelService.BuscarImagensPorIdProduto(idProduto));
+        }
     }
 }

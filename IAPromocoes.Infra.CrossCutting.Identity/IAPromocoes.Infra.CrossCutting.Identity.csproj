@@ -85,8 +85,10 @@
     <Compile Include="Configuration\EmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
     <Compile Include="Context\IdentityContext.cs" />
+    <Compile Include="EntityConfig\ApplicationUserConfiguration.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioAdm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

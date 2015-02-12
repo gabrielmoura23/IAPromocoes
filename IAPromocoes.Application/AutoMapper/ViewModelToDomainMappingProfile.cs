@@ -21,6 +21,7 @@ namespace IAPromocoes.Application.AutoMapper
             Mapper.CreateMap<PedidoViewModel, Pedido>();
             Mapper.CreateMap<ProdutoPrecoViewModel, ProdutoPreco>();
             Mapper.CreateMap<ProdutoImagemViewModel, ProdutoImagem>();
+            Mapper.CreateMap<ProdutoPrecoViewModel, ProdutoPreco>();
 
             Mapper.CreateMap<FormaDePagamentoViewModel, FormaDePagamento>();
             Mapper.CreateMap<StatusPedidoViewModel, StatusPedido>();

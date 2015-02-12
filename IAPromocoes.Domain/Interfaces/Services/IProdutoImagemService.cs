@@ -8,5 +8,6 @@ namespace IAPromocoes.Domain.Interfaces.Services
     public interface IProdutoImagemService : IServiceBase<ProdutoImagem>
     {
         ValidationResult AdicionarProdutoImagem(ProdutoImagem model);
+        IEnumerable<ProdutoImagem> BuscarImagensPorIdProduto(Guid idProduto);
     }
 }

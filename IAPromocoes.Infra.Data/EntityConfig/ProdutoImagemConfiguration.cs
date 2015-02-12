@@ -14,6 +14,10 @@ namespace IAPromocoes.Infra.Data.EntityConfig
             Property(c => c.IdProduto)
                 .IsRequired();
 
+            Property(c => c.NomeArquivo)
+                .IsRequired()
+                .HasMaxLength(200);
+
             Property(c => c.Descricao)
                 .IsRequired()
                 .HasMaxLength(200);

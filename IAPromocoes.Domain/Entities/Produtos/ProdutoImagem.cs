@@ -18,6 +18,7 @@ namespace IAPromocoes.Domain.Entities
         public Guid IdProdutoImagem { get; set; }
         public Guid IdProduto { get; set; }
         public string CaminhoFisico { get; set; }
+        public string NomeArquivo { get; set; }
         public string Descricao { get; set; }
         public int Ordem { get; set; }
         public bool FotoPrincipal { get; set; }

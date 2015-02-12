@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IAPromocoes.Domain.Entities
 {
-    public class Cliente
+    public class Cliente 
     {
         public Cliente()
         {

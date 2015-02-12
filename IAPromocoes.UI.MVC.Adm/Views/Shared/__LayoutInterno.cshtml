@@ -53,16 +53,14 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="/Account/Login">
+                                    <a href="/MinhaConta/Index">
                                         <i class="icon-user"></i> Minha Conta
                                     </a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="/Account/Login">
-                                        <i class="icon-key"></i> Sair
-                                    </a>
+                                    <a href="javascript:document.forms['LogOffForm'].submit();" class=""><i class="icon-key"></i> Sair</a>
                                 </li>
                             </ul>
                         </li>
@@ -82,7 +80,7 @@
                 <div class="hor-menu hor-menu-light">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="/Home/Index">Home</a>
+                            <a href="/Home/Index" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="Home">Home</a>
                         </li>
                         <li class="menu-dropdown classic-menu-dropdown ">
                             <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
@@ -168,6 +166,11 @@
                             </ul>
                         </li>
                         <li class="menu-dropdown">
+                            <a href="/Account/Lista" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="Usuários">
+                                Usuários
+                            </a>
+                        </li>
+                        <li class="menu-dropdown">
                             <a href="#" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="Relatórios">
                                 Relatórios
                             </a>
@@ -247,6 +250,11 @@
         <i class="icon-arrow-up"></i>
     </div>
     <!-- END FOOTER -->
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOffForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
     <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
     <!-- BEGIN CORE PLUGINS -->
     <!--[if lt IE 9]>

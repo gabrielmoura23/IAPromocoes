@@ -17,8 +17,24 @@ namespace IAPromocoes.Infra.CrossCutting.Identity
         }
 
         public string Nome { get; set; }
+        public string Sobrenome { get; set; }
+        public string Cpf { get; set; }
         public string Sexo { get; set; }
         public System.DateTime DtNascimento { get; set; }
+        //public string Email { get; set; }
+        public string DddTelefone { get; set; }
+        public string Telefone { get; set; }
+        public string DddCelular { get; set; }
+        public string Celular { get; set; }
+        public string LinkImagem { get; set; }
+        public string LinkFacebook { get; set; }
+        //public string Senha { get; set; }
+        public bool FlgAceitoTermos { get; set; }
+        public bool FlgAceitoNewsletter { get; set; }
+        public bool FlgAtivo { get; set; }
+        public System.DateTime DtCadastro { get; set; }
+        public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
+        public System.Nullable<System.DateTime> DtAlteracao { get; set; }
   
         public virtual ICollection<Client> Clients { get; set; }
 

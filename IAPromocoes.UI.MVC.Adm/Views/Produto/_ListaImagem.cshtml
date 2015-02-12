@@ -1,0 +1,96 @@
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoImagemViewModel>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr role="row" class="heading">
+            <th width="8%">
+                Imagem
+            </th>
+            <th width="25%">
+                Descrição
+            </th>
+            <th width="8%">
+                Ordem
+            </th>
+            <th width="10%">
+                Principal ?
+            </th>
+            <th width="10%">
+                Small Image
+            </th>
+            <th width="10%">
+                Thumbnail
+            </th>
+            <th width="10%">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Content(item.CaminhoFisico)" class="fancybox-button" data-rel="fancybox-button">
+                        <img class="img-responsive" src="@Url.Content(item.CaminhoFisico)" alt="">
+                    </a>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="product[images][1][label]" value="@item.Descricao">
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="product[images][1][sort_order]" value="@item.Ordem">
+                </td>
+                <td>
+                    <label>
+                        <input type="radio" name="product[images][1][image_type]" value="1">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="radio" name="product[images][1][image_type]" value="2">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="radio" name="product[images][1][image_type]" value="3" checked>
+                    </label>
+                </td>
+                <td>
+                    <a href="#" class="btn default btn-sm"
+                       onclick="event.preventDefault(); ApagarImagem('@item.IdProdutoImagem');">
+                        <i class="fa fa-times"></i> Apagar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+
+    function ApagarImagem(idImagem) {
+        if (confirm('Tem certeza de que deseja apagar esta imagem?')) {
+            var idProd = document.getElementById('IdProduto');
+            $.ajax(
+            {
+                type: "POST",
+                url: "/Produto/TesteExcluirImagem",
+                contentType: "application/json",
+                data: JSON.stringify({ id: idImagem }),
+                dataType: 'json',
+                processData: false,
+                success:
+                function (resultado) {
+                    if (resultado == "OK")
+                        $("#dvPartialLista").load('/Produto/GetImagensProdutos?idProduto=' + idProd.value, function (html) { });
+                    else
+                        Metronic.alert({ type: 'danger', message: 'Ocorreu um erro. Favor tentar novamente.', closeInSeconds: 10, icon: 'warning' });
+                },
+            });
+        }
+        else
+            return false;
+
+    }
+
+</script>

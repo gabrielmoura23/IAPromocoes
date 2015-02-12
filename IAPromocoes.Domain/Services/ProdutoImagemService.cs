@@ -51,5 +51,9 @@ namespace IAPromocoes.Domain.Services
             return resultadoValidacao;
         }
 
+        public IEnumerable<ProdutoImagem> BuscarImagensPorIdProduto(Guid idProduto)
+        {
+            return _modelRepository.BuscarImagensPorIdProduto(idProduto);
+        }
     }
 }

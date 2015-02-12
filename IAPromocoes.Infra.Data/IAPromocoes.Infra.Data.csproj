@@ -72,7 +72,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FormaDePagamentoRepository.cs" />
+    <Compile Include="Repositories\ProdutoPrecoRepository.cs" />
     <Compile Include="Repositories\ProdutoImagemRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\ProdutoPrecoReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ProdutoImagemReadOnlyRepository.cs" />
     <Compile Include="Repositories\StatusPedidoRepository.cs" />
     <Compile Include="Repositories\ItemPedidoRepository.cs" />

@@ -22,6 +22,11 @@ namespace IAPromocoes.Application.ViewModels
 
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [MaxLength(200, ErrorMessage = "Máximo 200 caracteres para o campo [{0}]")]
+        [DisplayName("Nome do Arquivo")]
+        public string NomeArquivo { get; set; }
+
+        [Required(ErrorMessage = "Preencha o campo [{0}]")]
+        [MaxLength(200, ErrorMessage = "Máximo 200 caracteres para o campo [{0}]")]
         [DisplayName("Descrição")]
         public string Descricao { get; set; }
 

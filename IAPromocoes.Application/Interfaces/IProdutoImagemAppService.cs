@@ -13,5 +13,6 @@ namespace IAPromocoes.Application.Interfaces
         IEnumerable<ProdutoImagemViewModel> GetAll();
         void Update(ProdutoImagemViewModel modelViewModel);
         void Remove(ProdutoImagemViewModel modelViewModel);
+        IEnumerable<ProdutoImagemViewModel> BuscarImagensPorIdProduto(Guid idProduto);
     }
 }

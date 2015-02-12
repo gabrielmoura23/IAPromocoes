@@ -1,4 +1,5 @@
-﻿@model IAPromocoes.Application.ViewModels.ProdutoViewModel
+﻿@using IAPromocoes.Application.ViewModels
+@model ProdutoViewModel
 
 @{
     ViewBag.Title = "Alterar";
@@ -69,7 +70,7 @@
                         @Html.HiddenFor(model => model.IdUsuarioAlteracao, new { @Value = Guid.NewGuid() })
                         @Html.HiddenFor(model => model.DtAlteracao, new { @Value = System.DateTime.Now.ToString("dd/MM/yyyy") })
 
-                        
+
                         <div class="portlet light">
                             <div class="portlet-title">
                                 <div class="caption">
@@ -99,6 +100,11 @@
                                         <li>
                                             <a href="#tab_images" data-toggle="tab">
                                                 Imagens
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_precos" data-toggle="tab">
+                                                Preços
                                             </a>
                                         </li>
                                     </ul>
@@ -288,7 +294,7 @@
                                         <div class="tab-pane" id="tab_images">
                                             <div class="alert alert-success margin-bottom-10">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                                                <i class="fa fa-warning fa-lg"></i> Aceita apenas arquivos .GIF e com tamanho de até 50kb e dimensões 10x20.
+                                                <i class="fa fa-warning fa-lg"></i> Aceita apenas imagens e com tamanho de até 200kb.
                                             </div>
                                             <div id="tab_images_uploader_container" class="text-align-reverse margin-bottom-10">
                                                 <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn yellow">
@@ -302,133 +308,17 @@
                                                 <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12">
                                                 </div>
                                             </div>
-                                            <table class="table table-bordered table-hover">
-                                                <thead>
-                                                    <tr role="row" class="heading">
-                                                        <th width="8%">
-                                                            Image
-                                                        </th>
-                                                        <th width="25%">
-                                                            Label
-                                                        </th>
-                                                        <th width="8%">
-                                                            Sort Order
-                                                        </th>
-                                                        <th width="10%">
-                                                            Base Image
-                                                        </th>
-                                                        <th width="10%">
-                                                            Small Image
-                                                        </th>
-                                                        <th width="10%">
-                                                            Thumbnail
-                                                        </th>
-                                                        <th width="10%">
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="~/assets/admin/pages/media/works/img1.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img1.jpg" alt="">
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][1][label]" value="Thumbnail image">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][1][sort_order]" value="1">
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][1][image_type]" value="1">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][1][image_type]" value="2">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][1][image_type]" value="3" checked>
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-sm">
-                                                                <i class="fa fa-times"></i> Remove
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="~/assets/admin/pages/media/works/img2.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img2.jpg" alt="">
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][2][label]" value="Product image #1">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][2][sort_order]" value="1">
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][2][image_type]" value="1">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][2][image_type]" value="2" checked>
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][2][image_type]" value="3">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-sm">
-                                                                <i class="fa fa-times"></i> Remove
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="~/assets/admin/pages/media/works/img3.jpg" class="fancybox-button" data-rel="fancybox-button">
-                                                                <img class="img-responsive" src="~/assets/admin/pages/media/works/img3.jpg" alt="">
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][3][label]" value="Product image #2">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control" name="product[images][3][sort_order]" value="1">
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][3][image_type]" value="1" checked>
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][3][image_type]" value="2">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="radio" name="product[images][3][image_type]" value="3">
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn default btn-sm">
-                                                                <i class="fa fa-times"></i> Remove
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div id="dvPartialImagemLista">
+                                                @Html.Partial("_ListaImagem", ViewData["Imagens"])
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_precos">
+                                            <div id="dvPartialPreco">
+                                                <a class="btn default" data-toggle="modal" href="#responsive">
+                                                    View Demo
+                                                </a>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,6 +333,11 @@
     <!-- END PAGE CONTENT -->
 </div>
 <!-- END PAGE CONTAINER -->
+<!-- /.modal -->
+<div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+    @Html.Partial("~/Views/ProdutoPreco/Cadastrar.cshtml", new ProdutoPrecoViewModel() {IdProduto = @Model.IdProduto})
+</div>
+
 @section PageLevelPlugins {
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <!-- END PAGE LEVEL PLUGINS -->
@@ -456,6 +351,7 @@
     <script src="~/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
     <script type="text/javascript" src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js"></script>
     <script src="~/assets/global/plugins/plupload/js/plupload.full.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 }
 
@@ -469,6 +365,11 @@
     <script type="text/javascript">
         jQuery(document).ready(function () {
             EcommerceProductsEdit.init();
+
+
+
+
+
         });
     </script>
 }

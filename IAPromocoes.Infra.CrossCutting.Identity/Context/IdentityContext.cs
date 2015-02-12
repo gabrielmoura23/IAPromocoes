@@ -1,5 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using IAPromocoes.Infra.CrossCutting.Identity.EntityConfig;
 
 
 namespace IAPromocoes.Infra.CrossCutting.Identity.Context
@@ -10,6 +12,8 @@ namespace IAPromocoes.Infra.CrossCutting.Identity.Context
             : base("IAPromocoesContext", throwIfV1Schema: false)
         {
         }
+
+        //public IDbSet<UsuarioAdm> UsuarioAdm { get; set; }
 
         public IDbSet<Client> Client { get; set; }
 
@@ -23,6 +27,30 @@ namespace IAPromocoes.Infra.CrossCutting.Identity.Context
         public static IdentityContext Create()
         {
             return new IdentityContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Conventions
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            // General Custom Context Properties
+            //modelBuilder.Properties()
+            //    .Where(p => p.Name == "Id" + p.ReflectedType.Name)
+            //    .Configure(p => p.IsKey());
+
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasColumnType("varchar"));
+
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasMaxLength(100));
+
+            // ModelConfiguration
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

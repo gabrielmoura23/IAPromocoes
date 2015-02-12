@@ -52,6 +52,7 @@
     <Compile Include="Entities\Tipos\FormaDePagamento.cs" />
     <Compile Include="Entities\Usuarios\UsuarioAdm.cs" />
     <Compile Include="Interfaces\Repository\IFormaDePagamentoRepository.cs" />
+    <Compile Include="Interfaces\Repository\IProdutoPrecoRepository.cs" />
     <Compile Include="Interfaces\Repository\IProdutoImagemRepository.cs" />
     <Compile Include="Interfaces\Repository\IStatusPedidoRepository.cs" />
     <Compile Include="Interfaces\Repository\ICategoriaRepository.cs" />
@@ -61,11 +62,13 @@
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repository\IProdutoRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IFormaDePagamentoReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IProdutoPrecoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IProdutoImagemReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IStatusPedidoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IClienteReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ICategoriaReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Services\IFormaDePagamentoService.cs" />
+    <Compile Include="Interfaces\Services\IProdutoPrecoService.cs" />
     <Compile Include="Interfaces\Services\IProdutoImagemService.cs" />
     <Compile Include="Interfaces\Services\IStatusPedidoService.cs" />
     <Compile Include="Interfaces\Services\ICategoriaService.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Interfaces\Validation\ISelfValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FormaDePagamentoService.cs" />
+    <Compile Include="Services\ProdutoPrecoService.cs" />
     <Compile Include="Services\ProdutoImagemService.cs" />
     <Compile Include="Services\StatusPedidoService.cs" />
     <Compile Include="Services\CategoriaService.cs" />
