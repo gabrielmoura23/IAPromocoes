@@ -1,0 +1,96 @@
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoPrecoViewModel>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr role="row" class="heading">
+            <th width="8%">
+                Descrição
+            </th>
+            <th width="25%">
+                Valor Unitário
+            </th>
+            <th width="8%">
+                Instruções Valor
+            </th>
+            <th width="10%">
+                Instruções Outros
+            </th>
+            <th width="10%">
+                Quantidade
+            </th>
+            <th width="10%">
+                Ativo?
+            </th>
+            <th width="10%">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Descricao
+                </td>
+                <td>
+                    @item.ValorUnitario
+                </td>
+                <td>
+                    @item.InstrucoesValor
+                </td>
+                <td>
+                    @item.InstrucoesOutros
+                </td>
+                <td>
+                    @item.QtdProduto
+                </td>
+                <td>
+                    @item.FlgAtivo
+                </td>
+                <td>
+                    <a href="#" class="btn default btn-sm"
+                       onclick="event.preventDefault(); ApagarPreco('@item.IdProdutoPreco');">
+                        <i class="fa fa-times"></i> Apagar
+                    </a>
+                    <a href="#" class="btn default btn-sm"
+                       onclick="event.preventDefault(); AlterarPreco('@item.IdProdutoPreco');">
+                        <i class="fa fa-times"></i> Alterar
+                    </a>
+                    @Html.ActionLink("Alterar 2", "_AltPreco", "ProdutoPreco", null, new { IdProdutoPreco = @item.IdProdutoPreco, @class = "btn green btn-xs edit-preco" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script>
+
+    function ApagarPreco(idProdutoPreco) {
+        if (confirm('Tem certeza de que deseja apagar este preço?')) {
+            var idProd = document.getElementById('IdProduto');
+            $.ajax(
+            {
+                type: "POST",
+                url: "/ProdutoPreco/ExcluirPreco",
+                contentType: "application/json",
+                data: JSON.stringify({ id: idProdutoPreco }),
+                dataType: 'json',
+                processData: false,
+                success:
+                function (resultado) {
+                    if (resultado == "OK")
+                        $("#dvPartialListaPreco").load('/ProdutoPreco/GetPrecosProdutos?idProduto=' + idProd.value, function (html) { });
+                    else
+                        Metronic.alert({ type: 'danger', message: 'Ocorreu um erro. Favor tentar novamente.', closeInSeconds: 10, icon: 'warning' });
+                },
+            });
+        }
+        else
+            return false;
+    }
+
+    
+
+</script>

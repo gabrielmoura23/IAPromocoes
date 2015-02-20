@@ -313,10 +313,11 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab_precos">
+                                            <div id="dvPartialListaPreco">
+                                                @Html.Partial("~/Views/ProdutoPreco/_ListaPrecos.cshtml", ViewData["Precos"])
+                                            </div>
                                             <div id="dvPartialPreco">
-                                                <a class="btn default" data-toggle="modal" href="#responsive">
-                                                    View Demo
-                                                </a>
+                                                @Html.ActionLink("Cadastrar Preço", "_CadPreco", "ProdutoPreco", null, new { IdProduto = @Model.IdProduto, @class = "btn green btn-xs edit-person" })
 
                                             </div>
                                         </div>
@@ -335,7 +336,15 @@
 <!-- END PAGE CONTAINER -->
 <!-- /.modal -->
 <div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
-    @Html.Partial("~/Views/ProdutoPreco/Cadastrar.cshtml", new ProdutoPrecoViewModel() {IdProduto = @Model.IdProduto})
+    @Html.Partial("~/Views/ProdutoPreco/Cadastrar.cshtml", new ProdutoPrecoViewModel() { IdProduto = @Model.IdProduto })
+</div>
+
+<div class="modal  fade in" id="edit-person" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="edit-person-container" class="modal-dialog"></div>
+</div>
+
+<div class="modal  fade in" id="edit-preco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div id="edit-preco-container" class="modal-dialog"></div>
 </div>
 
 @section PageLevelPlugins {
@@ -365,11 +374,149 @@
     <script type="text/javascript">
         jQuery(document).ready(function () {
             EcommerceProductsEdit.init();
-
-
-
-
-
         });
+
+
+
+        $(function () {
+
+            ////Optional: turn the chache off
+            //$.ajaxSetup({ cache: false });
+
+            $('.edit-person').click(function () {
+                //var url = "/Bootstrap/EditPerson"; // the url to the controller
+                //var id = $(this).attr('id');
+                var IdProduto = $(this).attr('IdProduto');
+                $('#edit-person-container').load(this.href + '?IdProduto=' + IdProduto, function () {
+                    $('#edit-person').modal({
+                        backdrop: 'static',
+                        keyboard: true
+                    }, 'show');
+                    bindForm(this);
+                });
+                return false;
+            });
+        });
+
+        function bindForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        //alert('aqui');
+                        //alert(result);
+                        //alert(result.success);
+                        //$('#edit-person').modal('hide');
+                        //if (result.success) {
+                        //    $('#edit-person').modal('hide');
+                        //    // Refresh:
+                        //    // location.reload();
+                        //} else {
+                        //    $('#edit-person-container').html(result);
+                        //    bindForm();
+                        //}
+                        if (result.success) {
+                            //close popup
+                            $('#edit-person').modal('hide');
+                            //$("[data-dismiss=modal]").trigger({ type: "click" });
+                            //Atualizar lista
+                            var idProd = document.getElementById('IdProduto');
+                            $("#dvPartialListaPreco").load('/ProdutoPreco/GetPrecosProdutos?idProduto=' + idProd.value, function (html) { });
+                        }
+                        else {
+                            //$('#edit-person').modal('hide');
+                            $('#edit-person-container').html(result);
+                            bindForm();
+                            //alert('Erro!');
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+
+
+
+
+        $(function () {
+
+            ////Optional: turn the chache off
+            //$.ajaxSetup({ cache: false });
+
+            $('.edit-preco').click(function () {
+                //var url = "/Bootstrap/EditPerson"; // the url to the controller
+                //var id = $(this).attr('id');
+                var IdProdutoPreco = $(this).attr('IdProdutoPreco');
+                $('#edit-preco-container').load(this.href + '?IdProdutoPreco=' + IdProdutoPreco, function () {
+                    $('#edit-preco').modal({
+                        backdrop: 'static',
+                        keyboard: true
+                    }, 'show');
+                    bindForm2(this);
+                });
+                return false;
+            });
+        });
+
+        function bindForm2(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        //alert('aqui');
+                        //alert(result);
+                        //alert(result.success);
+                        //$('#edit-person').modal('hide');
+                        //if (result.success) {
+                        //    $('#edit-person').modal('hide');
+                        //    // Refresh:
+                        //    // location.reload();
+                        //} else {
+                        //    $('#edit-person-container').html(result);
+                        //    bindForm();
+                        //}
+                        if (result.success) {
+                            //close popup
+                            $('#edit-preco').modal('hide');
+                            //$("[data-dismiss=modal]").trigger({ type: "click" });
+                            //Atualizar lista
+                            var idProd = document.getElementById('IdProduto');
+                            $("#dvPartialListaPreco").load('/ProdutoPreco/GetPrecosProdutos?idProduto=' + idProd.value, function (html) { });
+                        }
+                        else {
+                            //$('#edit-person').modal('hide');
+                            $('#edit-preco-container').html(result);
+                            bindForm();
+                            //alert('Erro!');
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+        
+    function closePopUp(data) {
+        alert(data);
+        if (data.success) {
+            alert('aqui2');
+            //close popup
+            //$('#responsive').modal('hide');
+            $('#edit-person').modal('hide');
+            //$("[data-dismiss=modal]").trigger({ type: "click" });
+            //Atualizar lista
+            var idProd = document.getElementById('IdProduto');
+            $("#dvPartialListaPreco").load('/ProdutoPreco/GetPrecosProdutos?idProduto=' + idProd.value, function (html) { });
+        }
+        else {
+            alert('Erro!');
+        }
+    }
+    
     </script>
 }

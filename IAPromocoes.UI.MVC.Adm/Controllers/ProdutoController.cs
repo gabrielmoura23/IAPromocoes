@@ -15,15 +15,18 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         private readonly IProdutoAppService _produtoApp;
         private readonly IProdutoImagemAppService _produtoImagemApp;
         private readonly ICategoriaAppService _categoriaApp;
+        private readonly IProdutoPrecoAppService _produtoPrecoApp;
 
         public ProdutoController(
             IProdutoAppService produtoApp,
             IProdutoImagemAppService produtoImagemApp,
+            IProdutoPrecoAppService produtoPrecoApp,
             ICategoriaAppService categoriaApp)
         {
             _produtoApp = produtoApp;
             _produtoImagemApp = produtoImagemApp;
             _categoriaApp = categoriaApp;
+            _produtoPrecoApp = produtoPrecoApp;
         }
 
         // GET: Categoria
@@ -83,6 +86,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             var produtoViewModel = _produtoApp.GetById(id);
             ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", produtoViewModel.IdCategoria);
             ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(id);
+            ViewData["Precos"] = _produtoPrecoApp.BuscarPrecosPorIdProduto(id);
 
             return View(produtoViewModel);
         }

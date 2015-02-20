@@ -1536,9 +1536,11 @@
     <Content Include="Views\Account\Lista.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Produto\_ListaImagem.cshtml" />
-    <Content Include="Views\Produto\_ListaPrecos.cshtml" />
+    <Content Include="Views\ProdutoPreco\_ListaPrecos.cshtml" />
     <Content Include="Views\Produto\_CadPreco.cshtml" />
     <Content Include="Views\ProdutoPreco\Cadastrar.cshtml" />
+    <Content Include="Views\ProdutoPreco\_CadPreco.cshtml" />
+    <Content Include="Views\ProdutoPreco\_AltPreco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,9 +38,18 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             return View(ProdutoViewModel);
         }
 
+        public ActionResult _CadPreco(Guid IdProduto)
+        {
+            var model = new ProdutoPrecoViewModel();
+            model.IdProduto = IdProduto;
+            model.FlgAtivo = true;
+            return PartialView(model);
+        }
+
         // GET: Categoria/Cadastrar
         public ActionResult Cadastrar()
         {
+
             //ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao");
             return View();
         }
@@ -55,52 +64,60 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             if (ModelState.IsValid)
             {
                 var result = _produtoPrecoApp.Add(produtoPrecoViewModel);
-
+                
                 if (!result.IsValid)
                 {
                     foreach (var validationAppError in result.Erros)
                     {
                         ModelState.AddModelError(string.Empty, validationAppError.Message);
                     }
-                    return PartialView(produtoPrecoViewModel);
+                    return PartialView("_CadPreco", produtoPrecoViewModel);
+                    //return PartialView(produtoPrecoViewModel);
                 }
+
+                return Json(new { success = true });
             }
 
+            return PartialView("_CadPreco", produtoPrecoViewModel);
             //return PartialView(produtoPrecoViewModel);
             //return Json(new { success = true });
-            return new JsonResult() { Data = true };
+            //return new JsonResult() { Data = true };
+            //return Json(new { success = false, mensagem = "Dados incorretos." });
             //return RedirectToAction("Alterar","Produto");
+        }
+
+        public ActionResult _AltPreco(Guid IdProdutoPreco)
+        {
+            var model = _produtoPrecoApp.GetById(IdProdutoPreco);
+            return PartialView(model);
         }
 
         // GET: Categoria/Edit/5
         public ActionResult Alterar(Guid id)
         {
-            var produtoViewModel = _produtoApp.GetById(id);
+            var modelViewModel = _produtoPrecoApp.GetById(id);
             //ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", produtoViewModel.IdCategoria);
             //ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(id);
 
-            return View(produtoViewModel);
+            return View(modelViewModel);
         }
 
         // POST: Categoria/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Alterar(ProdutoViewModel ProdutoViewModel, string Command)
+        public ActionResult Alterar(ProdutoPrecoViewModel produtoPrecoViewModel)
         {
             //ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", ProdutoViewModel.IdCategoria);
 
             if (ModelState.IsValid)
             {
-                _produtoApp.Update(ProdutoViewModel);
+                _produtoPrecoApp.Update(produtoPrecoViewModel);
                 //return RedirectToAction("Index");
 
-                if (Command == "Submit")
-                    return RedirectToAction("Index");
-                else
-                    return RedirectToAction("Alterar");
+                return Json(new { success = true });
             }
 
-            return View(ProdutoViewModel);
+            return PartialView("_AltPreco", produtoPrecoViewModel);
         }
 
         // GET: Categoria/Excluir/5
@@ -180,7 +197,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         {
             var model = _produtoPrecoApp.BuscarPrecosPorIdProduto(Guid.Parse(idProduto));
             //return new JsonResult() { Data = model };
-            return PartialView("_ListaImagem", model);
+            return PartialView("_ListaPrecos", model);
         }
 
 
@@ -206,7 +223,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
 
 
         [HttpPost]
-        public ActionResult TesteExcluirImagem(string id)
+        public ActionResult ExcluirPreco(string id)
         {
             var model = _produtoPrecoApp.GetById(Guid.Parse(id));
             _produtoPrecoApp.Remove(model);
