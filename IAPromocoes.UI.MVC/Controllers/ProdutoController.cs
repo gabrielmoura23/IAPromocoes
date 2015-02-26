@@ -107,5 +107,13 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Lista()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
     }
 }

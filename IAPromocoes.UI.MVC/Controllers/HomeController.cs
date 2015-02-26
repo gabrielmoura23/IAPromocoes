@@ -20,11 +20,20 @@ namespace IAPromocoes.UI.MVC.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contato()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
+        public ActionResult Faq()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        
     }
 }

@@ -53,6 +53,22 @@ namespace IAPromocoes.UI.MVC.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult Cadastro()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Entrar()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]

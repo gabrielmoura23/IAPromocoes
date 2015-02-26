@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/__LayoutExterno.cshtml";
+}
+
+@section PageLevelStyles {
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="~/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+}
+
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Novo Cadastro</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-3">
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Entrar/Cadastrar</a></li>
+                    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Esqueci a Senha</a></li>
+                    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Minha Conta</a></li>
+                    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i> Novidades</a></li>
+                </ul>
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-9">
+                <h1>Novo Cadastro</h1>
+                <div class="content-form-page">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                            <form class="form-horizontal" role="form">
+                                <fieldset>
+                                    <legend>Seus Dados Pessoais</legend>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">Nome <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname" class="col-lg-4 control-label">Sobrenome <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="lastname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">CPF <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-lg-4 control-label">E-mail <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">Data de Nascimento <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">Sexo <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">Telefone <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="firstname">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Sua Senha</legend>
+                                    <div class="form-group">
+                                        <label for="password" class="col-lg-4 control-label">Senha <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirm-password" class="col-lg-4 control-label">Confirme a Senha <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="confirm-password">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Termos e Condições de Uso</legend>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <textarea cols="70" style="width:100%" rows="6" disabled="">
+                                                REGULAMENTO PARA CONHECIMENTO PRÉVIO DO CONSUMIDOR
+                                                NORMAS PARA PARTICIPAÇÃO NO PORTAL DAS LISTAS
+                                                LEIA OBRIGATORIAMENTE ANTES DE EFETUAR A SUA COMPRA E CONCORDE COM OS TERMOS ABAIXO
+
+                                                1) A inclusão do nome na lista de algum produto á venda no Portal das Listas não garante ao cliente a garantia de compra e preço.
+                                                2) O valor dos produtos pode ser alterado ou o lote encerrado a qualquer momento pelo Portal das Listas, sob orientação da empresa parceira.
+                                                3) Os pagamentos e retirada dos vouchers deverão ser efetuados unicamente na loja do Portal das Listas, no piso L2 do Salvador Shopping. O Portal das Listas não se responsabilizará por pagamentos efetuados a terceiros.
+                                                4) O pagamento deve ser feita exclusivamente em dinheiro. Não serão aceitos cartões de crédito ou débito, cheques ou qualquer outra modalidade de pagamento.
+                                                5) Uma vez efetuado o pagamento e retirada do voucher, o cliente passa a ter total responsabilidade pelo mesmo. O Portal das Listas não efetua troca, devolução ou reembolso aos clientes, bem como não se responsabiliza por vouchers extraviados, roubados, etc.
+                                                6) O comprador desde já declara que todas as informações prestadas no cadastro e retirada dos vouchers são precisas e verdadeiras.
+                                                7) O cadastro no Portal das Listas só pode ser realizado pelo site ou aplicativo oficiais, não sendo aceita qualquer outra forma de inclusão.
+                                                8) A retirada no voucher só pode ser feita pela pessoa titular do CPF cadastrado no Portal das Listas, que deve comparecer pessoalmente á loja do Portal das Listas, munida de documento original com foto, que comprove a titularidade do CPF. O documento pode ser: RG, CNH, CTPS, passaporte ou carteira de identidade profissional expedida por Conselho de Classe.
+                                                9) Em nenhuma hipótese, terceiros poderão efetuar a retirada dos vouchers, mesmo mediante qualquer tipo de procuração ou outro documento.
+                                                10) O abadá/camisa deve ser retirado no endereço e datas informados no voucher. O cliente não pode trocar o produto ou dia de desfile no ato de entrega.
+                                                11) O voucher fica retido pelo produtor do bloco/camarote na entrega do abadá/camisa.
+                                                12) O Portal das Listas é apenas um canal vendas, portanto, não se responsabiliza pela qualidade dos serviços prestados no produto adquirido. Atrasos, alterações de grade, cancelamentos ou outras ocorrências, são de total responsabilidade da empresa produtora do bloco/camarote.
+                                                13) O Portal das Listas só pode vender a quantidade máxima de abadás limitada pelo parceiro por CPF. Essa quantidade é limitada no ato da compra dos vouchers. Ao efetuar compra de algum produto, o CPF passa a ficar inválido para o mesmo produto e dia, mesmo que o cliente não tenha adquirido da quantidade máxima de acessos para o produto e dia.
+                                                14) O documento oficial de identificação pessoal apresentado pelo cliente poderá ser recusado se, em razão do tempo de expedição e/ou do mau estado de conservação, não for possível a identificação do cliente.
+                                                15) Não haverá entrega de camisas na loja do Portal das Listas.
+                                                16) A loja do Portal das Listas funcionará no mesmo horário de funcionamento do Salvador Shopping, até a data em que os parceiros optarem por encerrarem as vendas. Informe-se no site e aplicativo do Portal das Listas sobre o encerramento das vendas dos produtos que lhe interessam.
+                                                17) O preço dos abadás/camisas será o praticado no momento da compra. O fato de ter se cadastrado num momento em que o preço era inferior não garante a manutenção do referido preço.
+                                                18) O comprador desde já declara que todas as informações prestadas no cadastro e retirada dos vouchers são precisas e verdadeiras.
+                                                19) Qualquer alteração em uma das condições acima citadas será imediatamente comunicada neste espaço, prevalecendo sobre as anteriores.
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox form-group">
+                                        <label>
+                                            <div class="col-lg-1 col-sm-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-lg-11 col-sm-11">Confirmo que li e aceito os termos e condições de uso do IA Promoções.</div>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Novidades</legend>
+                                    <div class="checkbox form-group">
+                                        <label>
+                                            <div class="col-lg-1 col-sm-1">
+                                                <input type="checkbox">
+                                            </div>
+                                            <div class="col-lg-11 col-sm-11">Aceito receber informações e promoções do IA Promoções.</div>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        <button type="button" class="btn btn-default">Cancelar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 col-sm-4 pull-right">
+                            <div class="form-info">
+                                <h2>Informação <em>Importante</em></h2>
+                                <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo quat.</p>
+                                <p>Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.</p>
+                                <button type="button" class="btn btn-default">Mais Informações</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+
+@section PageLevelPlugins {
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="~/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="~/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+}
+
+@section PageLevelScripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Layout.init();
+            Layout.initUniform();
+            Layout.initTwitter();
+            Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
+            Layout.initNavScrolling();
+        });
+    </script>
+}

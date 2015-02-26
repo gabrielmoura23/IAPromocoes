@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="Metronic Shop UI description" name="description">
+    <meta content="Metronic Shop UI keywords" name="keywords">
+    <meta content="keenthemes" name="author">
+    <meta property="og:site_name" content="-CUSTOMER VALUE-">
+    <meta property="og:title" content="-CUSTOMER VALUE-">
+    <meta property="og:description" content="-CUSTOMER VALUE-">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+    <meta property="og:url" content="-CUSTOMER VALUE-">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- Fonts START -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <!-- Fonts END -->
+    @Styles.Render("~/Content/globalstyles")
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    @RenderSection("PageLevelStyles", false)
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME STYLES -->
+    @Styles.Render("~/Content/themestyles")
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="corporate">
+    <!-- BEGIN TOP BAR -->
+    <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                <div class="col-md-6 col-sm-6 additional-shop-info">
+                    <ul class="list-unstyled list-inline">
+                        <li><i class="fa fa-phone"></i><span>71 9999-9999</span></li>
+                        <li><i class="fa fa-envelope-o"></i><span>contato@iapromocoes.com.br</span></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR LEFT PART -->
+                <!-- BEGIN TOP BAR MENU -->
+                <div class="col-md-6 col-sm-6 additional-nav">
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li><a href="/Account/Entrar/">Entrar</a></li>
+                        <li><a href="/Account/Cadastro/">Registrar</a></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR MENU -->
+            </div>
+        </div>
+    </div>
+    <!-- END TOP BAR -->
+    <!-- BEGIN HEADER -->
+    <div class="header">
+        <div class="container">
+            <a class="site-logo" href="index.html"><img src="~/assets/frontend/layout/img/logos/logo-corp-red.png" alt="Metronic FrontEnd"></a>
+            <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+            <!-- BEGIN NAVIGATION -->
+            <div class="header-navigation pull-right font-transform-inherit">
+                <ul>
+                    <li><a href="/Home/Index/">Home</a></li>
+                    <li><a href="/Home/About/">Quem Somos</a></li>
+                    <li><a href="/Produto/Lista/">Produtos</a></li>
+                    <li><a href="/Account/Cadastro/">Cadastro</a></li>
+                    <li><a href="/Home/Faq/">Dúvidas</a></li>
+                    <li><a href="/Home/Contato/">Contato</a></li>
+                </ul>
+            </div>
+            <!-- END NAVIGATION -->
+        </div>
+    </div>
+    <!-- Header END -->
+    <!-- BEGIN PAGE -->
+    @RenderBody()
+    <!-- END PAGE -->
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN BOTTOM ABOUT BLOCK -->
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2>Sobre Nós</h2>
+                    <p class="">
+                        O IA Promoções é o primeiro outlet center do Carnaval de Salvador. Se cadastre pelo site, aplicativo ou através de um dos nossos promoters oficiais e aproveite as promoções! Lembrando que os lotes tem quantidade e prazos limitados.
+                        Se adiante e tenha um ótimo Carnaval.
+                    </p>
+                </div>
+                <!-- END BOTTOM ABOUT BLOCK -->
+                <!-- BEGIN BOTTOM CONTACTS -->
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2>Nossos Contatos</h2>
+                    <address class="margin-bottom-40">
+                        Rua do teste, 123<br>
+                        Salvador, BA<br>
+                        Telefone: 300 323 3456<br>
+                        E-mail: <a href="mailto:info@iapromocoes.com.br">info@iapromocoes.com.br</a><br>
+                        Skype: <a href="skype:iapromocoes">iapromocoes</a>
+                    </address>
+                    <div class="pre-footer-subscribe-box pre-footer-subscribe-box-vertical">
+                        <h2>Receba Nossas Promoções</h2>
+                        <p>Os melhores preços e a melhor festa no seu e-mail!</p>
+                        <form action="#">
+                            <div class="input-group">
+                                <input type="text" placeholder="seuemail@mail.com" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Cadastre-se</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- END BOTTOM CONTACTS -->
+                <!-- BEGIN TWITTER BLOCK -->
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2 class="margin-bottom-0">Últimos Tweets</h2>
+                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="2" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by keenthemes...</a>
+                </div>
+                <!-- END TWITTER BLOCK -->
+            </div>
+        </div>
+    </div>
+    <!-- END PRE-FOOTER -->
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN COPYRIGHT -->
+                <div class="col-md-6 col-sm-6 padding-top-10">
+                    @DateTime.Now.Year &copy; IA Promoções. Todos os direitos reservados. <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
+                </div>
+                <!-- END COPYRIGHT -->
+                <!-- BEGIN PAYMENTS -->
+                <div class="col-md-6 col-sm-6">
+                    <ul class="social-footer list-unstyled list-inline pull-right">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+                    </ul>
+                </div>
+                <!-- END PAYMENTS -->
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/coreplugins")
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    @RenderSection("PageLevelPlugins", required: false)
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+    @RenderSection("PageLevelScripts", required: false)
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
