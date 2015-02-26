@@ -28,6 +28,7 @@ namespace IAPromocoes.Application.ViewModels
 
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
         [DisplayName("CPF")]
         public string Cpf { get; set; }
 
@@ -38,27 +39,33 @@ namespace IAPromocoes.Application.ViewModels
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
+        [DataType(DataType.Date)]
         [DisplayName("Data de Nascimento")]
-        public System.DateTime DataNascimento { get; set; }
+        public System.DateTime DtNascimento { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [MaxLength(255, ErrorMessage = "Máximo 255 caracteres para o campo [{0}]")]
+        [EmailAddress(ErrorMessage = "E-mail não é válido")]
         [DisplayName("E-mail")]
         public string Email { get; set; }
 
         [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
         [DisplayName("DDD Telefone")]
         public string DddTelefone { get; set; }
 
         [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
         [DisplayName("Telefone")]
         public string Telefone { get; set; }
 
         [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
         [DisplayName("DDD Celular")]
         public string DddCelular { get; set; }
 
         [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
         [DisplayName("Celular")]
         public string Celular { get; set; }
 

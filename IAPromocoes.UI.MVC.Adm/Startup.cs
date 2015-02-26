@@ -2,7 +2,7 @@
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup("Startup", typeof(Startup))]
 namespace IAPromocoes.UI.MVC.Adm
 {
     public partial class Startup
@@ -10,6 +10,7 @@ namespace IAPromocoes.UI.MVC.Adm
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            StartupAdm.Configuration(app);
         }
     }
 }

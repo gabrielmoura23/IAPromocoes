@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IAPromocoes.Infra.CrossCutting.Identity
+namespace IAPromocoes.Infra.CrossCutting.Identity.Adm
 {
     public class UsuarioAdm : IdentityUser
     {
@@ -19,9 +19,20 @@ namespace IAPromocoes.Infra.CrossCutting.Identity
         }
 
         public string Nome { get; set; }
-        public string Sexo { get; set; }
-        public System.DateTime DtNascimento { get; set; }
-  
+        public string Sobrenome { get; set; }
+        public string Cpf { get; set; }
+        //public string Email { get; set; }
+        public string DddTelefone { get; set; }
+        public string Telefone { get; set; }
+        public string DddCelular { get; set; }
+        public string Celular { get; set; }
+        //public string Senha { get; set; }
+        public bool FlgAtivo { get; set; }
+        public System.DateTime DtCadastro { get; set; }
+        public System.Nullable<Guid> IdUsuarioCadastro { get; set; }
+        public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
+        public System.Nullable<System.DateTime> DtAlteracao { get; set; }
+          
         public virtual ICollection<Client> Clients { get; set; }
 
         [NotMapped]

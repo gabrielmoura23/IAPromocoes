@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using IAPromocoes.Infra.CrossCutting.Identity;
-using IAPromocoes.Infra.CrossCutting.Identity.Configuration;
+using IAPromocoes.Infra.CrossCutting.Identity.Adm;
+using IAPromocoes.Infra.CrossCutting.Identity.Adm.Configuration;
 using IAPromocoes.UI.MVC.Adm.ViewModels;
+using System.Collections.Generic;
 
 namespace IAPromocoes.UI.MVC.Adm.Controllers
 {
@@ -19,19 +20,19 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(UsuarioAdmManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
         // Definindo a instancia UserManager presente no request.
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
+        private UsuarioAdmManager _userManager;
+        public UsuarioAdmManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<UsuarioAdmManager>();
             }
             private set
             {
@@ -95,7 +96,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
                     return View(model);
             }
         }
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(UsuarioAdm user, bool isPersistent)
         {
             var clientKey = Request.Browser.Type;
             await UserManager.SignInClientAsync(user, clientKey);
@@ -166,6 +167,9 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            //var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            //ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+            //SetarValoresDeCadastroNaViewBag();
             return View();
         }
 
@@ -178,17 +182,17 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new UsuarioAdm
                 {
                     UserName = model.Email, 
                     Email = model.Email,
                     Nome = model.Nome,
                     Cpf = model.Cpf,
                     Sobrenome = model.Sobrenome,
-                    Sexo = model.Sexo,
-                    DtNascimento = model.DtNascimento,
-                    FlgAceitoNewsletter = model.FlgAceitoNewsletter,
-                    FlgAceitoTermos = model.FlgAceitoTermos,
+                    DddTelefone = model.DddTelefone,
+                    Telefone = model.Telefone,
+                    DddCelular = model.DddCelular,
+                    Celular = model.Celular,
                     FlgAtivo = model.FlgAtivo,
                     DtCadastro = model.DtCadastro
                     
@@ -422,7 +426,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new UsuarioAdm { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -558,6 +562,118 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             var allUsers = UserManager.Users.ToList();
 
             return View(allUsers);
+        }
+
+        [AllowAnonymous]
+        // GET: Cliente/Edit/5
+        public ActionResult Alterar(string id)
+        {
+            //var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            //ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
+            var u = UserManager.FindById(id);
+            var userModel = new AlterarViewModel
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Sobrenome = u.Sobrenome,
+                Cpf = u.Cpf,
+                Email = u.Email,
+                DddTelefone = u.DddTelefone,
+                Telefone = u.Telefone,
+                DddCelular = u.DddCelular,
+                Celular = u.Celular,
+                FlgAtivo = u.FlgAtivo
+            };
+            //var ClienteViewModel = _clienteApp.GetById(id);
+            return View(userModel);
+        }
+
+        // POST: Cliente/Edit/5
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Alterar(AlterarViewModel modelViewModel)
+        {
+            //var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            //ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
+            if (ModelState.IsValid)
+            {
+                var u = UserManager.FindById(modelViewModel.Id);
+                //u.UserName = modelViewModel.Email;
+                //u.Email = modelViewModel.Email;
+                u.Sobrenome = modelViewModel.Sobrenome; // Extra Property
+                u.DddTelefone = modelViewModel.DddTelefone; // Extra Property
+                u.Telefone = modelViewModel.Telefone; // Extra Property
+                u.DddCelular = modelViewModel.DddCelular; // Extra Property
+                u.Celular = modelViewModel.Celular; // Extra Property
+                u.FlgAtivo = modelViewModel.FlgAtivo; // Extra Property
+
+                var result = UserManager.Update(u);
+                if (result.Succeeded)
+                {
+                    //_clienteApp.Update(ClienteViewModel);
+                    return RedirectToAction("Lista");
+                }
+                else
+                {
+                    foreach (var validationAppError in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError);
+                    }
+                    return View(modelViewModel);
+                }
+            }
+
+            return View(modelViewModel);
+        }
+
+        [AllowAnonymous]
+        public ActionResult _AltSenha(string Id)
+        {
+            var u = UserManager.FindById(Id);
+            var userModel = new AlterarSenhaViewModel
+            {
+                Id = u.Id
+            };
+            //var ClienteViewModel = _clienteApp.GetById(id);
+            return PartialView(userModel);
+        }
+
+        // POST: Categoria/Edit/5
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _AltSenha(AlterarSenhaViewModel modelViewModel)
+        {
+            //ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", ProdutoViewModel.IdCategoria);
+
+            if (ModelState.IsValid)
+            {
+                string code = UserManager.GeneratePasswordResetToken(modelViewModel.Id);
+                IdentityResult result = UserManager.ResetPassword(modelViewModel.Id, code, modelViewModel.Password);
+                //return RedirectToAction("Index");
+
+                if (result.Succeeded)
+                {
+                    //_clienteApp.Update(ClienteViewModel);
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    foreach (var validationAppError in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError);
+                    }
+                    return PartialView(modelViewModel);
+                }
+
+                //return Json(new { Url = Url.Action("_AltPreco", produtoPrecoViewModel) });
+                //return Json(produtoPrecoViewModel, JsonRequestBehavior.AllowGet);
+            }
+
+            return PartialView(modelViewModel);
         }
     }
 }

@@ -44,13 +44,7 @@ namespace IAPromocoes.Infra.CrossCutting.Identity.EntityConfig
 
             Property(c => c.Celular)
                 .HasMaxLength(15);
-
-            Property(c => c.LinkImagem)
-                .HasMaxLength(255);
-
-            Property(c => c.LinkFacebook)
-                .HasMaxLength(255);
-
+            
             //Property(c => c.Senha)
             //    .IsRequired()
             //    .HasMaxLength(50);

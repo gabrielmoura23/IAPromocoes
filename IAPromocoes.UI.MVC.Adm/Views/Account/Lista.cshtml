@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IAPromocoes.Infra.CrossCutting.Identity.ApplicationUser>
+﻿@model IEnumerable<IAPromocoes.Infra.CrossCutting.Identity.Adm.UsuarioAdm>
 
 @{
     ViewBag.Title = "Lista";
@@ -100,9 +100,6 @@
                                                 }
                                             </td>
                                             <td>
-                                                <a href="@Url.Action("Excluir", "Account", new { id = item.Id })" class="btn default btn-xs black">
-                                                    <i class="fa fa-trash-o"></i> Apagar
-                                                </a>
                                                 <a href="@Url.Action("Alterar", "Account", new { id = item.Id })" class="btn default btn-xs purple">
                                                     <i class="fa fa-edit"></i> Alterar
                                                 </a>

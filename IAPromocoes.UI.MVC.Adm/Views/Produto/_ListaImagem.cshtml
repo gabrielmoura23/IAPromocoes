@@ -71,6 +71,7 @@
     function ApagarImagem(idImagem) {
         if (confirm('Tem certeza de que deseja apagar esta imagem?')) {
             var idProd = document.getElementById('IdProduto');
+
             $.ajax(
             {
                 type: "POST",
@@ -82,7 +83,7 @@
                 success:
                 function (resultado) {
                     if (resultado == "OK")
-                        $("#dvPartialLista").load('/Produto/GetImagensProdutos?idProduto=' + idProd.value, function (html) { });
+                        $("#dvPartialImagemLista").load('/Produto/GetImagensProdutos?idProduto=' + idProd.value, function (html) { });
                     else
                         Metronic.alert({ type: 'danger', message: 'Ocorreu um erro. Favor tentar novamente.', closeInSeconds: 10, icon: 'warning' });
                 },

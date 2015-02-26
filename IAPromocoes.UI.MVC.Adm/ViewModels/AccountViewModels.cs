@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -94,21 +95,26 @@ namespace IAPromocoes.UI.MVC.Adm.ViewModels
         [Required]
         [Display(Name = "Cpf")]
         public string Cpf { get; set; }
+        
+        [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("DDD Telefone")]
+        public string DddTelefone { get; set; }
 
-        [Required]
-        [Display(Name = "Sexo")]
-        public string Sexo { get; set; }
+        [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("Telefone")]
+        public string Telefone { get; set; }
 
-        [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [Display(Name = "Data de Nascimento")]
-        public DateTime DtNascimento { get; set; }
+        [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("DDD Celular")]
+        public string DddCelular { get; set; }
 
-        [HiddenInput]
-        public bool FlgAceitoTermos { get; set; }
-
-        [HiddenInput]
-        public bool FlgAceitoNewsletter { get; set; }
+        [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("Celular")]
+        public string Celular { get; set; }
 
         [Required]
         [Display(Name = "Ativo?")]
@@ -117,8 +123,17 @@ namespace IAPromocoes.UI.MVC.Adm.ViewModels
         [HiddenInput]
         public System.DateTime DtCadastro { get; set; }
 
+        [HiddenInput]
+        public System.Nullable<Guid> IdUsuarioCadastro { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<System.DateTime> DtAlteracao { get; set; }
+
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Password { get; set; }
@@ -138,7 +153,7 @@ namespace IAPromocoes.UI.MVC.Adm.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Password { get; set; }
@@ -160,4 +175,96 @@ namespace IAPromocoes.UI.MVC.Adm.ViewModels
         public string Email { get; set; }
     }
 
+    public class AlterarViewModel
+    {
+        [HiddenInput]
+        public string Id { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "E-mail")]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Nome")]
+        public string Nome { get; set; }
+
+        [Required]
+        [Display(Name = "Sobrenome")]
+        public string Sobrenome { get; set; }
+
+        [Required]
+        [Display(Name = "Cpf")]
+        public string Cpf { get; set; }
+
+        [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("DDD Telefone")]
+        public string DddTelefone { get; set; }
+
+        [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("Telefone")]
+        public string Telefone { get; set; }
+
+        [MaxLength(2, ErrorMessage = "Máximo 2 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("DDD Celular")]
+        public string DddCelular { get; set; }
+
+        [MaxLength(15, ErrorMessage = "Máximo 15 caracteres para o campo [{0}]")]
+        [RegularExpression("([0-9]*)", ErrorMessage = "Digite apenas números")]
+        [DisplayName("Celular")]
+        public string Celular { get; set; }
+
+        [Required]
+        [Display(Name = "Ativo?")]
+        public bool FlgAtivo { get; set; }
+
+        [HiddenInput]
+        public System.DateTime DtCadastro { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<Guid> IdUsuarioCadastro { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<System.DateTime> DtAlteracao { get; set; }
+
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar Senha")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "As senhas não se coincidem.")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class AlterarSenhaViewModel
+    {
+        [HiddenInput]
+        public string Id { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "A {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar Senha")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "As senhas não se coincidem.")]
+        public string ConfirmPassword { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
+
+        [HiddenInput]
+        public System.Nullable<System.DateTime> DtAlteracao { get; set; }
+    }
 }

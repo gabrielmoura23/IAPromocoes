@@ -26,8 +26,6 @@ namespace IAPromocoes.Infra.CrossCutting.Identity
         public string Telefone { get; set; }
         public string DddCelular { get; set; }
         public string Celular { get; set; }
-        public string LinkImagem { get; set; }
-        public string LinkFacebook { get; set; }
         //public string Senha { get; set; }
         public bool FlgAceitoTermos { get; set; }
         public bool FlgAceitoNewsletter { get; set; }

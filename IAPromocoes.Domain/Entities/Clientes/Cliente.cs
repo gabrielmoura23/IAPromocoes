@@ -20,7 +20,7 @@ namespace IAPromocoes.Domain.Entities
         public string Sobrenome { get; set; }
         public string Cpf { get; set; }
         public string Sexo { get; set; }
-        public System.DateTime DataNascimento { get; set; }
+        public System.DateTime DtNascimento { get; set; }
         public string Email { get; set; }
         public string DddTelefone { get; set; }
         public string Telefone { get; set; }

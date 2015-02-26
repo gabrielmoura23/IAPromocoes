@@ -264,7 +264,7 @@ Globalize.cultures[ "default" ].calendar = Globalize.cultures[ "default" ].calen
 
 Globalize.cultures.en = Globalize.cultures[ "default" ];
 
-Globalize.cultureSelector = "pt";
+Globalize.cultureSelector = "pt-BR";
 
 //
 // private variables

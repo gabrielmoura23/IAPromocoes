@@ -58,16 +58,16 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -169,6 +169,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\NonOrderingBundleOrderer.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\StartupAdm.Auth.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
@@ -185,6 +186,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="StartupAdm.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\ClaimViewModel.cs" />
@@ -255,6 +257,7 @@
     <Content Include="assets\admin\pages\media\works\img4.jpg" />
     <Content Include="assets\admin\pages\media\works\img5.jpg" />
     <Content Include="assets\admin\pages\media\works\img6.jpg" />
+    <Content Include="Scripts\Interno\clientes-cad.js" />
     <Content Include="assets\admin\pages\scripts\ecommerce-index.js" />
     <Content Include="assets\admin\pages\scripts\ecommerce-products-edit.js" />
     <Content Include="assets\admin\pages\scripts\form-samples.js" />
@@ -1462,12 +1465,16 @@
     <Content Include="assets\global\plugins\bootstrap-timepicker\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\globalize\cultures\globalize.culture.pt-BR.js" />
-    <Content Include="Scripts\globalize\cultures\globalize.culture.pt.js" />
-    <Content Include="Scripts\globalize\cultures\globalize.cultures.js" />
     <Content Include="Scripts\globalize\globalize.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.date.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.phone.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.globalize.js" />
@@ -1476,6 +1483,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\methods_pt.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1541,12 +1549,16 @@
     <Content Include="Views\ProdutoPreco\Cadastrar.cshtml" />
     <Content Include="Views\ProdutoPreco\_CadPreco.cshtml" />
     <Content Include="Views\ProdutoPreco\_AltPreco.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Cadastrar.cshtml" />
+    <Content Include="Views\Cliente\Alterar.cshtml" />
+    <Content Include="Views\Account\Alterar.cshtml" />
+    <Content Include="Views\Account\_AltSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Uploads\Produtos\" />
-    <Folder Include="Views\Cliente\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1558,6 +1570,10 @@
     <ProjectReference Include="..\IAPromocoes.Application\IAPromocoes.Application.csproj">
       <Project>{d921366f-ba23-4c11-897c-7a616ceb3280}</Project>
       <Name>IAPromocoes.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IAPromocoes.Infra.CrossCutting.Identity.Adm\IAPromocoes.Infra.CrossCutting.Identity.Adm.csproj">
+      <Project>{7353ca77-76dc-40d5-938f-a4ed311c3a44}</Project>
+      <Name>IAPromocoes.Infra.CrossCutting.Identity.Adm</Name>
     </ProjectReference>
     <ProjectReference Include="..\IAPromocoes.Infra.CrossCutting.Identity\IAPromocoes.Infra.CrossCutting.Identity.csproj">
       <Project>{c1634722-52dc-4fb8-a712-61d8f8868b1e}</Project>

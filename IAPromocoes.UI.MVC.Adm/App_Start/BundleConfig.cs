@@ -76,10 +76,10 @@ namespace IAPromocoes.UI.MVC.Adm
 
             var jqueryval = new ScriptBundle("~/bundles/jqueryval")
             .Include("~/Scripts/jquery.validate.min.js")
+            .Include("~/Scripts/jquery.validate.unobtrusive.min.js")
             .Include("~/Scripts/globalize/globalize.js")
             .Include("~/Scripts/globalize/cultures/globalize.culture.pt-BR.js")
-            .Include("~/Scripts/jquery.validate.globalize.js")
-            .Include("~/Scripts/jquery.validate.unobtrusive.min.js");
+            .Include("~/Scripts/jquery.validate.globalize.js");
             jqueryval.Orderer = new NonOrderingBundleOrderer();
             bundles.Add(jqueryval);
 

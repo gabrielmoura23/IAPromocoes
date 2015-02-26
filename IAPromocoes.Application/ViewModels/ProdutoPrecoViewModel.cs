@@ -26,7 +26,8 @@ namespace IAPromocoes.Application.ViewModels
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
-        [RegularExpression(@"^(0|\d{0,16}(\.\d{0,2})?)$")]
+        //[RegularExpression(@"^(0|\d{0,16}(\.\d{0,2})?)$")]
+        //[RegularExpression(@"[0-9]*(\.[0-9]{3})*,([0-9]{2})?")]
         [DisplayName("Valor Unitário")]
         public decimal ValorUnitario { get; set; }
 

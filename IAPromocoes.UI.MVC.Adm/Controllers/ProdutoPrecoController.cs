@@ -86,9 +86,10 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             //return RedirectToAction("Alterar","Produto");
         }
 
-        public ActionResult _AltPreco(Guid IdProdutoPreco)
+
+        public ActionResult _AltPreco(Guid? id)
         {
-            var model = _produtoPrecoApp.GetById(IdProdutoPreco);
+            var model = _produtoPrecoApp.GetById(id.Value);
             return PartialView(model);
         }
 
@@ -99,7 +100,8 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
             //ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", produtoViewModel.IdCategoria);
             //ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(id);
 
-            return View(modelViewModel);
+            //return View(modelViewModel);
+            return PartialView("_AltPreco", modelViewModel);
         }
 
         // POST: Categoria/Edit/5
@@ -115,6 +117,8 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
                 //return RedirectToAction("Index");
 
                 return Json(new { success = true });
+                //return Json(new { Url = Url.Action("_AltPreco", produtoPrecoViewModel) });
+                //return Json(produtoPrecoViewModel, JsonRequestBehavior.AllowGet);
             }
 
             return PartialView("_AltPreco", produtoPrecoViewModel);

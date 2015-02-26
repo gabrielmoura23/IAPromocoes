@@ -27,7 +27,7 @@ namespace IAPromocoes.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(1);
 
-            Property(c => c.DataNascimento)
+            Property(c => c.DtNascimento)
                 .IsRequired();
 
             Property(c => c.Email)

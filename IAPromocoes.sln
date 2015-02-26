@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPromocoes.UI.MVC", "IAPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPromocoes.UI.MVC.Adm", "IAPromocoes.UI.MVC.Adm\IAPromocoes.UI.MVC.Adm.csproj", "{B9A34365-14FD-4C73-84D6-82E835236428}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPromocoes.Infra.CrossCutting.Identity.Adm", "IAPromocoes.Infra.CrossCutting.Identity.Adm\IAPromocoes.Infra.CrossCutting.Identity.Adm.csproj", "{7353CA77-76DC-40D5-938F-A4ED311C3A44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{B9A34365-14FD-4C73-84D6-82E835236428}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A34365-14FD-4C73-84D6-82E835236428}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A34365-14FD-4C73-84D6-82E835236428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +92,6 @@ Global
 		{D921366F-BA23-4C11-897C-7A616CEB3280} = {86D61014-FB83-40B3-A14A-2AD8BD43E665}
 		{AA9A22B5-8F33-4FEB-8D4F-281A807450F4} = {3794A883-857A-402D-B337-10D167BC252C}
 		{B9A34365-14FD-4C73-84D6-82E835236428} = {3794A883-857A-402D-B337-10D167BC252C}
+		{7353CA77-76DC-40D5-938F-A4ED311C3A44} = {B54A4E12-33B9-46D0-AB05-AC6719FE79F9}
 	EndGlobalSection
 EndGlobal

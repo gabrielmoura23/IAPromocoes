@@ -80,6 +80,7 @@
     <Compile Include="Services\CategoriaAppService.cs" />
     <Compile Include="Services\PedidoAppService.cs" />
     <Compile Include="Services\ProdutoAppService.cs" />
+    <Compile Include="Util\CamposLista.cs" />
     <Compile Include="Validation\ValidationAppError.cs" />
     <Compile Include="Validation\ValidationAppResult.cs" />
     <Compile Include="ViewModels\FormaDePagamentoViewModel.cs" />
