@@ -13,9 +13,9 @@ var ContactUs = function () {
 			   var marker = map.addMarker({
 		            lat: -13.004333,
 					lng: -38.494333,
-		            title: 'Loop, Inc.',
+		            title: 'IA Promocoes',
 		            infoWindow: {
-		                content: "<b>Loop, Inc.</b> 795 Park Ave, Suite 120<br>San Francisco, CA 94107"
+		                content: "<b>IA Promocoes</b> Rua do teste, 123<br>Salvador, BA 41950-000"
 		            }
 		        });
 

@@ -13,8 +13,7 @@
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Store</a></li>
+            <li><a href="/Home/Index/">Home</a></li>
             <li class="active">Finalizar Compra</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -30,45 +29,45 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#checkout-content" class="accordion-toggle">
-                                    Step 1: Checkout Options
+                                    Passo 1: Opções para finalizar carrinho
                                 </a>
                             </h2>
                         </div>
                         <div id="checkout-content" class="panel-collapse collapse in">
                             <div class="panel-body row">
                                 <div class="col-md-6 col-sm-6">
-                                    <h3>New Customer</h3>
-                                    <p>Checkout Options:</p>
+                                    <h3>Novo Cliente</h3>
+                                    <p>Opções para finalizar carrinho:</p>
                                     <div class="radio-list">
                                         <label>
-                                            <input type="radio" name="account" value="register"> Register Account
+                                            <input type="radio" name="account" value="register"> Novo Cadastro
                                         </label>
                                         <label>
-                                            <input type="radio" name="account" value="guest"> Guest Checkout
+                                            <input type="radio" name="account" value="guest"> Finalizar como visitante
                                         </label>
                                     </div>
                                     <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-                                    <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continue</button>
+                                    <button class="btn btn-primary" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-address-content">Continuar</button>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <h3>Returning Customer</h3>
-                                    <p>I am a returning customer.</p>
+                                    <h3>Já sou cliente</h3>
+                                    <p>Eu tenho login e senha de acesso.</p>
                                     <form role="form" action="#">
                                         <div class="form-group">
                                             <label for="email-login">E-Mail</label>
                                             <input type="text" id="email-login" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="password-login">Password</label>
+                                            <label for="password-login">Senha</label>
                                             <input type="password" id="password-login" class="form-control">
                                         </div>
-                                        <a href="#">Forgotten Password?</a>
+                                        <a href="#">Esqueceu a Senha?</a>
                                         <div class="padding-top-20">
-                                            <button class="btn btn-primary" type="submit">Login</button>
+                                            <button class="btn btn-primary" type="submit">Entrar</button>
                                         </div>
                                         <hr>
                                         <div class="login-socio">
-                                            <p class="text-muted">or login using:</p>
+                                            <p class="text-muted">ou entre usando:</p>
                                             <ul class="social-icons">
                                                 <li><a href="#" data-original-title="facebook" class="facebook" title="facebook"></a></li>
                                                 <li><a href="#" data-original-title="Twitter" class="twitter" title="Twitter"></a></li>
@@ -87,7 +86,7 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
-                                    Step 2: Account &amp; Billing Details
+                                    Passo 2: Endereço de Cobrança
                                 </a>
                             </h2>
                         </div>
@@ -179,7 +178,7 @@
                                             <input type="checkbox" checked="checked"> My delivery and billing addresses are the same.
                                         </label>
                                     </div>
-                                    <button class="btn btn-primary  pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">Continue</button>
+                                    <button class="btn btn-primary  pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">Continuar</button>
                                     <div class="checkbox pull-right">
                                         <label>
                                             <input type="checkbox"> I have read and agree to the <a title="Privacy Policy" href="#">Privacy Policy</a> &nbsp;&nbsp;&nbsp;
@@ -195,7 +194,7 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#shipping-address-content" class="accordion-toggle">
-                                    Step 3: Delivery Details
+                                    Passo 3: Endereço de Entrega
                                 </a>
                             </h2>
                         </div>
@@ -265,7 +264,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary  pull-right" type="submit" id="button-shipping-address" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-method-content">Continue</button>
+                                    <button class="btn btn-primary  pull-right" type="submit" id="button-shipping-address" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-method-content">Continuar</button>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +275,7 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#shipping-method-content" class="accordion-toggle">
-                                    Step 4: Delivery Method
+                                    Passo 4: Forma de Entrega
                                 </a>
                             </h2>
                         </div>
@@ -294,7 +293,7 @@
                                         <label for="delivery-comments">Add Comments About Your Order</label>
                                         <textarea id="delivery-comments" rows="8" class="form-control"></textarea>
                                     </div>
-                                    <button class="btn btn-primary  pull-right" type="submit" id="button-shipping-method" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-method-content">Continue</button>
+                                    <button class="btn btn-primary  pull-right" type="submit" id="button-shipping-method" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-method-content">Continuar</button>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +304,7 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-method-content" class="accordion-toggle">
-                                    Step 5: Payment Method
+                                    Passo 5: Forma de Pagamento
                                 </a>
                             </h2>
                         </div>
@@ -322,7 +321,7 @@
                                         <label for="delivery-payment-method">Add Comments About Your Order</label>
                                         <textarea id="delivery-payment-method" rows="8" class="form-control"></textarea>
                                     </div>
-                                    <button class="btn btn-primary  pull-right" type="submit" id="button-payment-method" data-toggle="collapse" data-parent="#checkout-page" data-target="#confirm-content">Continue</button>
+                                    <button class="btn btn-primary  pull-right" type="submit" id="button-payment-method" data-toggle="collapse" data-parent="#checkout-page" data-target="#confirm-content">Continuar</button>
                                     <div class="checkbox pull-right">
                                         <label>
                                             <input type="checkbox"> I have read and agree to the <a title="Terms & Conditions" href="#">Terms & Conditions </a> &nbsp;&nbsp;&nbsp;
@@ -338,7 +337,7 @@
                         <div class="panel-heading">
                             <h2 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#checkout-page" href="#confirm-content" class="accordion-toggle">
-                                    Step 6: Confirm Order
+                                    Passo 6: Confirmar Pedido
                                 </a>
                             </h2>
                         </div>
