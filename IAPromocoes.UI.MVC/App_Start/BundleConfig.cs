@@ -1,4 +1,4 @@
-﻿using IAPromocoes.UI.MVC.Adm.App_Start;
+﻿using IAPromocoes.UI.MVC.App_Start;
 using System.Web;
 using System.Web.Optimization;
 
@@ -21,7 +21,8 @@ namespace IAPromocoes.UI.MVC
             .Include("~/assets/global/plugins/jquery.min.js")
             .Include("~/assets/global/plugins/jquery-migrate.min.js")
             .Include("~/assets/global/plugins/bootstrap/js/bootstrap.min.js")
-            .Include("~/assets/frontend/layout/scripts/back-to-top.js");
+            .Include("~/assets/frontend/layout/scripts/back-to-top.js")
+            .Include("~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js");
             coreplugins.Orderer = new NonOrderingBundleOrderer();
             bundles.Add(coreplugins);
 
@@ -60,7 +61,8 @@ namespace IAPromocoes.UI.MVC
             var themestyles = new StyleBundle("~/Content/themestyles")
             .Include("~/assets/global/css/components.css")
             .Include("~/assets/frontend/layout/css/style.css")
-            .Include("~/assets/frontend/pages/css/style-revolution-slider.css")
+            .Include("~/assets/frontend/pages/css/style-shop.css")
+            .Include("~/assets/frontend/pages/css/style-layer-slider.css")
             .Include("~/assets/frontend/layout/css/style-responsive.css")
             .Include("~/assets/frontend/layout/css/themes/red.css")
             .Include("~/assets/frontend/layout/css/custom.css");

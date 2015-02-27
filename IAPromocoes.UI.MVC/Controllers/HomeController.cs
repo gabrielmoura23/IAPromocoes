@@ -34,6 +34,12 @@ namespace IAPromocoes.UI.MVC.Controllers
             return View();
         }
 
+        public ActionResult PoliticaPrivacidade()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         
     }
 }

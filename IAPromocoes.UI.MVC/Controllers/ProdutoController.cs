@@ -115,5 +115,12 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             return View();
         }
+
+        public ActionResult Detalhes()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

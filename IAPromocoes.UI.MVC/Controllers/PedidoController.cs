@@ -181,5 +181,15 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             return RedirectToAction("Carrinho");
         }
+
+
+        public ActionResult Finalizar()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        
     }
 }

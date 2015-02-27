@@ -22,6 +22,7 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!-- Fonts START -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->
     <!-- Fonts END -->
     @Styles.Render("~/Content/globalstyles")
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -35,7 +36,7 @@
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="corporate">
+<body class="ecommerce">
     <!-- BEGIN TOP BAR -->
     <div class="pre-header">
         <div class="container">
@@ -43,16 +44,17 @@
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span>71 9999-9999</span></li>
-                        <li><i class="fa fa-envelope-o"></i><span>contato@iapromocoes.com.br</span></li>
+                        <li><i class="fa fa-phone"></i><span>71 9999 9999</span></li>
+
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
+                        <li><a href="/Account/Cadastro/">Minha Conta</a></li>
+                        <li><a href="/Pedido/Finalizar/">Finalizar Pedido</a></li>
                         <li><a href="/Account/Entrar/">Entrar</a></li>
-                        <li><a href="/Account/Cadastro/">Registrar</a></li>
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -63,10 +65,74 @@
     <!-- BEGIN HEADER -->
     <div class="header">
         <div class="container">
-            <a class="site-logo" href="index.html"><img src="~/assets/frontend/layout/img/logos/logo-corp-red.png" alt="Metronic FrontEnd"></a>
+            <a class="site-logo" href="/Home/Index/"><img src="~/assets/frontend/layout/img/logos/logo-shop-red.png" alt="Metronic Shop UI"></a>
+
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+            <!-- BEGIN CART -->
+            <div class="top-cart-block">
+                <div class="top-cart-info">
+                    <a href="javascript:void(0);" class="top-cart-info-count">3 produtos</a>
+                    <a href="javascript:void(0);" class="top-cart-info-value">r$ 1.260,43</a>
+                </div>
+                <i class="fa fa-shopping-cart"></i>
+
+                <div class="top-cart-content-wrapper">
+                    <div class="top-cart-content">
+                        <ul class="scroller" style="height: 250px;">
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                            <li>
+                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                                <span class="cart-content-count">x 1</span>
+                                <strong><a href="shop-item2.html">Rolex Classic Watch</a></strong>
+                                <em>$1230</em>
+                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                            </li>
+                        </ul>
+                        <div class="text-right">
+                            <a href="/Pedido/Carrinho/" class="btn btn-default">Ver Carrinho</a>
+                            <a href="/Pedido/Finalizar/" class="btn btn-primary">Finalizar Compra</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END CART -->
             <!-- BEGIN NAVIGATION -->
-            <div class="header-navigation pull-right font-transform-inherit">
+            <div class="header-navigation">
                 <ul>
                     <li><a href="/Home/Index/">Home</a></li>
                     <li><a href="/Home/About/">Quem Somos</a></li>
@@ -88,16 +154,34 @@
         <div class="container">
             <div class="row">
                 <!-- BEGIN BOTTOM ABOUT BLOCK -->
-                <div class="col-md-4 col-sm-6 pre-footer-col">
+                <div class="col-md-3 col-sm-6 pre-footer-col">
                     <h2>Sobre Nós</h2>
-                    <p class="">
+                    <p>
                         O IA Promoções é o primeiro outlet center do Carnaval de Salvador. Se cadastre pelo site, aplicativo ou através de um dos nossos promoters oficiais e aproveite as promoções! Lembrando que os lotes tem quantidade e prazos limitados.
-                        Se adiante e tenha um ótimo Carnaval.
                     </p>
+                    <p>Se adiante e tenha um ótimo Carnaval.</p>
                 </div>
                 <!-- END BOTTOM ABOUT BLOCK -->
+                <!-- BEGIN BOTTOM INFO BLOCK -->
+                <div class="col-md-3 col-sm-6 pre-footer-col">
+                    <h2>Informações</h2>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-angle-right"></i> <a href="#">Informações de Entrega</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="#">Serviço ao Consumidor</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="/Home/Contato/">Contato</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="/Home/PoliticaPrivacidade/">Política de Privacidade</a></li>
+                        <li><i class="fa fa-angle-right"></i> <a href="#">Metódos de Pagamento</a></li>
+                    </ul>
+                </div>
+                <!-- END INFO BLOCK -->
+                <!-- BEGIN TWITTER BLOCK -->
+                <div class="col-md-3 col-sm-6 pre-footer-col">
+                    <h2 class="margin-bottom-0">Últimos Tweets</h2>
+                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="1" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by xxxxxx...</a>
+                </div>
+                <!-- END TWITTER BLOCK -->
                 <!-- BEGIN BOTTOM CONTACTS -->
-                <div class="col-md-4 col-sm-6 pre-footer-col">
+                <div class="col-md-3 col-sm-6 pre-footer-col">
                     <h2>Nossos Contatos</h2>
                     <address class="margin-bottom-40">
                         Rua do teste, 123<br>
@@ -106,12 +190,32 @@
                         E-mail: <a href="mailto:info@iapromocoes.com.br">info@iapromocoes.com.br</a><br>
                         Skype: <a href="skype:iapromocoes">iapromocoes</a>
                     </address>
-                    <div class="pre-footer-subscribe-box pre-footer-subscribe-box-vertical">
+                </div>
+                <!-- END BOTTOM CONTACTS -->
+            </div>
+            <hr>
+            <div class="row">
+                <!-- BEGIN SOCIAL ICONS -->
+                <div class="col-md-5 col-sm-5">
+                    <ul class="social-icons">
+                        <li><a class="rss" data-original-title="rss" href="#"></a></li>
+                        <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+                        <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+                        <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+                        <li><a class="linkedin" data-original-title="linkedin" href="#"></a></li>
+                        <li><a class="youtube" data-original-title="youtube" href="#"></a></li>
+                        <li><a class="vimeo" data-original-title="vimeo" href="#"></a></li>
+                        <li><a class="skype" data-original-title="skype" href="#"></a></li>
+                    </ul>
+                </div>
+                <!-- END SOCIAL ICONS -->
+                <!-- BEGIN NEWLETTER -->
+                <div class="col-md-7 col-sm-7">
+                    <div class="pre-footer-subscribe-box pull-right">
                         <h2>Receba Nossas Promoções</h2>
-                        <p>Os melhores preços e a melhor festa no seu e-mail!</p>
                         <form action="#">
                             <div class="input-group">
-                                <input type="text" placeholder="seuemail@mail.com" class="form-control">
+                                <input type="text" placeholder="youremail@mail.com" class="form-control">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="submit">Cadastre-se</button>
                                 </span>
@@ -119,13 +223,7 @@
                         </form>
                     </div>
                 </div>
-                <!-- END BOTTOM CONTACTS -->
-                <!-- BEGIN TWITTER BLOCK -->
-                <div class="col-md-4 col-sm-6 pre-footer-col">
-                    <h2 class="margin-bottom-0">Últimos Tweets</h2>
-                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="2" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by keenthemes...</a>
-                </div>
-                <!-- END TWITTER BLOCK -->
+                <!-- END NEWLETTER -->
             </div>
         </div>
     </div>
@@ -136,21 +234,16 @@
             <div class="row">
                 <!-- BEGIN COPYRIGHT -->
                 <div class="col-md-6 col-sm-6 padding-top-10">
-                    @DateTime.Now.Year &copy; IA Promoções. Todos os direitos reservados. <a href="#">Política de Privacidade</a> | <a href="#">Termos de Serviço</a>
+                    @DateTime.Now.Year &copy; IA Promoções. Todos os direitos reservados.
                 </div>
                 <!-- END COPYRIGHT -->
                 <!-- BEGIN PAYMENTS -->
                 <div class="col-md-6 col-sm-6">
-                    <ul class="social-footer list-unstyled list-inline pull-right">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li><img src="~/assets/frontend/layout/img/payments/american-express.jpg" alt="We accept American Express" title="We accept American Express"></li>
+                        <li><img src="~/assets/frontend/layout/img/payments/MasterCard.jpg" alt="We accept MasterCard" title="We accept MasterCard"></li>
+                        <li><img src="~/assets/frontend/layout/img/payments/PayPal.jpg" alt="We accept PayPal" title="We accept PayPal"></li>
+                        <li><img src="~/assets/frontend/layout/img/payments/visa.jpg" alt="We accept Visa" title="We accept Visa"></li>
                     </ul>
                 </div>
                 <!-- END PAYMENTS -->
@@ -171,7 +264,7 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            
+
         });
     </script>
     <!-- END PAGE LEVEL JAVASCRIPTS -->
