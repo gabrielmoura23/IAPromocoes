@@ -1,0 +1,67 @@
+﻿@model Dictionary<int, IAPromocoes.Application.ViewModels.ProdutoViewModel>
+
+@{
+    int contador = 0;
+}
+@foreach (var item in Model)
+{
+        
+    contador = contador + 1;
+    if (contador == 1)
+    {
+        @:<div class="row product-list">
+                    }
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="http://localhost:17714/Uploads/Produtos/GP - Mapeamento dos Grupos e das áreas de conhecimento.png" class="img-responsive" alt="Produto">
+                                <div>
+                                    <a href="http://localhost:17714/Uploads/Produtos/GP - Mapeamento dos Grupos e das áreas de conhecimento.png" class="btn btn-default fancybox-button">Ampliar</a>
+                                    @*<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>*@
+                                    @Html.ActionLink("Visualizar", "_FastView", "Produto", null, new { IdProduto = item.Value.IdProduto, @class = "btn btn-default fancybox-fast-view product-pop-up-modal" })
+                                </div>
+                            </div>
+                            <h3>@*<a href="/Produto/Detalhes/">@Html.DisplayFor(modelItem => @item.Value.Descricao)</a>*@
+                            
+                                @Html.ActionLink(@item.Value.Descricao, "Detalhes", new { IdProduto = item.Value.IdProduto })
+
+                            </h3>
+                            <div class="pi-price">@Html.DisplayFor(modelItem => @item.Value.PrecoTexto)</div>
+
+
+                            @using (Html.BeginForm("Adicionar", "Carrinho"))
+                            {
+                                <div class="pull-right">
+                                    @Html.Hidden("IdProduto", @item.Value.IdProduto)
+                                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    <input type="submit" class="btn btn-default add2cart" value="Comprar" />
+                                </div>
+                            }
+
+
+                            @*<a href="#" class="btn btn-default add2cart">Comprar</a>*@
+                            @*Produtos com dois dias de cadastro são novos (se nao tiver na promocao)*@
+                            @if (@item.Value.FlgEmPromocao)
+                            {
+                                @:<div class="sticker sticker-sale"></div>
+                            }
+                            else if (@item.Value.DtCadastro > DateTime.Now.AddDays(-2))
+                            {
+                                @:<div class="sticker sticker-new"></div>
+                            }
+                        </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+    if (contador == 3)
+    {
+        contador = 0;
+        @:</div>
+                }
+
+}
+
+@if (contador != 0)
+{
+    @:</div>
+            }

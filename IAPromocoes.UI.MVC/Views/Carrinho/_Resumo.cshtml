@@ -1,0 +1,38 @@
+﻿@model IAPromocoes.UI.MVC.Models.Carrinho
+
+
+@{
+    int qtd = @Model.ItensCarrinho.Sum(x => x.Quantidade);
+    string txtMensagem = String.Empty;
+}
+
+@if (qtd < 1)
+{
+    txtMensagem = "Carrinho vazio";
+}
+else if (qtd == 1)
+{
+    txtMensagem = qtd.ToString() + " produto";
+}
+else
+{
+    txtMensagem = qtd.ToString() + " produtos";
+}
+
+@if (qtd < 1)
+{
+    <a href="javascript:void(0);" class="top-cart-info-count">@txtMensagem</a>
+}
+else
+{ 
+<a href="javascript:void(0);" class="top-cart-info-count">@txtMensagem</a>
+<a href="javascript:void(0);" class="top-cart-info-value">@Model.ObterValorTotal().ToString("c")</a>
+}
+
+@*<div class="navbar-right">
+        @Html.ActionLink("Checkout", "Index", "Carrinho", new { returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default navbar-btn" })
+    </div>
+    <div class="navbar-text navbar-right">
+        <b>Seus produtos:</b>
+        @Model.ItensCarrinho.Sum(x => x.Quantidade) item(s), @Model.ObterValorTotal().ToString("c")
+    </div>*@

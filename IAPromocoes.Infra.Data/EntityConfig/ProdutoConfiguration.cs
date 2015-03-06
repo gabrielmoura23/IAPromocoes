@@ -23,7 +23,6 @@ namespace IAPromocoes.Infra.Data.EntityConfig
                 .HasMaxLength(100);
             
             Property(c => c.LinkImagem)
-                .IsRequired()
                 .HasMaxLength(255);
 
             Property(c => c.Atracao)
@@ -38,12 +37,18 @@ namespace IAPromocoes.Infra.Data.EntityConfig
             Property(c => c.Local)
                 .HasMaxLength(200);
 
+            Property(c => c.PrecoTexto)
+                .HasMaxLength(50);
+
             Property(c => c.InstrucoesOutros)
                 .HasMaxLength(null);
 
             Property(c => c.FlgAtivo)
                 .IsRequired();
-                         
+
+            Property(c => c.FlgEmPromocao)
+                .IsRequired();
+             
             Ignore(t => t.ResultadoValidacao);
 
             this.HasRequired(t => t.Categoria)

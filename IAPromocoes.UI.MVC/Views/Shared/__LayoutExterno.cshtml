@@ -10,8 +10,8 @@
     <title>@ViewBag.Title</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta content="Metronic Shop UI description" name="description">
-    <meta content="Metronic Shop UI keywords" name="keywords">
+    <meta content="IA Promoções description" name="description">
+    <meta content="IA Promoções keywords" name="keywords">
     <meta content="keenthemes" name="author">
     <meta property="og:site_name" content="-CUSTOMER VALUE-">
     <meta property="og:title" content="-CUSTOMER VALUE-">
@@ -72,8 +72,9 @@
             <!-- BEGIN CART -->
             <div class="top-cart-block">
                 <div class="top-cart-info">
-                    <a href="javascript:void(0);" class="top-cart-info-count">3 produtos</a>
-                    <a href="javascript:void(0);" class="top-cart-info-value">r$ 1.260,43</a>
+                    @Html.Action("_Resumo", "Carrinho")
+                    @*<a href="javascript:void(0);" class="top-cart-info-count">3 produtos</a>
+                    <a href="javascript:void(0);" class="top-cart-info-value">r$ 1.260,43</a>*@
                 </div>
                 <i class="fa fa-shopping-cart"></i>
 
@@ -124,8 +125,8 @@
                             </li>
                         </ul>
                         <div class="text-right">
-                            <a href="/Pedido/Carrinho/" class="btn btn-default">Ver Carrinho</a>
-                            <a href="/Pedido/Finalizar/" class="btn btn-primary">Finalizar Compra</a>
+                            <a href="/Carrinho/" class="btn btn-default">Ver Carrinho</a>
+                            <a href="/Carrinho/FecharPedido/" class="btn btn-primary">Finalizar Compra</a>
                         </div>
                     </div>
                 </div>
@@ -177,7 +178,7 @@
                 <!-- BEGIN TWITTER BLOCK -->
                 <div class="col-md-3 col-sm-6 pre-footer-col">
                     <h2 class="margin-bottom-0">Últimos Tweets</h2>
-                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="1" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by xxxxxx...</a>
+                    <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="1" data-theme="dark" data-link-color="#57C8EB" data-widget-id="573133819106209792" data-chrome="noheader nofooter noscrollbar noborders transparent">Carregando tweets por IAPromoções...</a>
                 </div>
                 <!-- END TWITTER BLOCK -->
                 <!-- BEGIN BOTTOM CONTACTS -->

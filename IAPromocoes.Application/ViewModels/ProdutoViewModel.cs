@@ -66,6 +66,10 @@ namespace IAPromocoes.Application.ViewModels
         [DisplayName("Local")]
         public string Local { get; set; }
 
+        [MaxLength(50, ErrorMessage = "Máximo 50 caracteres para o campo [{0}]")]
+        [DisplayName("Preço")]
+        public string PrecoTexto { get; set; }
+
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [DisplayName("Instruções Outros")]
         public string InstrucoesOutros { get; set; }
@@ -83,6 +87,10 @@ namespace IAPromocoes.Application.ViewModels
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [DisplayName("Ativo?")]
         public bool FlgAtivo { get; set; }
+
+        [Required(ErrorMessage = "Preencha o campo [{0}]")]
+        [DisplayName("Em Promoção?")]
+        public bool FlgEmPromocao { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Digite apenas números no campo [{0}]")]
         [DisplayName("Quantidade de Curtidas")]
@@ -104,5 +112,11 @@ namespace IAPromocoes.Application.ViewModels
         public ICollection<ItemPedidoViewModel> ItensPedidoViewModel { get; set; }
         public ICollection<ProdutoPrecoViewModel> ProdutoPrecosViewModel { get; set; }
         public ICollection<ProdutoImagemViewModel> ProdutoImagensViewModel { get; set; }
+
+
+
+        [Required(ErrorMessage = "Digite o valor")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Valor inválido")]
+        public decimal Preco { get; set; }
     }
 }

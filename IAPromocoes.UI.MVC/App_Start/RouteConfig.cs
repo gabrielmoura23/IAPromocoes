@@ -13,6 +13,8 @@ namespace IAPromocoes.UI.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("CustomerList", "", new { controller = "Produto", action = "GetCustomers" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -28,6 +28,7 @@ namespace IAPromocoes.Domain.Entities
         public System.DateTime Hora { get; set; }
         public string DataTexto { get; set; }
         public string Local { get; set; }
+        public string PrecoTexto { get; set; }
         //public System.Nullable<decimal> ValorUnitarioMasculino { get; set; }
         //public System.Nullable<decimal> ValorUnitarioFeminino { get; set; }
         //public string InstrucoesValor { get; set; }
@@ -37,6 +38,7 @@ namespace IAPromocoes.Domain.Entities
         public System.DateTime DataDisponibilidadeFinal { get; set; }
         public bool FlgAtivo { get; set; }
         public System.Nullable<int> QtdCurtidas { get; set; }
+        public bool FlgEmPromocao { get; set; }
         public Guid IdUsuarioCadastro { get; set; }
         public System.DateTime DtCadastro { get; set; }
         public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
@@ -54,5 +56,8 @@ namespace IAPromocoes.Domain.Entities
             ResultadoValidacao = fiscal.Validar(this);
             return ResultadoValidacao.IsValid;
         }
+
+
+        public decimal Preco { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoViewModel>
+
+@{
     ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/__LayoutExterno.cshtml";
 }
@@ -9,6 +11,8 @@
     <link href="~/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"><!-- for slider-range -->
     <link href="~/assets/global/plugins/rateit/src/rateit.css" rel="stylesheet" type="text/css">
+
+
 }
 
 
@@ -22,17 +26,18 @@
         <div class="row margin-bottom-40">
             <!-- BEGIN SIDEBAR -->
             <div class="sidebar col-md-3 col-sm-5">
-                <div class="sidebar-filter margin-bottom-25">
+                @*<div class="sidebar-filter margin-bottom-25">
                     <h3>Preço</h3>
                     <p>
                         <label for="amount">Faixa:</label>
                         <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
                     </p>
                     <div id="slider-range"></div>
-                </div>
+                </div>*@
 
                 <div class="sidebar-products clearfix">
-                    <h2>Mais Vendidos</h2>
+                    @Html.Action("_MaisVendidos", "Produto")
+                    @*<h2>Mais Vendidos</h2>
                     <div class="item">
                         <a href="/Produto/Detalhes/"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
                         <h3><a href="/Produto/Detalhes/">Produto</a></h3>
@@ -47,7 +52,7 @@
                         <a href="/Produto/Detalhes/"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
                         <h3><a href="/Produto/Detalhes/">Produto</a></h3>
                         <div class="price">R$86.00</div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <!-- END SIDEBAR -->
@@ -59,201 +64,211 @@
                         <a href="#"><i class="fa fa-th-list"></i></a>
                     </div>
                     <div class="col-md-10 col-sm-10">
-                        <div class="pull-right">
-                            <label class="control-label">Mostrar:</label>
-                            <select class="form-control input-sm">
-                                <option value="#?limit=24" selected="selected">24</option>
-                                <option value="#?limit=25">25</option>
-                                <option value="#?limit=50">50</option>
-                                <option value="#?limit=75">75</option>
-                                <option value="#?limit=100">100</option>
-                            </select>
-                        </div>
+                        @*<div class="pull-right">
+                                <label class="control-label">Mostrar:</label>
+                                <select class="form-control input-sm">
+                                    <option value="#?limit=24" selected="selected">24</option>
+                                    <option value="#?limit=25">25</option>
+                                    <option value="#?limit=50">50</option>
+                                    <option value="#?limit=75">75</option>
+                                    <option value="#?limit=100">100</option>
+                                </select>
+                            </div>*@
                         <div class="pull-right">
                             <label class="control-label">Ordenar Por:</label>
-                            <select class="form-control input-sm">
-                                <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Padrão</option>
-                                <option value="#?sort=pd.name&amp;order=ASC">Nome (A - Z)</option>
-                                <option value="#?sort=pd.name&amp;order=DESC">Nome (Z - A)</option>
-                                <option value="#?sort=p.price&amp;order=ASC">Preço (Menor &gt; Maior)</option>
-                                <option value="#?sort=p.price&amp;order=DESC">Preço (Maior &gt; Menor)</option>
-                                <option value="#?sort=rating&amp;order=DESC">Avaliação (Maior)</option>
+                            <select id="ordenar-por" class="form-control input-sm">
+                                <option value="sort=pd.padrao&amp;order=ASC" selected="selected">Padrão</option>
+                                <option value="sort=pd.descricao&amp;order=ASC">Descrição (A - Z)</option>
+                                <option value="sort=pd.descricao&amp;order=DESC">Descrição (Z - A)</option>
+                                <option value="sort=pd.preco&amp;order=ASC">Preço (Menor &gt; Maior)</option>
+                                <option value="sort=pd.preco&amp;order=DESC">Preço (Maior &gt; Menor)</option>
+                                @*<option value="#?sort=rating&amp;order=DESC">Avaliação (Maior)</option>
                                 <option value="#?sort=rating&amp;order=ASC">Avaliação (Menor)</option>
                                 <option value="#?sort=p.model&amp;order=ASC">Modelo (A - Z)</option>
-                                <option value="#?sort=p.model&amp;order=DESC">Modelo (Z - A)</option>
+                                <option value="#?sort=p.model&amp;order=DESC">Modelo (Z - A)</option>*@
                             </select>
                         </div>
                     </div>
                 </div>
-                <!-- BEGIN PRODUCT LIST -->
-                <div class="row product-list">
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model2.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto 2</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
+
+                @*ficava aqui o codigo anterior*@
+                <div class="infinite-scroll">
+                    @Html.Partial("_Produtos", (ViewBag.Customers as Dictionary<int, IAPromocoes.Application.ViewModels.ProdutoViewModel>))
                 </div>
-                <div class="row product-list">
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                            <div class="sticker sticker-new"></div>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
-                    <!-- PRODUCT ITEM START -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
-                    </div>
-                    <!-- PRODUCT ITEM END -->
+                <div id="loading">
+                    <img src='@Url.Content("~/Images/spin.gif")' /><p><b>Carregando mais produtos... @ViewBag.RecordsPerPage&hellip;</b></p>
                 </div>
-                <div class="row product-list">
+
+                @*<div class="row product-list">
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                        </div>
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model2.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
                     <!-- PRODUCT ITEM START -->
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-item">
-                            <div class="pi-img-wrapper">
-                                <img src="~/assets/frontend/pages/img/products/model2.jpg" class="img-responsive" alt="Produto">
-                                <div>
-                                    <a href="~/assets/frontend/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Ampliar</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
-                                </div>
-                            </div>
-                            <h3><a href="/Produto/Detalhes/">Produto</a></h3>
-                            <div class="pi-price">$29.00</div>
-                            <a href="#" class="btn btn-default add2cart">Comprar</a>
-                            <div class="sticker sticker-sale"></div>
-                        </div>
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto 2</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
                     </div>
                     <!-- PRODUCT ITEM END -->
-                </div>
+                    </div>*@
+
+                @*<div class="row product-list">
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    <div class="sticker sticker-new"></div>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    </div>
+                    <div class="row product-list">
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model1.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    <!-- PRODUCT ITEM START -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-item">
+                    <div class="pi-img-wrapper">
+                    <img src="~/assets/frontend/pages/img/products/model2.jpg" class="img-responsive" alt="Produto">
+                    <div>
+                    <a href="~/assets/frontend/pages/img/products/model2.jpg" class="btn btn-default fancybox-button">Ampliar</a>
+                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>
+                    </div>
+                    </div>
+                    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Comprar</a>
+                    <div class="sticker sticker-sale"></div>
+                    </div>
+                    </div>
+                    <!-- PRODUCT ITEM END -->
+                    </div>*@
+
                 <!-- END PRODUCT LIST -->
                 <!-- BEGIN PAGINATOR -->
-                <div class="row">
-                    <div class="col-md-4 col-sm-4 items-info">Itens 1 a 9 do total de 10</div>
-                    <div class="col-md-8 col-sm-8">
-                        <ul class="pagination pull-right">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><span>2</span></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @*<div class="row">
+                        <div class="col-md-4 col-sm-4 items-info">Itens 1 a 9 do total de 10</div>
+                        <div class="col-md-8 col-sm-8">
+                            <ul class="pagination pull-right">
+                                <li><a href="#">&laquo;</a></li>
+                                <li><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>*@
                 <!-- END PAGINATOR -->
             </div>
             <!-- END CONTENT -->
@@ -262,67 +277,76 @@
     </div>
 </div>
 
-<!-- BEGIN fast view of a product -->
-<div id="product-pop-up" style="display: none; width: 700px;">
-    <div class="product-page product-pop-up">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-3">
-                <div class="product-main-image">
-                    <img src="~/assets/frontend/pages/img/products/model1.jpg" alt="Cool green dress with red bell" class="img-responsive">
-                </div>
-                <div class="product-other-images">
-                    <a href="#" class="active"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
-                    <a href="#"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
-                    <a href="#"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-9">
-                <h2>Teste teste teste</h2>
-                <div class="price-availability-block clearfix">
-                    <div class="price">
-                        <strong><span>R$</span>47.00</strong>
-                        <em>R$<span>62.00</span></em>
-                    </div>
-                    <div class="availability">
-                        Disponibilidade: <strong>Em Stock</strong>
-                    </div>
-                </div>
-                <div class="description">
-                    <p>
-                        Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat
-                        Nostrud duis molestie at dolore.
-                    </p>
-                </div>
-                <div class="product-page-options">
-                    <div class="pull-left">
-                        <label class="control-label">Tamanho:</label>
-                        <select class="form-control input-sm">
-                            <option>L</option>
-                            <option>M</option>
-                            <option>XL</option>
-                        </select>
-                    </div>
-                    <div class="pull-left">
-                        <label class="control-label">Cor:</label>
-                        <select class="form-control input-sm">
-                            <option>Vermelho</option>
-                            <option>Azul</option>
-                            <option>Preto</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="product-page-cart">
-                    <div class="product-quantity">
-                        <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
-                    </div>
-                    <button class="btn btn-primary" type="submit">Comprar</button>
-                    <a href="/Produto/Detalhes/" class="btn btn-default">Mais detalhes</a>
-                </div>
-            </div>
+<div class="modal  fade in" id="edit-person333" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="edit-person-container333" class="modal-dialog"></div>
+</div>
 
-            <div class="sticker sticker-sale"></div>
-        </div>
-    </div>
+<div class="modal  fade in" id="product-pop-up-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="product-pop-up-modal-container" class="modal-dialog" style="width: 700px;"></div>
+</div>
+
+<!-- BEGIN fast view of a product -->
+<div id="product-pop-up222" style="display: none; width: 700px;">
+    <div id="product-pop-up-container222" class="modal-dialog"></div>
+    @*<div class="product-page product-pop-up">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-3">
+                    <div class="product-main-image">
+                        <img src="~/assets/frontend/pages/img/products/model1.jpg" alt="Cool green dress with red bell" class="img-responsive">
+                    </div>
+                    <div class="product-other-images">
+                        <a href="#" class="active"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
+                        <a href="#"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
+                        <a href="#"><img alt="Produto Abc" src="~/assets/frontend/pages/img/products/model1.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-9">
+                    <h2>Teste teste teste</h2>
+                    <div class="price-availability-block clearfix">
+                        <div class="price">
+                            <strong><span>R$</span>47.00</strong>
+                            <em>R$<span>62.00</span></em>
+                        </div>
+                        <div class="availability">
+                            Disponibilidade: <strong>Em Stock</strong>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>
+                            Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat
+                            Nostrud duis molestie at dolore.
+                        </p>
+                    </div>
+                    <div class="product-page-options">
+                        <div class="pull-left">
+                            <label class="control-label">Tamanho:</label>
+                            <select class="form-control input-sm">
+                                <option>L</option>
+                                <option>M</option>
+                                <option>XL</option>
+                            </select>
+                        </div>
+                        <div class="pull-left">
+                            <label class="control-label">Cor:</label>
+                            <select class="form-control input-sm">
+                                <option>Vermelho</option>
+                                <option>Azul</option>
+                                <option>Preto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="product-page-cart">
+                        <div class="product-quantity">
+                            <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Comprar</button>
+                        <a href="/Produto/Detalhes/" class="btn btn-default">Mais detalhes</a>
+                    </div>
+                </div>
+
+                <div class="sticker sticker-sale"></div>
+            </div>
+        </div>*@
 </div>
 <!-- END fast view of a product -->
 @section PageLevelPlugins {
@@ -336,6 +360,11 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><!-- for slider-range -->
 
     <script src="~/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/infiniteScroll.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
 }
 
 @section PageLevelScripts {
@@ -351,6 +380,122 @@
 
             Layout.initFixHeaderWithPreHeader();
             Layout.initNavScrolling();
+
         });
+
+
+        $(function () {
+            $("div#loading").hide();
+        });
+
+        var flgOrdenacao = "N";
+        var ordenacao = "";
+
+        var moreRowsUrl = "/Produto/GetCustomers"; //the URL to your ActionMethod
+        //var moreRowsUrl = ' Url.RouteUrl("CustomerList")'; //if you have a route defined, you can use an Html helper like Url.RouteUrl
+
+
+        //var moreRowsUrl = '@Url.RouteUrl("CustomerList")';
+        $(window).scroll(divScrollHandler);
+
+
+
+
+
+
+
+
+
+        function bindForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        //alert('aqui');
+                        //alert(result);
+                        //alert(result.success);
+                        //$('#edit-person').modal('hide');
+                        //if (result.success) {
+                        //    $('#edit-person').modal('hide');
+                        //    // Refresh:
+                        //    // location.reload();
+                        //} else {
+                        //    $('#edit-person-container').html(result);
+                        //    bindForm();
+                        //}
+                        if (result.success) {
+                            //close popup
+                            $('#product-pop-up-modal').modal('hide');
+                            //$("[data-dismiss=modal]").trigger({ type: "click" });
+                            //Atualizar lista
+                            var idProd = document.getElementById('IdProduto');
+
+                        }
+                        else {
+                            $('#product-pop-up-modal-container').html(result);
+                            var div = document.getElementById('product-pop-up-container');
+                            bindForm(div);
+                            //alert('Erro!');
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+
+        
+
+
+        $(document).ready(function () {
+
+            $('body').on('click', '.product-pop-up-modal', function () {
+
+                //do your javascript here..
+                //var url = "/Bootstrap/EditPerson"; // the url to the controller
+                //var id = $(this).attr('id');
+                var IdProduto = $(this).attr('IdProduto');
+
+                $('#product-pop-up-modal-container').load(this.href + '?IdProduto=' + IdProduto, function () {
+                    //$('#product-pop-up').modal('show');
+                    $('#product-pop-up-modal').modal({
+                        backdrop: 'static',
+                        keyboard: true
+                    }, 'show');
+                    //bindForm(this);
+                });
+                return false;
+
+            });
+
+
+            $('#ordenar-por').change(function () {
+                //alert('Changed');
+                //$('#YourLabelId').val('ReplaceWithThisValue');
+                //$('#user_content').load('/Produto/GetCustomers');
+                ordenacao = $('#ordenar-por').val();
+                flgOrdenacao = "S";
+                $.ajax({
+                    type: 'GET',
+                    url: moreRowsUrl,
+                    data: "pageNum=0&flgOrdenacao=" + flgOrdenacao + "&" + ordenacao,
+                    //data: { pageNum: code, sort: sort },
+                    success: function (data, textstatus) {
+                        //if (data != '') {
+                        if (trim(data).length >= 1) {
+                            $("div.infinite-scroll").html(data);
+                        }
+                        
+                        //pra funcionar o loading novamente
+                        page = 0;
+                    }
+                });
+
+            });
+
+
+        });
+
     </script>
 }

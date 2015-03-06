@@ -1,0 +1,27 @@
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoViewModel>
+
+<h2>Mais Vendidos</h2>
+@foreach (var item in Model)
+{
+    <div class="item">
+        <a href="@Url.Action("Detalhes", "Produto", new { IdProduto = @item.IdProduto })"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
+        <h3>@Html.ActionLink(@item.Descricao, "Detalhes", new { IdProduto = @item.IdProduto })</h3>
+        <div class="price">@Html.DisplayFor(modelItem => item.PrecoTexto)</div>
+    </div>
+}
+
+@*<div class="item">
+    <a href="/Produto/Detalhes/"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
+    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+    <div class="price">R$31.00</div>
+</div>
+<div class="item">
+    <a href="/Produto/Detalhes/"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
+    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+    <div class="price">R$23.00</div>
+</div>
+<div class="item">
+    <a href="/Produto/Detalhes/"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
+    <h3><a href="/Produto/Detalhes/">Produto</a></h3>
+    <div class="price">R$86.00</div>
+</div>*@
