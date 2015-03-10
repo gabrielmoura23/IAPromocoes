@@ -58,6 +58,9 @@ namespace IAPromocoes.UI.MVC.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
             return View();
         }
 
@@ -83,7 +86,7 @@ namespace IAPromocoes.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Entrar(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -184,7 +187,7 @@ namespace IAPromocoes.UI.MVC.Controllers
         {
             return View();
         }
-
+  
         //
         // POST: /Account/Register
         [HttpPost]
@@ -192,17 +195,28 @@ namespace IAPromocoes.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
                     UserName = model.Email, 
-                    Email = model.Email
-                    //,
-                    //Name = model.Name,
-                    //Lastname = model.Lastname,
-                    //Gender = model.Gender,
-                    //BirthDate = model.BirthDate
+                    Email = model.Email,
+                    Nome = model.Nome,
+                    Sobrenome = model.Sobrenome,
+                    Cpf = model.Cpf,
+                    Sexo = model.Sexo,
+                    DtNascimento = model.DtNascimento,
+                    DddTelefone = model.DddTelefone,
+                    Telefone = model.Telefone,
+                    DddCelular = model.DddCelular,
+                    Celular = model.Celular,
+                    FlgAceitoTermos = model.FlgAceitoTermos,
+                    FlgAceitoNewsletter = model.FlgAceitoNewsletter,
+                    FlgAtivo = model.FlgAtivo,
+                    DtCadastro = model.DtCadastro
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -217,7 +231,7 @@ namespace IAPromocoes.UI.MVC.Controllers
             }
 
             // No caso de falha, reexibir a view. 
-            return View(model);
+            return View("Cadastro", model);
         }
 
         //
