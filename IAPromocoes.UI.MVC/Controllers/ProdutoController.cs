@@ -3,6 +3,7 @@ using IAPromocoes.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -239,6 +240,11 @@ namespace IAPromocoes.UI.MVC.Controllers
         public ActionResult _Lancamentos()
         {
             ViewBag.Message = "Your contact page.";
+
+            //Expression<Func<ProdutoViewModel, object>>[] myExpression = { o => o.ProdutoImagensViewModel };
+            //var teste = new ProdutoViewModel();
+
+            //Expression<Func<ProdutoViewModel, object>> myExpression = o => teste.ProdutoImagensViewModel;
 
             var produtoViewModel = _produtoApp.GetAll();
             return PartialView(produtoViewModel);

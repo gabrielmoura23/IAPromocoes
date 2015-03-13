@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using IAPromocoes.Domain.Interfaces.Repository;
 using IAPromocoes.Domain.Interfaces.Services;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace IAPromocoes.Domain.Services
 {

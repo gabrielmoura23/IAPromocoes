@@ -569,5 +569,52 @@ namespace IAPromocoes.UI.MVC.Controllers
             UserManager.Update(user);
             return RedirectToAction("Index", "Home");
         }
+
+
+
+        //
+        // GET: /Account/ForgotPassword
+        [AllowAnonymous]
+        public ActionResult EsqueciSenha()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EsqueciSenha(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    // Não revelar se o usuario nao existe ou nao esta confirmado
+                    return View("EsqueciSenhaConfirmacao");
+                }
+
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Esqueci minha senha", "Por favor altere sua senha clicando aqui: <a href='" + callbackUrl + "'></a>");
+                ViewBag.Link = callbackUrl;
+                ViewBag.Status = "DEMO: Caso o link não chegue: ";
+                ViewBag.LinkAcesso = callbackUrl;
+                return View("EsqueciSenhaConfirmacao");
+            }
+
+            // No caso de falha, reexibir a view. 
+            return View(model);
+        }
+
+        //
+        // GET: /Account/EsqueciSenhaConfirmacao
+        [AllowAnonymous]
+        public ActionResult EsqueciSenhaConfirmacao()
+        {
+            return View();
+        }
     }
 }

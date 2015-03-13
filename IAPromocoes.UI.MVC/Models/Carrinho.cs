@@ -33,6 +33,26 @@ namespace IAPromocoes.UI.MVC.Models
 
         }
 
+        public void AtualizarItem(ProdutoViewModel produto, int quantidade)
+        {
+            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.IdProduto == produto.IdProduto);
+
+            if (item == null)
+            {
+                _itemCarrinho.Add(new ItemCarrinho
+                {
+                    Produto = produto,
+                    Quantidade = quantidade
+                });
+            }
+            else
+            {
+                item.Quantidade = quantidade;
+            }
+
+
+        }
+
         // Remover item
 
         public void RemevorItem(ProdutoViewModel produto)

@@ -3,8 +3,12 @@
 <h2>Mais Vendidos</h2>
 @foreach (var item in Model)
 {
+    var link = @item.LinkImagem;
+    if (!String.IsNullOrEmpty(link))
+        link = "http://localhost:17714" + link.Replace('~', ' ').Trim();
+    
     <div class="item">
-        <a href="@Url.Action("Detalhes", "Produto", new { IdProduto = @item.IdProduto })"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Produto"></a>
+        <a href="@Url.Action("Detalhes", "Produto", new { IdProduto = @item.IdProduto })"><img src="@link" alt=""></a>
         <h3>@Html.ActionLink(@item.Descricao, "Detalhes", new { IdProduto = @item.IdProduto })</h3>
         <div class="price">@Html.DisplayFor(modelItem => item.PrecoTexto)</div>
     </div>

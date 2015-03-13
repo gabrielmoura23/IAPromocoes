@@ -1670,6 +1670,10 @@
     <Content Include="Views\Produto\_MaisVendidos.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Account\EsqueciSenha.cshtml" />
+    <Content Include="Views\Account\EsqueciSenhaConfirmacao.cshtml" />
+    <Content Include="Views\Carrinho\_Lista.cshtml" />
+    <Content Include="Views\Carrinho\_CarrinhoPadrao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

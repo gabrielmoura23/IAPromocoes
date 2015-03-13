@@ -20,18 +20,44 @@ namespace IAPromocoes.UI.MVC.Controllers
             _produtoApp = produtoApp;
         }
 
-        public RedirectToRouteResult Adicionar(Guid IdProduto, string returnUrl)
+        public RedirectToRouteResult Adicionar(Guid IdProduto, int qtdProduto, string returnUrl)
         {
-            var produto = _produtoApp.GetById(IdProduto);
-            
-            if (produto != null)
+            if (qtdProduto <= 0)
             {
-                ObterCarrinho().AdicionarItem(produto, 1);
-
+                return RedirectToAction("Detalhes", new { returnUrl });
             }
+            else
+            {
+                var produto = _produtoApp.GetById(IdProduto);
 
-            return RedirectToAction("Index", new { returnUrl });
+                if (produto != null)
+                {
+                    ObterCarrinho().AdicionarItem(produto, qtdProduto);
 
+                }
+
+                return RedirectToAction("Index", new { returnUrl });
+            }
+        }
+
+        public RedirectToRouteResult Atualizar(Guid IdProduto, int qtdProduto, string returnUrl)
+        {
+            if (qtdProduto <= 0)
+            {
+                return RedirectToAction("Detalhes", new { returnUrl });
+            }
+            else
+            {
+                var produto = _produtoApp.GetById(IdProduto);
+
+                if (produto != null)
+                {
+                    ObterCarrinho().AtualizarItem(produto, qtdProduto);
+
+                }
+
+                return RedirectToAction("Index", new { returnUrl });
+            }
         }
 
         private Carrinho ObterCarrinho()
@@ -59,6 +85,7 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             return RedirectToAction("Index", new { returnUrl });
         }
+      
 
         public ViewResult Index(string returnurl)
         {
@@ -75,6 +102,14 @@ namespace IAPromocoes.UI.MVC.Controllers
             return PartialView(carrinho);
         }
 
+        public PartialViewResult _Lista()
+        {
+            return PartialView(new CarrinhoViewModel
+            {
+                Carrinho = ObterCarrinho(),
+                ReturnUrl = String.Empty
+            });
+        }
 
         public ViewResult FecharPedido()
         {
@@ -117,6 +152,20 @@ namespace IAPromocoes.UI.MVC.Controllers
             return View();
         }
 
+
+
+
+
+        public PartialViewResult _CarrinhoPadrao()
+        {
+            return PartialView(new CarrinhoViewModel
+            {
+                Carrinho = ObterCarrinho(),
+                ReturnUrl = String.Empty
+            });
+            //Carrinho carrinho = ObterCarrinho();
+            //return PartialView(carrinho);
+        }
         
     }
 }

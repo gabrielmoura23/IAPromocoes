@@ -15,7 +15,7 @@ namespace IAPromocoes.Infra.Data.Repositories
         where TContext : IDbContext, new()
     {
         private readonly ContextManager<TContext> _contextManager = ServiceLocator.Current.GetInstance<IContextManager<TContext>>() as ContextManager<TContext>;
-        
+
         protected IDbSet<TEntity> DbSet;
         protected readonly IDbContext Context;
 
@@ -32,7 +32,11 @@ namespace IAPromocoes.Infra.Data.Repositories
 
         public virtual TEntity GetById(Guid id)
         {
-            return DbSet.Find(id);
+            //return DbSet.Find(id);
+
+            var entry = DbSet.Find(id);
+            Context.Entry(entry).State = EntityState.Detached;
+            return entry;
         }
 
         public virtual TEntity GetByIdTipoInteiro(int id)
@@ -79,5 +83,6 @@ namespace IAPromocoes.Infra.Data.Repositories
             Context.Dispose();
             GC.SuppressFinalize(this);
         }
+
     }
 }

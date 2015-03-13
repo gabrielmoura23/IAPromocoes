@@ -17,7 +17,8 @@
 <div class="main">
     <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/Home/Index/">Home</a></li>
+            <li><a href="/Produto/Lista/">Produtos</a></li>
             <li class="active">@Html.DisplayFor(model => model.Descricao)</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -27,21 +28,21 @@
                 <div class="sidebar-products clearfix">
                     @Html.Action("_MaisVendidos", "Produto")
                     @*<h2>Mais Vendidos</h2>
-                    <div class="item">
-                        <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a href="shop-item.html">Produto 1</a></h3>
-                        <div class="price">$31.00</div>
-                    </div>
-                    <div class="item">
-                        <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a href="shop-item.html">Produto 12</a></h3>
-                        <div class="price">$23.00</div>
-                    </div>
-                    <div class="item">
-                        <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
-                        <h3><a href="shop-item.html">Produto 13</a></h3>
-                        <div class="price">$86.00</div>
-                    </div>*@
+                        <div class="item">
+                            <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <h3><a href="shop-item.html">Produto 1</a></h3>
+                            <div class="price">$31.00</div>
+                        </div>
+                        <div class="item">
+                            <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <h3><a href="shop-item.html">Produto 12</a></h3>
+                            <div class="price">$23.00</div>
+                        </div>
+                        <div class="item">
+                            <a href="shop-item.html"><img src="~/assets/frontend/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+                            <h3><a href="shop-item.html">Produto 13</a></h3>
+                            <div class="price">$86.00</div>
+                        </div>*@
                 </div>
             </div>
             <!-- END SIDEBAR -->
@@ -94,22 +95,49 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="product-page-cart">
-                                <div class="product-quantity">
-                                    <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                                </div>
 
-                                @using (Html.BeginForm("Adicionar", "Carrinho"))
-                                {
-                                    <div class="pull-right">
-                                        @Html.Hidden("IdProduto", Model.IdProduto)
-                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                        <input type="submit" class="btn btn-primary" value="Comprar" />
+                            @using (Html.BeginForm("Adicionar", "Carrinho"))
+                            {
+                                <div class="product-page-cart">
+                                    <div class="product-quantity">
+                                        <div class="input-group bootstrap-touchspin input-group-sm">
+                                            <span class="input-group-btn">
+                                                <button class="btn quantity-down bootstrap-touchspin-down" type="button"><i class="fa fa-angle-down"></i></button>
+                                            </span>
+                                            <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                            @*<input id="qtdProduto2" type="text" value="1" readonly="" class="form-control input-sm" style="display: block;">*@
+
+                                            @Html.TextBox("qtdProduto", 1, new { @class = "form-control input-sm", @readonly = "", @style = "display: block;" })
+
+                                            <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
+                                            <span class="input-group-btn">
+                                                <button class="btn quantity-up bootstrap-touchspin-up" type="button">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </button>
+                                            </span>
+                                        </div>
                                     </div>
-                                }
+                                    @Html.Hidden("IdProduto", Model.IdProduto)
+                                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    <input type="submit" class="btn btn-primary" value="Comprar" />
 
-                                @*<button class="btn btn-primary" type="submit">Comprar</button>*@
-                            </div>
+                                    @*<button class="btn btn-primary" type="submit">Add to cart</button>*@
+                                </div>
+                            }
+
+
+
+
+                            @*<div class="review">
+                                    <input type="range" value="4" step="0.25" id="backing4" style="display: none;">
+                                    <div class="rateit" data-rateit-backingfld="#backing4" data-rateit-resetable="false" data-rateit-ispreset="true" data-rateit-min="0" data-rateit-max="5">
+                                        <button id="rateit-reset-2" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-2" style="display: none;"></button><div id="rateit-range-2" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-2" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="false" style="width: 80px; height: 16px;"><div class="rateit-selected rateit-preset" style="height: 16px; width: 64px;"></div><div class="rateit-hover" style="height: 16px;"></div></div>
+                                    </div>
+                                    <a href="#">7 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Write a review</a>
+                                </div>*@
+
+                            @*<button class="btn btn-primary" type="submit">Comprar</button>*@
+
 
                             <ul class="social-icons">
                                 <li><a class="facebook" data-original-title="facebook" href="#"></a></li>

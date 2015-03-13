@@ -7,6 +7,7 @@ using IAPromocoes.Domain.Interfaces.Repository;
 //using IAPromocoes.Domain.Interfaces.Repository.ReadOnly;
 using IAPromocoes.Domain.Interfaces.Services;
 using IAPromocoes.Domain.ValueObjects;
+using System.Linq.Expressions;
 
 namespace IAPromocoes.Domain.Services
 {

@@ -1,0 +1,56 @@
+﻿@model IAPromocoes.UI.MVC.ViewModels.CarrinhoViewModel
+
+@{
+    var tamanho = "60px";
+    int qtd = 0;
+    var cssOverride = "";
+
+    if (Model.Carrinho != null && Model.Carrinho.ItensCarrinho != null)
+    {
+        qtd = Model.Carrinho.ItensCarrinho.Count();
+    }
+
+    if (qtd == 0)
+    {
+        cssOverride = "display: none !important";
+    } 
+    else if (qtd >= 1 && qtd < 4)
+    {
+        tamanho = (60 * qtd).ToString() + "px";
+    } else
+    {
+        tamanho = "250px";
+    }
+}
+
+
+<div class="top-cart-content-wrapper">
+    <div class="top-cart-content" style="@cssOverride">
+        <ul class="scroller" style="height: @tamanho;">
+            @foreach (var item in Model.Carrinho.ItensCarrinho)
+            {
+                var link = @item.Produto.LinkImagem;
+                if (!String.IsNullOrEmpty(link))
+                    link = "http://localhost:17714" + link.Replace('~', ' ').Trim();
+                <li>
+                    <a href="#"><img src="@link" alt="" width="37" height="34"></a>
+                    <span class="cart-content-count">x @item.Quantidade</span>
+                    <strong>@Html.ActionLink(@item.Produto.Descricao, "Detalhes", "Produto", new { IdProduto = item.Produto.IdProduto }, null)</strong>
+                    <em>R$ @item.Produto.Preco</em>
+                    
+                    @*@using (Html.BeginForm("Remover", "Carrinho"))
+                    {
+                        @Html.Hidden("IdProduto", item.Produto.IdProduto)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <a class="del-goods" href="javascript:;" onclick="parentNode.submit();">&nbsp;</a>
+                    }*@
+                    @*<a href="javascript:void(0);" class="del-goods">&nbsp;</a>*@
+                </li>
+            }
+        </ul>
+        <div class="text-right">
+            <a href="/Carrinho/" class="btn btn-default">Ver Carrinho</a>
+            <a href="/Carrinho/FecharPedido/" class="btn btn-primary">Finalizar Compra</a>
+        </div>
+    </div>
+</div>

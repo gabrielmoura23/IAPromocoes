@@ -8,6 +8,7 @@ using IAPromocoes.Application.ViewModels;
 using IAPromocoes.Domain.Entities;
 using IAPromocoes.Domain.Interfaces.Services;
 using IAPromocoes.Infra.Data.Context;
+using System.Linq.Expressions;
 
 namespace IAPromocoes.Application.Services
 {
@@ -49,7 +50,7 @@ namespace IAPromocoes.Application.Services
         {
             return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_modelService.GetAll());
         }
-
+        
         public IEnumerable<ProdutoViewModel> BuscarPorDescricao(string descricao)
         {
             return Mapper.Map<IEnumerable<Produto>, IEnumerable<ProdutoViewModel>>(_modelService.BuscarPorDescricao(descricao));

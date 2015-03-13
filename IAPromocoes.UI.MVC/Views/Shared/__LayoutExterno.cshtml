@@ -78,8 +78,11 @@
                 </div>
                 <i class="fa fa-shopping-cart"></i>
 
-                <div class="top-cart-content-wrapper">
+                @Html.Action("_Lista", "Carrinho")
+
+                @*<div class="top-cart-content-wrapper">
                     <div class="top-cart-content">
+                        @Html.Action("_Lista", "Carrinho")
                         <ul class="scroller" style="height: 250px;">
                             <li>
                                 <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
@@ -129,7 +132,7 @@
                             <a href="/Carrinho/FecharPedido/" class="btn btn-primary">Finalizar Compra</a>
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
             <!--END CART -->
             <!-- BEGIN NAVIGATION -->

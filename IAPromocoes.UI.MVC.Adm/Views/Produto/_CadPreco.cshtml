@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label">Valor Unitário</label>
-                @Html.TextAreaFor(model => model.ValorUnitario, new { @class = "form-control", @placeholder = "Sub Descrição" })
+                @Html.EditorFor(model => model.ValorUnitario, new { @class = "form-control", @placeholder = "Sub Descrição" })
                 <span class="help-block">
                     @Html.ValidationMessageFor(model => model.ValorUnitario, "", new { @class = "text-danger" })
                 </span>

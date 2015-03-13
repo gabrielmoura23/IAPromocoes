@@ -85,7 +85,7 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         {
             var produtoViewModel = _produtoApp.GetById(id);
             ViewBag.IdCategoria = new SelectList(_categoriaApp.GetAll(), "IdCategoria", "Descricao", produtoViewModel.IdCategoria);
-            ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(id);
+            //ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(id);
             ViewData["Precos"] = _produtoPrecoApp.BuscarPrecosPorIdProduto(id);
 
             return View(produtoViewModel);
@@ -159,27 +159,31 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         public ActionResult SalvarImagem(string idProduto, string descricao)
         {
             string retorno = "OK";
+            var model = _produtoApp.GetById(Guid.Parse(idProduto));
+            model.LinkImagem = "~/Uploads/Produtos/" + descricao;
 
-            var produtoImagemViewModel = new ProdutoImagemViewModel();
-            produtoImagemViewModel.IdProdutoImagem = Guid.NewGuid();
-            produtoImagemViewModel.IdProduto = Guid.Parse(idProduto);
-            produtoImagemViewModel.NomeArquivo = descricao;
-            produtoImagemViewModel.Descricao = descricao;
-            produtoImagemViewModel.Ordem = 1;
-            produtoImagemViewModel.CaminhoFisico = "~/Uploads/Produtos/" + descricao;
-            produtoImagemViewModel.FotoPrincipal = true;
-            produtoImagemViewModel.DtCadastro = DateTime.Now;
-            produtoImagemViewModel.IdUsuarioCadastro = Guid.NewGuid();
+            _produtoApp.Update(model);
 
-            var result = _produtoImagemApp.Add(produtoImagemViewModel);
-            if (!result.IsValid)
-            {
-                retorno = "NOK";
-                foreach (var validationAppError in result.Erros)
-                {
-                    ModelState.AddModelError(string.Empty, validationAppError.Message);
-                }
-            }
+            //var produtoImagemViewModel = new ProdutoImagemViewModel();
+            //produtoImagemViewModel.IdProdutoImagem = Guid.NewGuid();
+            //produtoImagemViewModel.IdProduto = Guid.Parse(idProduto);
+            //produtoImagemViewModel.NomeArquivo = descricao;
+            //produtoImagemViewModel.Descricao = descricao;
+            //produtoImagemViewModel.Ordem = 1;
+            //produtoImagemViewModel.CaminhoFisico = "~/Uploads/Produtos/" + descricao;
+            //produtoImagemViewModel.FotoPrincipal = true;
+            //produtoImagemViewModel.DtCadastro = DateTime.Now;
+            //produtoImagemViewModel.IdUsuarioCadastro = Guid.NewGuid();
+
+            //var result = _produtoImagemApp.Add(produtoImagemViewModel);
+            //if (!result.IsValid)
+            //{
+            //    retorno = "NOK";
+            //    foreach (var validationAppError in result.Erros)
+            //    {
+            //        ModelState.AddModelError(string.Empty, validationAppError.Message);
+            //    }
+            //}
 
             return new JsonResult() { Data = retorno };
         }
@@ -187,7 +191,8 @@ namespace IAPromocoes.UI.MVC.Adm.Controllers
         [HttpGet]
         public ActionResult GetImagensProdutos(string idProduto)
         {
-            var model = _produtoImagemApp.BuscarImagensPorIdProduto(Guid.Parse(idProduto));
+            var model = _produtoImagemApp.GetById(Guid.Parse(idProduto));
+            //var model = _produtoImagemApp.BuscarImagensPorIdProduto(Guid.Parse(idProduto));
             //return new JsonResult() { Data = model };
             return PartialView("_ListaImagem", model);
         }

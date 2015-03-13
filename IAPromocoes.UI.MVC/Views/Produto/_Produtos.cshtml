@@ -5,7 +5,13 @@
 }
 @foreach (var item in Model)
 {
-        
+
+    var link = item.Value.LinkImagem;
+    if (!String.IsNullOrEmpty(link))
+    {
+        link = "http://localhost:17714" + link.Replace('~', ' ').Trim();
+    }
+      
     contador = contador + 1;
     if (contador == 1)
     {
@@ -15,11 +21,12 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="product-item">
                             <div class="pi-img-wrapper">
-                                <img src="http://localhost:17714/Uploads/Produtos/GP - Mapeamento dos Grupos e das áreas de conhecimento.png" class="img-responsive" alt="Produto">
+                                <img src="@link" class="img-responsive" alt="">
                                 <div>
-                                    <a href="http://localhost:17714/Uploads/Produtos/GP - Mapeamento dos Grupos e das áreas de conhecimento.png" class="btn btn-default fancybox-button">Ampliar</a>
+                                    <a href="@link" class="btn btn-default fancybox-button">Ampliar</a>
                                     @*<a href="#product-pop-up" class="btn btn-default fancybox-fast-view">Visualizar</a>*@
-                                    @Html.ActionLink("Visualizar", "_FastView", "Produto", null, new { IdProduto = item.Value.IdProduto, @class = "btn btn-default fancybox-fast-view product-pop-up-modal" })
+                                    @*@Html.ActionLink("Visualizar", "_FastView", "Produto", null, new { IdProduto = item.Value.IdProduto, @class = "btn btn-default fancybox-fast-view product-pop-up-modal" })*@
+                                    @Html.ActionLink("Visualizar", "Detalhes", new { IdProduto = item.Value.IdProduto }, new { @class = "btn btn-default fancybox-fast-view" })
                                 </div>
                             </div>
                             <h3>@*<a href="/Produto/Detalhes/">@Html.DisplayFor(modelItem => @item.Value.Descricao)</a>*@
@@ -35,6 +42,7 @@
                                 <div class="pull-right">
                                     @Html.Hidden("IdProduto", @item.Value.IdProduto)
                                     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    @Html.Hidden("qtdProduto", 1)
                                     <input type="submit" class="btn btn-default add2cart" value="Comprar" />
                                 </div>
                             }

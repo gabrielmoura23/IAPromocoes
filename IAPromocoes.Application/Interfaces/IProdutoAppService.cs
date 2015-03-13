@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using IAPromocoes.Application.Validation;
 using IAPromocoes.Application.ViewModels;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace IAPromocoes.Application.Interfaces
 {
