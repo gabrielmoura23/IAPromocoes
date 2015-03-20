@@ -171,7 +171,6 @@
     <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1656,8 +1655,6 @@
     <Content Include="Views\Account\Cadastro.cshtml" />
     <Content Include="Views\Produto\Lista.cshtml" />
     <Content Include="Views\Account\Entrar.cshtml" />
-    <Content Include="Views\Pedido\Finalizar.cshtml" />
-    <Content Include="Views\Pedido\Carrinho.cshtml" />
     <Content Include="Views\Home\PoliticaPrivacidade.cshtml" />
     <Content Include="Views\Produto\Detalhes.cshtml" />
     <Content Include="Views\Produto\_Lancamentos.cshtml" />
@@ -1674,6 +1671,7 @@
     <Content Include="Views\Account\EsqueciSenhaConfirmacao.cshtml" />
     <Content Include="Views\Carrinho\_Lista.cshtml" />
     <Content Include="Views\Carrinho\_CarrinhoPadrao.cshtml" />
+    <Content Include="Views\Carrinho\Vazio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

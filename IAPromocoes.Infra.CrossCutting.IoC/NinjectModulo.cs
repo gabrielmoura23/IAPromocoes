@@ -29,6 +29,8 @@ namespace IAPromocoes.Infra.CrossCutting.IoC
             Bind<IFormaDePagamentoAppService>().To<FormaDePagamentoAppService>();
             Bind<IProdutoImagemAppService>().To<ProdutoImagemAppService>();
             Bind<IProdutoPrecoAppService>().To<ProdutoPrecoAppService>();
+            Bind<IEstadoAppService>().To<EstadoAppService>();
+            Bind<ICidadeAppService>().To<CidadeAppService>();
 
             // service
             Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
@@ -41,6 +43,8 @@ namespace IAPromocoes.Infra.CrossCutting.IoC
             Bind<IFormaDePagamentoService>().To<FormaDePagamentoService>();
             Bind<IProdutoImagemService>().To<ProdutoImagemService>();
             Bind<IProdutoPrecoService>().To<ProdutoPrecoService>();
+            Bind<IEstadoService>().To<EstadoService>();
+            Bind<ICidadeService>().To<CidadeService>();
 
             // data repos
             Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<,>));
@@ -61,6 +65,8 @@ namespace IAPromocoes.Infra.CrossCutting.IoC
             Bind<IFormaDePagamentoReadOnlyRepository>().To<FormaDePagamentoReadOnlyRepository>();
             Bind<IProdutoImagemReadOnlyRepository>().To<ProdutoImagemReadOnlyRepository>();
             Bind<IProdutoPrecoReadOnlyRepository>().To<ProdutoPrecoReadOnlyRepository>();
+            Bind<IEstadoReadOnlyRepository>().To<EstadoReadOnlyRepository>();
+            Bind<ICidadeReadOnlyRepository>().To<CidadeReadOnlyRepository>();
 
             // ado repos only
             //Bind<IClienteADORepository>().To<ClienteADORepository>();

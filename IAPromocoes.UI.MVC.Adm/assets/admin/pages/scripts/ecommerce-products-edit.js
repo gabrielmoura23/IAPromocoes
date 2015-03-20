@@ -13,10 +13,10 @@ var EcommerceProductsEdit = function () {
             url: '/Produto/Upload',
              
             filters : {
-                max_file_size : '10mb',
+                max_file_size : '500kb',
                 mime_types: [
-                    {title : "Image files", extensions : "jpg,gif,png"},
-                    {title : "Zip files", extensions : "zip"}
+                    {title : "Image files", extensions : "jpg,gif,png"}
+                    //,{title : "Zip files", extensions : "zip"}
                 ]
             },
          
@@ -60,19 +60,19 @@ var EcommerceProductsEdit = function () {
                         $.ajax(
                         {
                             type: "POST",
-                            url: "/Produto/SalvarImagem",
+                            url: "/Produto/SalvarImagemExtras",
                             contentType: "application/json",
                             data: JSON.stringify({ idProduto: idProd.value, descricao: id }),
                             dataType: 'json',
                             processData: false,
                             success:
                             function (resultado) {
-                                if (resultado == "OK")
+                                if (resultado == "OK") {
                                     $('#uploaded_file_' + file.id + ' > .status').removeClass("label-info").addClass("label-success").html('<i class="fa fa-check"></i> Sucesso'); // set successfull upload
-                                else
-                                {
+                                    $('#uploaded_file_' + file.id + '').delay(3200).fadeOut(300);
+                                } else {
                                     $('#uploaded_file_' + file.id + ' > .status').removeClass("label-info").addClass("label-danger").html('<i class="fa fa-warning"></i> Falha'); // set failed upload
-                                    Metronic.alert({ type: 'danger', message: 'Um ou mais arquivos falhou na gravação dos dados. Please retry.', closeInSeconds: 10, icon: 'warning' });
+                                    Metronic.alert({ type: 'danger', message: 'Um ou mais arquivos falhou na gravação dos dados. Por favor tente novamente.', closeInSeconds: 10, icon: 'warning' });
                                 }
 
                                 $("#dvPartialImagemLista").load('/Produto/GetImagensProdutos?idProduto='+idProd.value, function (html) {  });
@@ -89,6 +89,7 @@ var EcommerceProductsEdit = function () {
                 }
             }
         });
+
 
         uploader.init();
 

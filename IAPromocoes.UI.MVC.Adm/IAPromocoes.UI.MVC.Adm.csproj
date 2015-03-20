@@ -257,6 +257,7 @@
     <Content Include="assets\admin\pages\media\works\img4.jpg" />
     <Content Include="assets\admin\pages\media\works\img5.jpg" />
     <Content Include="assets\admin\pages\media\works\img6.jpg" />
+    <Content Include="Content\semImagem.gif" />
     <Content Include="Scripts\Interno\clientes-cad.js" />
     <Content Include="assets\admin\pages\scripts\ecommerce-index.js" />
     <Content Include="assets\admin\pages\scripts\ecommerce-products-edit.js" />
@@ -1554,6 +1555,7 @@
     <Content Include="Views\Cliente\Alterar.cshtml" />
     <Content Include="Views\Account\Alterar.cshtml" />
     <Content Include="Views\Account\_AltSenha.cshtml" />
+    <Content Include="Views\Produto\_ImagemPrincipal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

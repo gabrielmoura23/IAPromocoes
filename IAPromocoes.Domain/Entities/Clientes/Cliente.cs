@@ -12,7 +12,7 @@ namespace IAPromocoes.Domain.Entities
     {
         public Cliente()
         {
-            this.Pedidos = new List<Pedido>();
+            //this.Pedidos = new List<Pedido>();
         }
 
         public Guid IdCliente { get; set; }
@@ -36,7 +36,7 @@ namespace IAPromocoes.Domain.Entities
         public System.Nullable<Guid> IdUsuarioAlteracao { get; set; }
         public System.Nullable<System.DateTime> DtAlteracao { get; set; }
 
-        public virtual ICollection<Pedido> Pedidos { get; set; }
+        //public virtual ICollection<Pedido> Pedidos { get; set; }
 
         public ValidationResult ResultadoValidacao { get; private set; }
         public bool IsValid()

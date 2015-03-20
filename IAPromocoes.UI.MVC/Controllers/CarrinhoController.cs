@@ -13,11 +13,13 @@ namespace IAPromocoes.UI.MVC.Controllers
     public class CarrinhoController : Controller
     {
         private readonly IProdutoAppService _produtoApp;
+        private readonly IPedidoAppService _pedidoApp;
 
 
-        public CarrinhoController(IProdutoAppService produtoApp)
+        public CarrinhoController(IProdutoAppService produtoApp, IPedidoAppService pedidoApp)
         {
             _produtoApp = produtoApp;
+            _pedidoApp = pedidoApp;
         }
 
         public RedirectToRouteResult Adicionar(Guid IdProduto, int qtdProduto, string returnUrl)
@@ -89,9 +91,15 @@ namespace IAPromocoes.UI.MVC.Controllers
 
         public ViewResult Index(string returnurl)
         {
+            Carrinho carrinho = ObterCarrinho();
+            if (!carrinho.ItensCarrinho.Any())
+            {
+                return View("Vazio");
+            }
+
             return View(new CarrinhoViewModel
             {
-                Carrinho = ObterCarrinho(),
+                Carrinho = carrinho,
                 ReturnUrl = returnurl
             });
         }
@@ -113,12 +121,18 @@ namespace IAPromocoes.UI.MVC.Controllers
 
         public ViewResult FecharPedido()
         {
+            Carrinho carrinho = ObterCarrinho();
+            if (!carrinho.ItensCarrinho.Any())
+            {
+                return View("Vazio");
+            }
+
             return View(new PedidoViewModel());
         }
 
 
         [HttpPost]
-        public ViewResult FecharPedido(PedidoViewModel pedido)
+        public ViewResult FecharPedido(PedidoViewModel pedidoModel)
         {
             Carrinho carrinho = ObterCarrinho();
 
@@ -136,13 +150,26 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                pedidoModel.ValorTotal = carrinho.ObterValorTotal();
+
+                var result = _pedidoApp.Add(pedidoModel);
+
+                if (!result.IsValid)
+                {
+                    foreach (var validationAppError in result.Erros)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError.Message);
+                    }
+                    return View(pedidoModel);
+                }
+
                 //emailPedido.ProcessarPedido(carrinho, pedido);
                 carrinho.LimparCarrinho();
                 return View("PedidoConcluido");
             }
             else
             {
-                return View(pedido);
+                return View(pedidoModel);
             }
 
         }
@@ -151,10 +178,6 @@ namespace IAPromocoes.UI.MVC.Controllers
         {
             return View();
         }
-
-
-
-
 
         public PartialViewResult _CarrinhoPadrao()
         {
@@ -165,6 +188,11 @@ namespace IAPromocoes.UI.MVC.Controllers
             });
             //Carrinho carrinho = ObterCarrinho();
             //return PartialView(carrinho);
+        }
+
+        public ViewResult Vazio()
+        {
+            return View();
         }
         
     }

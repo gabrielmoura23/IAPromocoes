@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Categorias\Categoria.cs" />
+    <Compile Include="Entities\Geografico\Cidade.cs" />
     <Compile Include="Entities\Clientes\Cliente.cs" />
+    <Compile Include="Entities\Geografico\Estado.cs" />
     <Compile Include="Entities\Pedidos\EnumStatusPedido.cs" />
     <Compile Include="Entities\Pedidos\ItemPedido.cs" />
     <Compile Include="Entities\Pedidos\Pedido.cs" />
@@ -61,12 +63,16 @@
     <Compile Include="Interfaces\Repository\IPedidoRepository.cs" />
     <Compile Include="Interfaces\Repository\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repository\IProdutoRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\ICidadeReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IEstadoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IFormaDePagamentoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IProdutoPrecoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IProdutoImagemReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IStatusPedidoReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IClienteReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ICategoriaReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Services\ICidadeService.cs" />
+    <Compile Include="Interfaces\Services\IEstadoService.cs" />
     <Compile Include="Interfaces\Services\IFormaDePagamentoService.cs" />
     <Compile Include="Interfaces\Services\IProdutoPrecoService.cs" />
     <Compile Include="Interfaces\Services\IProdutoImagemService.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Interfaces\Validation\IRegra.cs" />
     <Compile Include="Interfaces\Validation\ISelfValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CidadeService.cs" />
+    <Compile Include="Services\EstadoService.cs" />
     <Compile Include="Services\FormaDePagamentoService.cs" />
     <Compile Include="Services\ProdutoPrecoService.cs" />
     <Compile Include="Services\ProdutoImagemService.cs" />

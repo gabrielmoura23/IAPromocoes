@@ -29,7 +29,7 @@ namespace IAPromocoes.Domain.Entities
 
         public virtual StatusPedido StatusPedido { get; set; }
         public virtual FormaDePagamento FormaDePagamento { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        //public virtual Cliente Cliente { get; set; }
         public virtual ICollection<ItemPedido> ItensPedido { get; set; }
 
         public ValidationResult ResultadoValidacao { get; private set; }

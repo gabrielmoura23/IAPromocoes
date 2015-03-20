@@ -1,0 +1,75 @@
+﻿@model IAPromocoes.Application.ViewModels.ProdutoViewModel
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr role="row" class="heading">
+            <th width="8%">
+                Imagem
+            </th>
+            <th width="92%">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+            {*@
+        <tr>
+            <td>
+                @if (!String.IsNullOrEmpty(Model.LinkImagem))
+                {
+                    <a href="@Url.Content(Model.LinkImagem)" class="fancybox-button" data-rel="fancybox-button">
+                        <img class="img-responsive" src="@Url.Content(Model.LinkImagem)" alt="">
+                    </a>
+                }
+                else
+                {
+                    @: &nbsp;
+                    }
+            </td>
+            <td>
+                @if (!String.IsNullOrEmpty(Model.LinkImagem) && !Model.LinkImagem.Contains("semImagem.gif"))
+                {
+                    <a href="#" class="btn default btn-sm"
+                       onclick="event.preventDefault(); ApagarImagemPrincipal('@Model.IdProduto');">
+                        <i class="fa fa-times"></i> Apagar
+                    </a>
+                }
+                else
+                {
+                    @: &nbsp;
+                    }
+            </td>
+        </tr>
+        @*}*@
+    </tbody>
+</table>
+
+<script>
+
+    function ApagarImagemPrincipal(idProduto) {
+        if (confirm('Tem certeza de que deseja apagar esta imagem?')) {
+            $.ajax(
+            {
+                type: "POST",
+                url: "/Produto/ExcluirImagemPrincipal",
+                contentType: "application/json",
+                data: JSON.stringify({ id: idProduto }),
+                dataType: 'json',
+                processData: false,
+                success:
+                function (resultado) {
+                    if (resultado == "OK")
+                        $("#dvPartialImagemPrincipal").load('/Produto/GetImagemPrincipal?idProduto=' + idProduto, function (html) { });
+                    else
+                        Metronic.alert({ type: 'danger', message: 'Ocorreu um erro. Favor tentar novamente.', closeInSeconds: 10, icon: 'warning' });
+                },
+            });
+        }
+        else
+            return false;
+
+    }
+
+</script>
+
+

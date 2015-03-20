@@ -26,6 +26,8 @@ namespace IAPromocoes.Infra.Data.Context
         public IDbSet<Cliente> Clientes { get; set; }
         public IDbSet<StatusPedido> StatusPedidos { get; set; }
         public IDbSet<FormaDePagamento> FormaDePagamentos { get; set; }
+        public IDbSet<Estado> Estados { get; set; }
+        public IDbSet<Cidade> Cidades { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -55,6 +57,8 @@ namespace IAPromocoes.Infra.Data.Context
             modelBuilder.Configurations.Add(new ClienteConfiguration());
             modelBuilder.Configurations.Add(new StatusPedidoConfiguration());
             modelBuilder.Configurations.Add(new FormaDePagamentoConfiguration());
+            modelBuilder.Configurations.Add(new EstadoConfiguration());
+            modelBuilder.Configurations.Add(new CidadeConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

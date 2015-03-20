@@ -19,9 +19,9 @@ namespace IAPromocoes.Infra.Data.EntityConfig
             
             Ignore(t => t.ResultadoValidacao);
 
-            this.HasRequired(t => t.Cliente)
-                .WithMany(t => t.Pedidos)
-                .HasForeignKey(d => d.IdCliente);
+            //this.HasRequired(t => t.Cliente)
+            //    .WithMany(t => t.Pedidos)
+            //    .HasForeignKey(d => d.IdCliente);
 
             this.HasRequired(t => t.StatusPedido)
                 .WithMany(t => t.Pedidos)

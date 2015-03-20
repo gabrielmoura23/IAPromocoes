@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoImagemViewModel>*@
-@model IAPromocoes.Application.ViewModels.ProdutoViewModel
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoImagemViewModel>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -27,14 +26,14 @@
         </tr>
     </thead>
     <tbody>
-        @*@foreach (var item in Model)
-        {*@
+        @foreach (var item in Model)
+        {
             <tr>
                 <td>
-                    @if (!String.IsNullOrEmpty(Model.LinkImagem))
+                    @if (!String.IsNullOrEmpty(item.CaminhoFisico))
                     { 
-                    <a href="@Url.Content(Model.LinkImagem)" class="fancybox-button" data-rel="fancybox-button">
-                        <img class="img-responsive" src="@Url.Content(Model.LinkImagem)" alt="">
+                    <a href="@Url.Content(item.CaminhoFisico)" class="fancybox-button" data-rel="fancybox-button">
+                        <img class="img-responsive" src="@Url.Content(item.CaminhoFisico)" alt="">
                     </a>
                     }
                     else
@@ -43,10 +42,10 @@
                     }
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="product[images][1][label]" @*value="@item.Descricao"*@>
+                    <input type="text" class="form-control" name="product[images][1][label]" value="@item.Descricao">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="product[images][1][sort_order]" @*value="@item.Ordem"*@>
+                    <input type="text" class="form-control" name="product[images][1][sort_order]" value="@item.Ordem">
                 </td>
                 <td>
                     <label>
@@ -64,17 +63,13 @@
                     </label>
                 </td>
                 <td>
-                    @*<a href="#" class="btn default btn-sm"
-                       onclick="event.preventDefault(); ApagarImagem('@item.IdProdutoImagem');">
-                        <i class="fa fa-times"></i> Apagar
-                    </a>*@
                     <a href="#" class="btn default btn-sm"
-                       onclick="event.preventDefault(); ">
+                       onclick="event.preventDefault(); ApagarImagem('@item.IdProdutoImagem');">
                         <i class="fa fa-times"></i> Apagar
                     </a>
                 </td>
             </tr>
-        @*}*@
+        }
     </tbody>
 </table>
 
@@ -87,7 +82,7 @@
             $.ajax(
             {
                 type: "POST",
-                url: "/Produto/TesteExcluirImagem",
+                url: "/Produto/ExcluirImagem",
                 contentType: "application/json",
                 data: JSON.stringify({ id: idImagem }),
                 dataType: 'json',

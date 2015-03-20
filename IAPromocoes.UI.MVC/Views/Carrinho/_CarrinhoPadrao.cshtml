@@ -31,7 +31,6 @@
                     @Html.ActionLink(@item.Produto.Descricao, "Detalhes", "Produto", new { IdProduto = item.Produto.IdProduto }, null)
                 </td>
 
-
                 @using (Html.BeginForm("Atualizar", "Carrinho", FormMethod.Get, new { @id = "formQtd" + contador }))
                 {
                     @Html.Hidden("IdProduto", @item.Produto.IdProduto)
@@ -68,12 +67,6 @@
                         </div>
                     </td>
                 }
-
-                @*<td class="goods-page-quantity">
-                        <div class="product-quantity">
-                            <input id="product-quantity" type="text" value="@item.Quantidade" readonly class="form-control input-sm">
-                        </div>
-                    </td>*@
                 <td class="goods-page-price">
                     <strong><span>R$</span>@item.Produto.Preco</strong>
                 </td>
@@ -101,54 +94,6 @@
                     contador = contador + 1;
 
         }
-        @*<tr>
-                <td class="goods-page-image">
-                    <a href="#"><img src="~/assets/frontend/pages/img/products/model1.jpg" alt="Berry Lace Dress"></a>
-                </td>
-                <td class="goods-page-description">
-                    <h3><a href="#">Teste</a></h3>
-                    <p><strong>Item 1</strong> - Cor: Verde; Tamanho: S</p>
-                    <em>Mais informações aqui</em>
-                </td>
-                <td class="goods-page-quantity">
-                    <div class="product-quantity">
-                        <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
-                    </div>
-                </td>
-                <td class="goods-page-price">
-                    <strong><span>R$</span>47.00</strong>
-                </td>
-                <td class="goods-page-total">
-                    <strong><span>R$</span>47.00</strong>
-                </td>
-                <td class="del-goods-col">
-                    <a class="del-goods" href="#">&nbsp;</a>
-                </td>
-            </tr>
-            <tr>
-                <td class="goods-page-image">
-                    <a href="#"><img src="~/assets/frontend/pages/img/products/model1.jpg" alt="Berry Lace Dress"></a>
-                </td>
-                <td class="goods-page-description">
-                    <h3><a href="#">Produto 2</a></h3>
-                    <p><strong>Item 2</strong> - Cor: Verde; Tamanho: S</p>
-                    <em>Mais informações aqui</em>
-                </td>
-                <td class="goods-page-quantity">
-                    <div class="product-quantity">
-                        <input id="product-quantity2" type="text" value="1" readonly class="form-control input-sm">
-                    </div>
-                </td>
-                <td class="goods-page-price">
-                    <strong><span>R$</span>47.00</strong>
-                </td>
-                <td class="goods-page-total">
-                    <strong><span>R$</span>47.00</strong>
-                </td>
-                <td class="del-goods-col">
-                    <a class="del-goods" href="#">&nbsp;</a>
-                </td>
-            </tr>*@
     </table>
 </div>
 

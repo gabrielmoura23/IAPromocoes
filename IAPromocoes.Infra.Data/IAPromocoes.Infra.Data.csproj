@@ -57,6 +57,8 @@
     <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\ContextManager.cs" />
     <Compile Include="Context\IAPromocoesContext.cs" />
+    <Compile Include="EntityConfig\CidadeConfiguration.cs" />
+    <Compile Include="EntityConfig\EstadoConfiguration.cs" />
     <Compile Include="EntityConfig\FormaDePagamentoConfiguration.cs" />
     <Compile Include="EntityConfig\ProdutoImagemConfiguration.cs" />
     <Compile Include="EntityConfig\StatusPedidoConfiguration.cs" />
@@ -74,6 +76,8 @@
     <Compile Include="Repositories\FormaDePagamentoRepository.cs" />
     <Compile Include="Repositories\ProdutoPrecoRepository.cs" />
     <Compile Include="Repositories\ProdutoImagemRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\CidadeReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\EstadoReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ProdutoPrecoReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ProdutoImagemReadOnlyRepository.cs" />
     <Compile Include="Repositories\StatusPedidoRepository.cs" />

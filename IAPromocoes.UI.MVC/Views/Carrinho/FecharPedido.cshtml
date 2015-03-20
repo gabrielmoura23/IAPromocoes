@@ -85,112 +85,99 @@
                         </div>*@
                     <!-- END CHECKOUT -->
                     <!-- BEGIN PAYMENT ADDRESS -->
-                    <div id="payment-address" class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
-                                    Passo 2: Endereço de Cobrança
-                                </a>
-                            </h2>
-                        </div>
-                        <div id="payment-address-content" class="panel-collapse collapse in">
-                            <div class="panel-body row">
-                                <div class="col-md-6 col-sm-6">
-                                    <h3>Dados Pessoais</h3>
-                                    <div class="form-group">
-                                        <label for="firstname">Nome <span class="require">*</span></label>
-                                        <input type="text" id="firstname" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastname">Sobrenome <span class="require">*</span></label>
-                                        <input type="text" id="lastname" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">E-Mail <span class="require">*</span></label>
-                                        <input type="text" id="email" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="telephone">Telefone <span class="require">*</span></label>
-                                        <input type="text" id="telephone" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fax">Fax</label>
-                                        <input type="text" id="fax" class="form-control">
-                                    </div>
+                    @*<div id="payment-address" class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
+                                        Passo 2: Endereço de Cobrança
+                                    </a>
+                                </h2>
+                            </div>
+                            <div id="payment-address-content" class="panel-collapse collapse in">
+                                <div class="panel-body row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <h3>Dados Pessoais</h3>
+                                        <div class="form-group">
+                                            <label for="firstname">Nome <span class="require">*</span></label>
+                                            <input type="text" id="firstname" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastname">Sobrenome <span class="require">*</span></label>
+                                            <input type="text" id="lastname" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">E-Mail <span class="require">*</span></label>
+                                            <input type="text" id="email" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telephone">Telefone <span class="require">*</span></label>
+                                            <input type="text" id="telephone" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fax">Celular</label>
+                                            <input type="text" id="fax" class="form-control">
+                                        </div>
 
-                                    <h3>Sua Senha</h3>
-                                    <div class="form-group">
-                                        <label for="password">Senha <span class="require">*</span></label>
-                                        <input type="password" id="password" class="form-control">
+                                        <h3>Sua Senha</h3>
+                                        <div class="form-group">
+                                            <label for="password">Senha <span class="require">*</span></label>
+                                            <input type="password" id="password" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password-confirm">Confirmar Senha <span class="require">*</span></label>
+                                            <input type="text" id="password-confirm" class="form-control">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password-confirm">Confirmar Senha <span class="require">*</span></label>
-                                        <input type="text" id="password-confirm" class="form-control">
+                                    <div class="col-md-6 col-sm-6">
+                                        <h3>Seu Endereço</h3>
+                                        <div class="form-group">
+                                            <label for="post-code">CEP <span class="require">*</span></label>
+                                            <input type="text" id="post-code" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="company">Logradouro</label>
+                                            <input type="text" id="company" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address2">Complemento</label>
+                                            <input type="text" id="address2" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="region-state">Estado <span class="require">*</span></label>
+                                            <select class="form-control input-sm" id="region-state">
+                                                <option value=""> --- Selecione --- </option>
+                                                <option value="3513">Aberdeen</option>
+                                                <option value="3514">Aberdeenshire</option>
+                                                <option value="3515">Anglesey</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">Cidade <span class="require">*</span></label>
+                                            <input type="text" id="city" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <h3>Seu Endereço</h3>
-                                    <div class="form-group">
-                                        <label for="company">Logradouro</label>
-                                        <input type="text" id="company" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address1">Endereço 1</label>
-                                        <input type="text" id="address1" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address2">Endereço 2</label>
-                                        <input type="text" id="address2" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city">Cidade <span class="require">*</span></label>
-                                        <input type="text" id="city" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="post-code">CEP <span class="require">*</span></label>
-                                        <input type="text" id="post-code" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="country">País <span class="require">*</span></label>
-                                        <select class="form-control input-sm" id="country">
-                                            <option value=""> --- Selecione --- </option>
-                                            <option value="244">Aaland Islands</option>
-                                            <option value="1">Afghanistan</option>
-                                            <option value="2">Albania</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="region-state">Estado <span class="require">*</span></label>
-                                        <select class="form-control input-sm" id="region-state">
-                                            <option value=""> --- Selecione --- </option>
-                                            <option value="3513">Aberdeen</option>
-                                            <option value="3514">Aberdeenshire</option>
-                                            <option value="3515">Anglesey</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="col-md-12">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Gostaria de cadastrar a newsletter da IA Promoções.
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" checked="checked"> Meu endereço de entrega e cobrança são os mesmos.
-                                        </label>
-                                    </div>
-                                    <button class="btn btn-primary  pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">Continuar</button>
-                                    <div class="checkbox pull-right">
-                                        <label>
-                                            <input type="checkbox">Eu li e concordo com a <a title="Privacy Policy" href="#">Política de Privacidade</a> &nbsp;&nbsp;&nbsp;
-                                        </label>
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Gostaria de cadastrar a newsletter da IA Promoções.
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" checked="checked"> Meu endereço de entrega e cobrança são os mesmos.
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary  pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">Continuar</button>
+                                        <div class="checkbox pull-right">
+                                            <label>
+                                                <input type="checkbox">Eu li e concordo com a <a title="Privacy Policy" href="#">Política de Privacidade</a> &nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>*@
                     <!-- END PAYMENT ADDRESS -->
                     <!-- BEGIN SHIPPING ADDRESS -->
                     <div id="shipping-address" class="panel panel-default">
@@ -201,7 +188,7 @@
                                 </a>
                             </h2>
                         </div>
-                        <div id="shipping-address-content" class="panel-collapse collapse">
+                        <div id="shipping-address-content" class="panel-collapse collapse in">
                             <div class="panel-body row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -221,39 +208,23 @@
                                         <input type="text" id="telephone-dd" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="fax-dd">Fax</label>
+                                        <label for="fax-dd">Celular</label>
                                         <input type="text" id="fax-dd" class="form-control">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="company-dd">Logradouro</label>
-                                        <input type="text" id="company-dd" class="form-control">
-                                    </div>
+
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="address1-dd">Endereço 1</label>
-                                        <input type="text" id="address1-dd" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address2-dd">Endereço 2</label>
-                                        <input type="text" id="address2-dd" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city-dd">Cidade <span class="require">*</span></label>
-                                        <input type="text" id="city-dd" class="form-control">
-                                    </div>
                                     <div class="form-group">
                                         <label for="post-code-dd">CEP <span class="require">*</span></label>
                                         <input type="text" id="post-code-dd" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="country-dd">País <span class="require">*</span></label>
-                                        <select class="form-control input-sm" id="country-dd">
-                                            <option value=""> --- Selecione --- </option>
-                                            <option value="244">Aaland Islands</option>
-                                            <option value="1">Afghanistan</option>
-                                            <option value="2">Albania</option>
-                                        </select>
+                                        <label for="address1-dd">Logradouro</label>
+                                        <input type="text" id="address1-dd" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address2-dd">Complemento</label>
+                                        <input type="text" id="address2-dd" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="region-state-dd">Estado <span class="require">*</span></label>
@@ -264,6 +235,10 @@
                                             <option value="3515">Anglesey</option>
                                             <option value="3516">Angus</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city-dd">Cidade <span class="require">*</span></label>
+                                        <input type="text" id="city-dd" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -351,12 +326,28 @@
                                 <div class="col-md-12 clearfix">
                                     @Html.Action("_CarrinhoPadrao")
 
-
-
-
                                     <div class="clearfix"></div>
-                                    <button class="btn btn-primary pull-right" type="submit" id="button-confirm">Confirmar Pedido</button>
-                                    <button type="button" class="btn btn-default pull-right margin-right-20">Cancelar</button>
+
+                                    @using (Html.BeginForm("FecharPedido", "Carrinho", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                        
+                                        @Html.Hidden("IdPedido", Guid.NewGuid())
+                                        @Html.Hidden("IdCliente", Guid.Parse("64410ee8-d8d3-4a9a-856d-0924f7f790b8"))
+                                        @Html.Hidden("IdStatusPedido", 3)
+                                        @Html.Hidden("IdFormaDePagamento", 1)
+                                        @Html.Hidden("DataPedido", DateTime.Now.ToShortDateString())
+                                        @Html.Hidden("HoraPedido", DateTime.Now.ToShortTimeString())
+                                        @Html.Hidden("ValorTotal", 0)
+                                        @Html.Hidden("DtCadastro", DateTime.Now)
+                                        @Html.Hidden("OutrasInformacoes", "Teste 123...")
+
+                                        <input class="btn btn-primary pull-right" type="submit" id="button-confirm" value="Confirmar Pedido"/>
+                                        <button type="button" class="btn btn-default pull-right margin-right-20">Cancelar</button>
+
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
