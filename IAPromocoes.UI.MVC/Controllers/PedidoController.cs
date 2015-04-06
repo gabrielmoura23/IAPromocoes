@@ -220,6 +220,7 @@ namespace IAPromocoes.UI.MVC.Controllers
 
         public ActionResult Pagar(string IdPedido)
         {
+            
 
             //model.Produto = (from i in Lista
             //                 where i.ID_PRODUTO == id
@@ -231,13 +232,15 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             if (pedidoModel != null)
             {
+                EnvironmentConfiguration.ChangeEnvironment(true);
+
                 PagamentoPagSeguroModel model = new PagamentoPagSeguroModel();
                 model.Pedido = new PagamentoPagSeguroPedido { Reference = "P" + IdPedido + "#" + DateTime.Now.Millisecond, RedirectUri = "https://www.google.com.br/search?q=url-temporaria" };
                 model.Cobrador = new PagamentoPagSeguroCobrador { Nome = "Gabriel Teste Silva", CPF = "33565201720", Email = "gabrielm@fieb.org.br", TelefonePrevixo = 71, TelefoneNumero = 88637803 };
 
                 //PagSeguroConfiguration.UrlXmlConfiguration = HttpRuntime.AppDomainAppPath + @"Configuration\PagSeguroConfig.xml";
-                AccountCredentials credentials = new AccountCredentials("gabrielandrade.moura@gmail.com", "63FB07B49624434E9AE4802EBA036F00");
-
+                //AccountCredentials credentials = new AccountCredentials("backoffice@lojamodelo.com.br", "2507D8278A9D478D94327BABDDC2A573");
+                AccountCredentials credentials = PagSeguroConfiguration.Credentials(true);  
                 try
                 {
                     PaymentRequest payment = new PaymentRequest();
@@ -300,12 +303,26 @@ namespace IAPromocoes.UI.MVC.Controllers
 
                     if (!string.IsNullOrEmpty(paymentRedirectUri))
                     {
-                        return Redirect(paymentRedirectUri);
+                        int posicao = paymentRedirectUri.LastIndexOf("code=");
+                        string retor = paymentRedirectUri.Substring(posicao+5, 32);
+
+                    //    var resultado = new
+                    //        {
+                    //            checkoutCode = retor
+                    //        };
+                    //return Json(resultado);
+
+
+                        var result = new { Success = "True", Message = retor };
+                    return Json(result, JsonRequestBehavior.AllowGet);
+
+
+                        //return Redirect(paymentRedirectUri);
                     }
                     else
                     {
                         ViewBag.Retorno = paymentRedirectUri;
-                        return View();
+                        return View("PagSeguro");
                     }
                 }
                 catch (PagSeguroServiceException exception)
@@ -316,7 +333,8 @@ namespace IAPromocoes.UI.MVC.Controllers
             }
             else
             {
-                return View();
+                ViewBag.Retorno = "Pedido não encontrado.";
+                return View("PagSeguro");
             }
         }
     }
