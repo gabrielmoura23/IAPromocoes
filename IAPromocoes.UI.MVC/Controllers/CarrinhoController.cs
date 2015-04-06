@@ -184,6 +184,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                 }
 
                 Session["Pedido"] = pedidoModel;
+                //Session["ItensPedido"] = pedidoModel.ItensPedido;
 
                 return RedirectToAction("Pagamento", "Pedido");
 

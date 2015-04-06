@@ -36,6 +36,12 @@ namespace IAPromocoes.Domain.Services
             return _modelRepository.BuscarPedidosPorIdCliente(idCliente);
         }
 
+        public Pedido GetByIdWithIncludes(Guid idPedido, string[] includes = null)
+        {
+            return _modelRepository.GetByIdWithIncludes(idPedido, includes);
+        }
+
+
         public ValidationResult AdicionarPedido(Pedido model)
         {
             var resultadoValidacao = new ValidationResult();

@@ -112,7 +112,7 @@ namespace IAPromocoes.Application.Services
 
         public IEnumerable<ItemPedidoViewModel> BuscarItensPorIdPedido(Guid idPedido)
         {
-            throw new NotImplementedException();
+            return Mapper.Map <IEnumerable<ItemPedido>, IEnumerable<ItemPedidoViewModel>>(_modelService.BuscarItensPorIdPedido(idPedido));
         }
     }
 }

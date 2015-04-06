@@ -21,5 +21,8 @@ namespace IAPromocoes.Application.Interfaces
         ValidationAppResult RemoverProdutoDoCarrinho(Guid idProduto);
         ValidationAppResult FinalizarPedido(PedidoViewModel modelViewModel);
 
+
+
+        PedidoViewModel GetByIdWithIncludes(Guid idPedido, string[] includes = null);
     }
 }

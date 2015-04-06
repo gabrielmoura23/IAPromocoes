@@ -14,5 +14,8 @@ namespace IAPromocoes.Domain.Interfaces.Services
         ValidationResult AdicionarProdutoNoCarrinho(Guid idProduto);
         ValidationResult RemoverProdutoDoCarrinho(Guid idProduto);
         ValidationResult FinalizarPedido(Pedido model);
+
+
+        Pedido GetByIdWithIncludes(Guid idPedido, string[] includes = null);
     }
 }

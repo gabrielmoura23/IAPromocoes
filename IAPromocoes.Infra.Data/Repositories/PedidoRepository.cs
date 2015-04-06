@@ -12,5 +12,10 @@ namespace IAPromocoes.Infra.Data.Repositories
         {
             return base.Find(c => c.IdCliente == idCliente);
         }
+
+        public Pedido GetByIdWithIncludes(Guid idPedido, string[] includes = null)
+        {
+            return base.FindWithIncludes(c => c.IdPedido == idPedido, includes);
+        }
     }
 }

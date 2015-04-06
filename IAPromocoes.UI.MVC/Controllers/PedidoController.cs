@@ -16,12 +16,18 @@ namespace IAPromocoes.UI.MVC.Controllers
     public class PedidoController : Controller
     {
         private readonly IPedidoAppService _pedidoApp;
+        private readonly IItemPedidoAppService _itemPedidoApp;
         private readonly IFormaDePagamentoAppService _formaPagamentoApp;
+        private readonly IProdutoAppService _produtoApp;
 
         public PedidoController(IPedidoAppService pedidoApp,
+                                IItemPedidoAppService itemPedidoApp,
+                                IProdutoAppService produtoApp,
                                 IFormaDePagamentoAppService formaPagamentoApp)
         {
             _pedidoApp = pedidoApp;
+            _itemPedidoApp = itemPedidoApp;
+            _produtoApp = produtoApp;
             _formaPagamentoApp = formaPagamentoApp;
         }
 
@@ -219,7 +225,9 @@ namespace IAPromocoes.UI.MVC.Controllers
             //                 where i.ID_PRODUTO == id
             //                 select i).FirstOrDefault();
 
-            var pedidoModel = _pedidoApp.GetById(Guid.Parse(IdPedido));
+            //var pedidoModel = _pedidoApp.GetById(Guid.Parse(IdPedido));
+            var includes = new[] { "ItensPedido" };
+            var pedidoModel = _pedidoApp.GetByIdWithIncludes(Guid.Parse(IdPedido), includes);
 
             if (pedidoModel != null)
             {
@@ -237,10 +245,13 @@ namespace IAPromocoes.UI.MVC.Controllers
                     
                     
                     //payment.Items.Add(new Item(model.Produto.ID_PRODUTO.ToString(), model.Produto.Nome, 1, Convert.ToDecimal(model.Produto.Valor)));
-                    
-                    foreach(var item in pedidoModel.ItensPedido)
+
+
+                    //var itensPedidoModel = _itemPedidoApp.BuscarItensPorIdPedido(pedidoModel.IdPedido);
+                    foreach (var item in pedidoModel.ItensPedido)
                     {
-                        payment.Items.Add(new Item(item.IdProduto.ToString(), item.ProdutoViewModel.Descricao, 1, Convert.ToDecimal(item.ValorUnitario)));
+                        var produtoModel = _produtoApp.GetById(item.IdProduto);
+                        payment.Items.Add(new Item(item.IdProduto.ToString(), produtoModel.Descricao, 1, Convert.ToDecimal(item.ValorUnitario)));
                     }
 
                     payment.Reference = model.Pedido.Reference;
@@ -278,8 +289,11 @@ namespace IAPromocoes.UI.MVC.Controllers
                     );
 
                     // Sets the url used by PagSeguro for redirect user after ends checkout process
-                    payment.RedirectUri = new Uri(@"" + model.Pedido.RedirectUri);
+                    //payment.RedirectUri = new Uri(@"" + model.Pedido.RedirectUri);
+                    
 
+                    //payment.RedirectUri = new Uri(HttpRuntime.AppDomainAppPath + @"Configuration\PagSeguroConfig.xml");
+                    
                     SenderDocument senderCPF = new SenderDocument(Documents.GetDocumentByType("CPF"), model.Cobrador.CPF);
                     payment.Sender.Documents.Add(senderCPF);
                     string paymentRedirectUri = payment.Register(credentials).ToString();
@@ -297,7 +311,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                 catch (PagSeguroServiceException exception)
                 {
                     ViewBag.Erro = "Não Foi possivel carregar a página";
-                    return View();
+                    return View("Error");
                 }
             }
             else

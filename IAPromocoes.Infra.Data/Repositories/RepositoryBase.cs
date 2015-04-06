@@ -78,6 +78,24 @@ namespace IAPromocoes.Infra.Data.Repositories
             return DbSet.Where(predicate);
         }
 
+
+        public virtual TEntity FindWithIncludes(Expression<Func<TEntity, bool>> predicate, string[] includes = null)
+        {
+            return DbSet.FirstOrDefault<TEntity>(predicate);
+            
+            //código abaixo está dando erro
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = DbSet.Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault<TEntity>(predicate);
+            }
+
+            
+        }
+
         public void Dispose()
         {
             Context.Dispose();

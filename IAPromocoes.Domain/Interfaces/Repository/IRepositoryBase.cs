@@ -14,5 +14,7 @@ namespace IAPromocoes.Domain.Interfaces.Repository
         void Update(TEntity obj);
         void Remove(TEntity obj);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+
+        TEntity FindWithIncludes(Expression<Func<TEntity, bool>> predicate, string[] includes = null);
     }
 }

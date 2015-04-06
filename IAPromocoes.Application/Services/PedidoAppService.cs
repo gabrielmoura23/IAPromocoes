@@ -55,6 +55,11 @@ namespace IAPromocoes.Application.Services
             return Mapper.Map<IEnumerable<Pedido>, IEnumerable<PedidoViewModel>>(_modelService.BuscarPedidosPorIdCliente(idCliente));
         }
 
+        public PedidoViewModel GetByIdWithIncludes(Guid idPedido, string[] includes = null)
+        {
+            return Mapper.Map<Pedido, PedidoViewModel>(_modelService.GetByIdWithIncludes(idPedido, includes));
+        }
+
         public void Update(PedidoViewModel modelViewModel)
         {
             var model = Mapper.Map<PedidoViewModel, Pedido>(modelViewModel);
