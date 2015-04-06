@@ -250,11 +250,14 @@ namespace IAPromocoes.UI.MVC.Controllers
                     //payment.Items.Add(new Item(model.Produto.ID_PRODUTO.ToString(), model.Produto.Nome, 1, Convert.ToDecimal(model.Produto.Valor)));
 
 
+                    //colocar o produtoPreco nos itens do pedido
+
+
                     //var itensPedidoModel = _itemPedidoApp.BuscarItensPorIdPedido(pedidoModel.IdPedido);
                     foreach (var item in pedidoModel.ItensPedido)
                     {
                         var produtoModel = _produtoApp.GetById(item.IdProduto);
-                        payment.Items.Add(new Item(item.IdProduto.ToString(), produtoModel.Descricao, 1, Convert.ToDecimal(item.ValorUnitario)));
+                        payment.Items.Add(new Item(item.IdProduto.ToString(), produtoModel.Descricao, item.QtdProduto, Convert.ToDecimal(item.ValorUnitario)));
                     }
 
                     payment.Reference = model.Pedido.Reference;

@@ -176,7 +176,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                     itemModel.IdPedido = pedidoModel.IdPedido;
                     itemModel.IdProduto = item.Produto.IdProduto;
                     itemModel.QtdProduto = item.Quantidade;
-                    itemModel.ValorUnitario = item.Produto.Preco;
+                    itemModel.ValorUnitario = item.ProdutoPreco.ValorUnitario;
                     itemModel.DtCadastro = pedidoModel.DtCadastro;
                     itemModel.IdUsuarioCadastro = Guid.NewGuid();                    
 
