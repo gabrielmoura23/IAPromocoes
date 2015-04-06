@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPromocoes.UI.MVC.Adm", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPromocoes.Infra.CrossCutting.Identity.Adm", "IAPromocoes.Infra.CrossCutting.Identity.Adm\IAPromocoes.Infra.CrossCutting.Identity.Adm.csproj", "{7353CA77-76DC-40D5-938F-A4ED311C3A44}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - PagSeguro", "5 - PagSeguro", "{7257FB6D-1C1C-44CF-A812-CB456BED0140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uol.PagSeguro", "Uol.PagSeguro\Uol.PagSeguro.csproj", "{BABC5658-6AFD-4F8E-81F1-434553663D99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7353CA77-76DC-40D5-938F-A4ED311C3A44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABC5658-6AFD-4F8E-81F1-434553663D99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,5 +101,6 @@ Global
 		{AA9A22B5-8F33-4FEB-8D4F-281A807450F4} = {3794A883-857A-402D-B337-10D167BC252C}
 		{B9A34365-14FD-4C73-84D6-82E835236428} = {3794A883-857A-402D-B337-10D167BC252C}
 		{7353CA77-76DC-40D5-938F-A4ED311C3A44} = {B54A4E12-33B9-46D0-AB05-AC6719FE79F9}
+		{BABC5658-6AFD-4F8E-81F1-434553663D99} = {7257FB6D-1C1C-44CF-A812-CB456BED0140}
 	EndGlobalSection
 EndGlobal

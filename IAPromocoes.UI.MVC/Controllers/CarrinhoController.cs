@@ -13,28 +13,33 @@ namespace IAPromocoes.UI.MVC.Controllers
     public class CarrinhoController : Controller
     {
         private readonly IProdutoAppService _produtoApp;
+        private readonly IProdutoPrecoAppService _produtoPrecoApp;
         private readonly IPedidoAppService _pedidoApp;
 
 
-        public CarrinhoController(IProdutoAppService produtoApp, IPedidoAppService pedidoApp)
+        public CarrinhoController(IProdutoAppService produtoApp, 
+                                    IPedidoAppService pedidoApp,
+                                    IProdutoPrecoAppService produtoPrecoApp)
         {
             _produtoApp = produtoApp;
+            _produtoPrecoApp = produtoPrecoApp;
             _pedidoApp = pedidoApp;
         }
 
-        public RedirectToRouteResult Adicionar(Guid IdProduto, int qtdProduto, string returnUrl)
+        public RedirectToRouteResult Adicionar(Guid IdProduto, string IdProdutoPreco, int qtdProduto, string returnUrl)
         {
-            if (qtdProduto <= 0)
+            if (qtdProduto <= 0 || IdProdutoPreco.Equals("0"))
             {
-                return RedirectToAction("Detalhes", new { returnUrl });
+                return RedirectToAction("Detalhes", "Produto", new { returnUrl });
             }
             else
             {
                 var produto = _produtoApp.GetById(IdProduto);
+                var produtoPreco = _produtoPrecoApp.GetById(Guid.Parse(IdProdutoPreco));
 
-                if (produto != null)
+                if (produto != null && produtoPreco != null)
                 {
-                    ObterCarrinho().AdicionarItem(produto, qtdProduto);
+                    ObterCarrinho().AdicionarItem(produto, qtdProduto, produtoPreco);
 
                 }
 
@@ -42,19 +47,20 @@ namespace IAPromocoes.UI.MVC.Controllers
             }
         }
 
-        public RedirectToRouteResult Atualizar(Guid IdProduto, int qtdProduto, string returnUrl)
+        public RedirectToRouteResult Atualizar(Guid IdProduto, string IdProdutoPreco, int qtdProduto, string returnUrl)
         {
             if (qtdProduto <= 0)
             {
-                return RedirectToAction("Detalhes", new { returnUrl });
+                return RedirectToAction("Index", new { returnUrl });
             }
             else
             {
                 var produto = _produtoApp.GetById(IdProduto);
+                var produtoPreco = _produtoPrecoApp.GetById(Guid.Parse(IdProdutoPreco));
 
-                if (produto != null)
+                if (produto != null && produtoPreco != null)
                 {
-                    ObterCarrinho().AtualizarItem(produto, qtdProduto);
+                    ObterCarrinho().AtualizarItem(produto, qtdProduto, produtoPreco);
 
                 }
 
@@ -75,14 +81,15 @@ namespace IAPromocoes.UI.MVC.Controllers
             return carrinho;
         }
 
-        public RedirectToRouteResult Remover(Guid IdProduto, string returnUrl)
+        public RedirectToRouteResult Remover(Guid IdProduto, string IdProdutoPreco, string returnUrl)
         {
 
             var produto = _produtoApp.GetById(IdProduto);
+            var produtoPreco = _produtoPrecoApp.GetById(Guid.Parse(IdProdutoPreco));
 
-            if (produto != null)
+            if (produto != null && produtoPreco != null)
             {
-                ObterCarrinho().RemevorItem(produto);
+                ObterCarrinho().RemevorItem(produto, produtoPreco);
             }
 
             return RedirectToAction("Index", new { returnUrl });
@@ -131,8 +138,11 @@ namespace IAPromocoes.UI.MVC.Controllers
         }
 
 
+        [ActionName("FecharPedido")]
         [HttpPost]
-        public ViewResult FecharPedido(PedidoViewModel pedidoModel)
+        [ValidateAntiForgeryToken]
+        //public ViewResult FecharPedido(PedidoViewModel pedidoModel)
+        public ActionResult ConfirmaFecharPedido()
         {
             Carrinho carrinho = ObterCarrinho();
 
@@ -150,26 +160,52 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                var pedidoModel = new PedidoViewModel();
+                pedidoModel.IdPedido = Guid.NewGuid();
+                pedidoModel.DataPedido = DateTime.Now;
+                pedidoModel.DtCadastro = DateTime.Now;
+                pedidoModel.HoraPedido = DateTime.Now;
+                pedidoModel.IdCliente = Guid.NewGuid();
+                pedidoModel.IdStatusPedido = 3;
                 pedidoModel.ValorTotal = carrinho.ObterValorTotal();
 
-                var result = _pedidoApp.Add(pedidoModel);
-
-                if (!result.IsValid)
+                foreach(var item in carrinho.ItensCarrinho)
                 {
-                    foreach (var validationAppError in result.Erros)
-                    {
-                        ModelState.AddModelError(string.Empty, validationAppError.Message);
-                    }
-                    return View(pedidoModel);
+                    var itemModel = new ItemPedidoViewModel();
+                    itemModel.IdItemPedido = Guid.NewGuid();
+                    itemModel.IdPedido = pedidoModel.IdPedido;
+                    itemModel.IdProduto = item.Produto.IdProduto;
+                    itemModel.QtdProduto = item.Quantidade;
+                    itemModel.ValorUnitario = item.Produto.Preco;
+                    itemModel.DtCadastro = pedidoModel.DtCadastro;
+                    itemModel.IdUsuarioCadastro = Guid.NewGuid();                    
+
+                    pedidoModel.ItensPedido.Add(itemModel);
                 }
 
+                Session["Pedido"] = pedidoModel;
+
+                return RedirectToAction("Pagamento", "Pedido");
+
+                //var result = _pedidoApp.Add(pedidoModel);
+
+                //if (!result.IsValid)
+                //{
+                //    foreach (var validationAppError in result.Erros)
+                //    {
+                //        ModelState.AddModelError(string.Empty, validationAppError.Message);
+                //    }
+                //    return View(pedidoModel);
+                //}
+
                 //emailPedido.ProcessarPedido(carrinho, pedido);
-                carrinho.LimparCarrinho();
-                return View("PedidoConcluido");
+                //carrinho.LimparCarrinho();
+                //return View("PedidoConcluido");
             }
             else
             {
-                return View(pedidoModel);
+                return View();
+                //return View(pedidoModel);
             }
 
         }

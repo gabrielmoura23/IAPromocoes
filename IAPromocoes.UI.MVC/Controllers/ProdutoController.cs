@@ -12,11 +12,17 @@ namespace IAPromocoes.UI.MVC.Controllers
     public class ProdutoController : Controller
     {
         private readonly IProdutoAppService _produtoApp;
+        private readonly IProdutoImagemAppService _produtoImagemApp;
+        private readonly IProdutoPrecoAppService _produtoPrecoApp;
         public const int RecordsPerPage = 6;
 
-        public ProdutoController(IProdutoAppService produtoApp)
+        public ProdutoController(IProdutoAppService produtoApp,
+                                IProdutoImagemAppService produtoImagemApp,
+                                IProdutoPrecoAppService produtoPrecoApp)
         {
             _produtoApp = produtoApp;
+            _produtoImagemApp = produtoImagemApp;
+            _produtoPrecoApp = produtoPrecoApp;
             ViewBag.RecordsPerPage = RecordsPerPage;
         }
 
@@ -230,7 +236,19 @@ namespace IAPromocoes.UI.MVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             var customers = _produtoApp.GetById(IdProduto);
-            return View(customers);
+            ViewData["Imagens"] = _produtoImagemApp.BuscarImagensPorIdProduto(IdProduto);
+
+            var precos = _produtoPrecoApp.BuscarPrecosPorIdProduto(IdProduto);
+            List<SelectListItem> obj = new List<SelectListItem>();
+            obj.Add(new SelectListItem { Text = "(Selecione)", Value = "0" });
+            foreach (var item in precos)
+            {
+                obj.Add(new SelectListItem { Text = item.Descricao + " - " + item.ValorUnitario.ToString("C"), Value = item.IdProdutoPreco.ToString() });
+            }
+
+            ViewBag.IdProdutoPreco = obj;
+
+            return View(customers);            
             
 
             //return View();

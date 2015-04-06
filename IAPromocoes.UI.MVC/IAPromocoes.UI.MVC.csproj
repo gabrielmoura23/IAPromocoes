@@ -171,11 +171,13 @@
     <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Carrinho.cs" />
+    <Compile Include="Models\PagamentoPagSeguroModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -1492,6 +1494,7 @@
     <Content Include="assets\global\plugins\uniform\jquery.uniform.min.js" />
     <Content Include="assets\global\plugins\zoom\jquery.zoom.js" />
     <Content Include="assets\global\plugins\zoom\jquery.zoom.min.js" />
+    <Content Include="Configuration\PagSeguroConfig.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -1672,6 +1675,12 @@
     <Content Include="Views\Carrinho\_Lista.cshtml" />
     <Content Include="Views\Carrinho\_CarrinhoPadrao.cshtml" />
     <Content Include="Views\Carrinho\Vazio.cshtml" />
+    <Content Include="Views\Produto\_OutrasImagens.cshtml" />
+    <Content Include="Views\Pedido\PagSeguro.cshtml" />
+    <Content Include="Views\Pedido\Pagamento.cshtml" />
+    <Content Include="Views\Pedido\Resumo.cshtml" />
+    <Content Include="Views\Pedido\Confirmacao.cshtml" />
+    <Content Include="Views\Pedido\PedidoConcluido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1695,6 +1704,10 @@
     <ProjectReference Include="..\IAPromocoes.Infra.CrossCutting.IoC\IAPromocoes.Infra.CrossCutting.IoC.csproj">
       <Project>{021e090a-887d-444f-9928-2ae51fd15b54}</Project>
       <Name>IAPromocoes.Infra.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uol.PagSeguro\Uol.PagSeguro.csproj">
+      <Project>{babc5658-6afd-4f8e-81f1-434553663d99}</Project>
+      <Name>Uol.PagSeguro</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

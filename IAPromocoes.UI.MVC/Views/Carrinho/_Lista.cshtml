@@ -35,9 +35,19 @@
                 <li>
                     <a href="#"><img src="@link" alt="" width="37" height="34"></a>
                     <span class="cart-content-count">x @item.Quantidade</span>
-                    <strong>@Html.ActionLink(@item.Produto.Descricao, "Detalhes", "Produto", new { IdProduto = item.Produto.IdProduto }, null)</strong>
-                    <em>R$ @item.Produto.Preco</em>
+                    <strong>@Html.ActionLink(@item.Produto.Descricao, "Detalhes", "Produto", new { IdProduto = item.Produto.IdProduto }, null) 
+                    @*@if(@item.ProdutoPreco.Descricao.Length > 10)
+                    {
+                        @: (@item.ProdutoPreco.Descricao.Substring(0, 9).Trim()...)
+                    }
+                    else
+                    {
+                        @: (@item.ProdutoPreco.Descricao.Trim())
+                    }*@
+                    </strong>
+                    <em>R$@item.ProdutoPreco.ValorUnitario</em>
                     
+
                     @*@using (Html.BeginForm("Remover", "Carrinho"))
                     {
                         @Html.Hidden("IdProduto", item.Produto.IdProduto)

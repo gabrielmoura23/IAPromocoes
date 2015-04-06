@@ -13,16 +13,18 @@ namespace IAPromocoes.UI.MVC.Models
 
         //Adicionar
 
-        public void AdicionarItem(ProdutoViewModel produto, int quantidade)
+        public void AdicionarItem(ProdutoViewModel produto, int quantidade, ProdutoPrecoViewModel produtoPreco)
         {
-            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.IdProduto == produto.IdProduto);
+            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.IdProduto == produto.IdProduto
+                                                                && p.ProdutoPreco.IdProdutoPreco == produtoPreco.IdProdutoPreco);
 
             if (item == null)
             {
                 _itemCarrinho.Add(new ItemCarrinho
                 {
                     Produto = produto,
-                    Quantidade = quantidade
+                    Quantidade = quantidade,
+                    ProdutoPreco = produtoPreco
                 });
             }
             else
@@ -33,16 +35,18 @@ namespace IAPromocoes.UI.MVC.Models
 
         }
 
-        public void AtualizarItem(ProdutoViewModel produto, int quantidade)
+        public void AtualizarItem(ProdutoViewModel produto, int quantidade, ProdutoPrecoViewModel produtoPreco)
         {
-            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.IdProduto == produto.IdProduto);
+            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.IdProduto == produto.IdProduto
+                                                                && p.ProdutoPreco.IdProdutoPreco == produtoPreco.IdProdutoPreco);
 
             if (item == null)
             {
                 _itemCarrinho.Add(new ItemCarrinho
                 {
                     Produto = produto,
-                    Quantidade = quantidade
+                    Quantidade = quantidade,
+                    ProdutoPreco = produtoPreco
                 });
             }
             else
@@ -55,9 +59,10 @@ namespace IAPromocoes.UI.MVC.Models
 
         // Remover item
 
-        public void RemevorItem(ProdutoViewModel produto)
+        public void RemevorItem(ProdutoViewModel produto, ProdutoPrecoViewModel produtoPreco)
         {
-            _itemCarrinho.RemoveAll(l => l.Produto.IdProduto == produto.IdProduto);
+            _itemCarrinho.RemoveAll(l => l.Produto.IdProduto == produto.IdProduto
+                                        && l.ProdutoPreco.IdProdutoPreco == produtoPreco.IdProdutoPreco);
         }
 
 
@@ -66,7 +71,8 @@ namespace IAPromocoes.UI.MVC.Models
 
         public decimal ObterValorTotal()
         {
-            return _itemCarrinho.Sum(e => e.Produto.Preco * e.Quantidade);
+            //return _itemCarrinho.Sum(e => e.Produto.Preco * e.Quantidade);
+            return _itemCarrinho.Sum(e => e.ProdutoPreco.ValorUnitario * e.Quantidade);
         }
 
         //Limpar carrinho
@@ -90,7 +96,7 @@ namespace IAPromocoes.UI.MVC.Models
     public class ItemCarrinho
     {
         public ProdutoViewModel Produto { get; set; }
-
         public int Quantidade { get; set; }
+        public ProdutoPrecoViewModel ProdutoPreco { get; set; }
     }
 }

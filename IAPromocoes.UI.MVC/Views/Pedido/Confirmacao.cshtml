@@ -1,0 +1,133 @@
+﻿@model IAPromocoes.Application.ViewModels.PedidoViewModel
+
+@{
+    ViewBag.Title = "Finalizar";
+    Layout = "~/Views/Shared/__LayoutExterno.cshtml";
+
+    string currentUrl = HttpContext.Current.Request.Url.ToString().ToLower();
+}
+
+@section PageLevelStyles {
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+}
+
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index/">Home</a></li>
+            <li><a href="#">Pedido</a></li>
+            <li class="active">Confirmação</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                @*<h1>Finalizar Compra</h1>*@
+                <!-- BEGIN CHECKOUT PAGE -->
+                <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
+                    <!-- BEGIN CONFIRM -->
+                    <div id="confirm" class="panel panel-default">
+                        <div class="panel-heading">
+                            @*<h2 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#checkout-page" href="#confirm-content" class="accordion-toggle">
+                                    Passo 3: Confirmação
+                                </a>
+                            </h2>*@
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-money"></i><br>Pagamento</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-eye"></i><br>Resumo</a>
+                                </li>
+                                <li class="active">
+                                    <a href="#"><i class="fa fa-check"></i><br>Confirmação</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="confirm-content" class="panel-collapse collapse in">
+                            <div class="panel-body row">
+                                <div class="col-md-12 clearfix">
+                                    <h3>Pedido realizado com sucesso. Leia com atenção as instruções abaixo:</h3>
+                                    <p>
+                                        <strong>Pagamento com @ViewBag.FormaDePagamento.</strong>
+                                    </p>
+                                    <p>
+                                        Ao iniciar o processo de pagamento, uma janela do PagSeguro se abrirá na qual será possível inserir os dados do cartão de crédito.
+                                    </p>
+                                    <p>
+                                        Quando o pagamento foi finalizado, essa janela pode ser fechada sem problemas.
+                                    </p>
+                                    <p>
+                                        Clique no botão abaixo para efetuar o pagamento!
+                                    </p>
+                                    <p>
+                                        Código do pedido: @Model.IdPedido
+                                    </p>
+                                </div>
+
+                                <div class="col-md-12 clearfix">
+
+                                    @using (Html.BeginForm("Pagar", "Carrinho", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+
+                                        @Html.Hidden("IdPedido", Model.IdPedido)
+                                        @*@Html.Hidden("IdCliente", Guid.Parse("64410ee8-d8d3-4a9a-856d-0924f7f790b8"))
+                                        @Html.Hidden("IdStatusPedido", 3)
+                                        @Html.Hidden("IdFormaDePagamento", 1)
+                                        @Html.Hidden("DataPedido", DateTime.Now.ToShortDateString())
+                                        @Html.Hidden("HoraPedido", DateTime.Now.ToShortTimeString())
+                                        @Html.Hidden("ValorTotal", 0)
+                                        @Html.Hidden("DtCadastro", DateTime.Now)
+                                        @Html.Hidden("OutrasInformacoes", "Teste 123...")*@
+
+                                        <input class="btn btn-primary pull-right" type="submit" id="button-confirm" value="Pagar Agora" />
+                                        @*<button type="button" class="btn btn-default pull-right margin-right-20">Cancelar</button>*@
+
+                                    }
+
+
+                                </div>
+
+                                @*@using (Html.BeginForm("PagSeguro", "Pedido", FormMethod.Get))
+                                {
+                                    <button class="btn btn-primary" type="submit" onclick="parentNode.submit();">Ir <i class="fa fa-check"></i></button>
+
+                                }*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END CONFIRM -->
+                </div>
+                <!-- END CHECKOUT PAGE -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+
+@section PageLevelPlugins {
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+
+    <script src="~/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+}
+
+@section PageLevelScripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Layout.init();
+            Layout.initOWL();
+            Layout.initTwitter();
+
+            Layout.initFixHeaderWithPreHeader();
+            Layout.initNavScrolling();
+        });
+    </script>
+}

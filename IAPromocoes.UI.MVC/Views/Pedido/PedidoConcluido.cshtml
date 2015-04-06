@@ -1,7 +1,7 @@
 ﻿@*@model IAPromocoes.UI.MVC.ViewModels.CarrinhoViewModel*@
 
 @{
-    ViewBag.Title = "Carrinho";
+    ViewBag.Title = "Fim";
     Layout = "~/Views/Shared/__LayoutExterno.cshtml";
 }
 
@@ -17,29 +17,11 @@
         <div class="row margin-bottom-40">
             <!-- BEGIN CONTENT -->
             <div class="col-md-12 col-sm-12">
-                <h1>Carrinho de Compras</h1>
-                <div class="goods-page">
-                    <div class="goods-data clearfix">
-                        @Html.Partial("_CarrinhoPadrao")
-
+                <h1>Obrigado pela compra.</h1>
+                <div class="shopping-cart-page">
+                    <div class="shopping-cart-data clearfix">
+                        <p>Sua compra foi efetuada com sucesso!</p>
                     </div>
-                    @using (Html.BeginForm("Lista", "Produto"))
-                    {
-                        <button class="btn btn-default" type="submit" onclick="parentNode.submit();">Continuar Comprando <i class="fa fa-shopping-cart"></i></button>
-                    }
-
-                    @using (Html.BeginForm("FecharPedido", "Carrinho", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <button class="btn btn-primary" type="submit" onclick="parentNode.submit();">Finalizar Compra <i class="fa fa-check"></i></button>
-
-                    }
-                    @*@using (Html.BeginForm("Atualizar", "Carrinho", FormMethod.Get))
-                    {
-                        <button class="btn btn-warning pull-right" type="submit" onclick="parentNode.submit();">Atualizar Carrinho <i class="fa fa-refresh"></i></button>
-
-                    }*@
-
                 </div>
             </div>
             <!-- END CONTENT -->
@@ -72,3 +54,5 @@
         });
     </script>
 }
+
+

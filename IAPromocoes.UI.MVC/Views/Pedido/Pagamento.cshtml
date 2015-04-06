@@ -1,0 +1,139 @@
+﻿@model IAPromocoes.Application.ViewModels.PedidoViewModel
+
+@{
+    ViewBag.Title = "Finalizar";
+    Layout = "~/Views/Shared/__LayoutExterno.cshtml";
+
+    string currentUrl = HttpContext.Current.Request.Url.ToString().ToLower();
+}
+
+@section PageLevelStyles {
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+}
+
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index/">Home</a></li>
+            <li><a href="#">Pedido</a></li>
+            <li class="active">Pagamento</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                @*<h1>Finalizar Compra</h1>*@
+                <!-- BEGIN CHECKOUT PAGE -->
+
+
+
+                <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
+
+
+                    <!-- BEGIN PAYMENT METHOD -->
+                    <div id="payment-method" class="panel panel-default">
+
+                        <div class="panel-heading">
+
+                            <ul class="nav nav-pills nav-justified">
+                                <li class="active">
+                                    <a href="#"><i class="fa fa-money"></i><br>Pagamento</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-eye"></i><br>Resumo</a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#"><i class="fa fa-check"></i><br>Confirmação</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div id="payment-method-content" class="panel-collapse collapse in">
+                            <div class="panel-body row">
+                                <div class="col-md-12">
+                                    <p>Por favor, selecione o método de pagamento preferido para esta compra.</p>
+                                    @using (Html.BeginForm("Pagamento", "Pedido", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                        <div class="radio-list">
+
+
+                                            @foreach (var radioitem in ViewBag.IdFormaDePagamento)
+                                            {
+                                                <label>
+                                                    @{
+                                                int valorObjeto = Convert.ToInt32(radioitem.Value);
+                                                    }
+                                                    @Html.RadioButtonFor(model => model.IdFormaDePagamento, valorObjeto) @radioitem.Text
+                                                </label>
+                                            }
+                                            <span class="help-block">
+                                                @Html.ValidationMessageFor(model => model.IdFormaDePagamento, "", new { @class = "text-danger" })
+                                            </span>
+                                            @*<label>
+                                                    <input type="radio" name="CashOnDelivery" value="pe"> Pagamento na entrega
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="CashOnDelivery" value="cc"> Cartão de Crédito
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="CashOnDelivery" value="bb"> Boleto Bancário
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="CashOnDelivery" value="tb"> Transferência Bancária
+                                                </label>*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="delivery-payment-method">Adicionar comentários sobre seu pedido</label>
+                                            <textarea id="delivery-payment-method" rows="8" class="form-control"></textarea>
+                                        </div>
+                                        <button class="btn btn-primary  pull-right" type="submit" id="button-payment-method" data-toggle="collapse" data-parent="#checkout-page" data-target="#confirm-content">Continuar</button>
+                                        @*<div class="checkbox pull-right">
+                                            <label>
+                                                <input type="checkbox"> Eu li e concordo com os <a title="Terms & Conditions" href="#">Termos e Condições </a> &nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>*@
+
+                                        @*<button class="btn btn-primary" type="submit" onclick="parentNode.submit();">Ir <i class="fa fa-check"></i></button>*@
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAYMENT METHOD -->
+                </div>
+                <!-- END CHECKOUT PAGE -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+
+@section PageLevelPlugins {
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+
+    <script src="~/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+}
+
+@section PageLevelScripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Layout.init();
+            Layout.initOWL();
+            Layout.initTwitter();
+
+            Layout.initFixHeaderWithPreHeader();
+            Layout.initNavScrolling();
+        });
+    </script>
+}

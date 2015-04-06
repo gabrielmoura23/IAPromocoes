@@ -1,0 +1,25 @@
+﻿@model IEnumerable<IAPromocoes.Application.ViewModels.ProdutoImagemViewModel>
+
+
+@foreach (var item in Model)
+{
+    var link = item.CaminhoFisico;
+    if (!String.IsNullOrEmpty(link))
+    {
+        link = "http://localhost:17714" + link.Replace('~', ' ').Trim();
+    }
+    
+    if (!String.IsNullOrEmpty(item.CaminhoFisico))
+    {
+        <a href="@link" class="fancybox-button" rel="photos-lib">
+            <img alt="" src="@link">
+        </a>
+    }
+    else
+    {
+        @: &nbsp;
+        }
+
+}
+
+
