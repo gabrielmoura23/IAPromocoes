@@ -17,6 +17,9 @@ namespace IAPromocoes.Infra.Data.EntityConfig
             Property(c => c.IdProduto)
                 .IsRequired();
 
+            Property(c => c.IdProdutoPreco)
+                .IsRequired();
+                
             Property(c => c.ValorUnitario)
                 .IsRequired();
             
@@ -32,6 +35,10 @@ namespace IAPromocoes.Infra.Data.EntityConfig
             this.HasRequired(t => t.Produto)
                 .WithMany(t => t.ItensPedido)
                 .HasForeignKey(d => d.IdProduto);
+
+            this.HasRequired(t => t.ProdutoPreco)
+                .WithMany(t => t.ItensPedido)
+                .HasForeignKey(d => d.IdProdutoPreco);
             
         }
     }

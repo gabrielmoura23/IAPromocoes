@@ -41,6 +41,7 @@
     <PreApprovalPayment>
       <Link>https://ws.sandbox.pagseguro.uol.com.br/v2/pre-approvals/payment</Link>
     </PreApprovalPayment>
+    <redirectURL>http://lojamodelo.com.br/notebook-prata-conclusao.html</redirectURL>
   </Urls>
   <!-- user's credential -->
   <Credential>

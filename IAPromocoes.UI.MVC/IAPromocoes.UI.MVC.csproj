@@ -1682,6 +1682,7 @@
     <Content Include="Views\Pedido\Confirmacao.cshtml" />
     <Content Include="Views\Pedido\PedidoConcluido.cshtml" />
     <Content Include="Views\Pedido\_LightBox.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

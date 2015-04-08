@@ -13,21 +13,25 @@ using Uol.PagSeguro.Resources;
 
 namespace IAPromocoes.UI.MVC.Controllers
 {
+    [Authorize]
     public class PedidoController : Controller
     {
         private readonly IPedidoAppService _pedidoApp;
         private readonly IItemPedidoAppService _itemPedidoApp;
         private readonly IFormaDePagamentoAppService _formaPagamentoApp;
         private readonly IProdutoAppService _produtoApp;
+        private readonly IProdutoPrecoAppService _produtoPrecoApp;
 
         public PedidoController(IPedidoAppService pedidoApp,
                                 IItemPedidoAppService itemPedidoApp,
                                 IProdutoAppService produtoApp,
+                                IProdutoPrecoAppService produtoPrecoApp,
                                 IFormaDePagamentoAppService formaPagamentoApp)
         {
             _pedidoApp = pedidoApp;
             _itemPedidoApp = itemPedidoApp;
             _produtoApp = produtoApp;
+            _produtoPrecoApp = produtoPrecoApp;
             _formaPagamentoApp = formaPagamentoApp;
         }
 
@@ -245,19 +249,17 @@ namespace IAPromocoes.UI.MVC.Controllers
                 {
                     PaymentRequest payment = new PaymentRequest();
                     payment.Currency = Currency.Brl;
-                    
-                    
                     //payment.Items.Add(new Item(model.Produto.ID_PRODUTO.ToString(), model.Produto.Nome, 1, Convert.ToDecimal(model.Produto.Valor)));
-
-
-                    //colocar o produtoPreco nos itens do pedido
-
 
                     //var itensPedidoModel = _itemPedidoApp.BuscarItensPorIdPedido(pedidoModel.IdPedido);
                     foreach (var item in pedidoModel.ItensPedido)
                     {
                         var produtoModel = _produtoApp.GetById(item.IdProduto);
-                        payment.Items.Add(new Item(item.IdProduto.ToString(), produtoModel.Descricao, item.QtdProduto, Convert.ToDecimal(item.ValorUnitario)));
+                        var produtoPrecoModel = _produtoPrecoApp.GetById(item.IdProdutoPreco);
+
+                        var nomeProdutoCompleto = produtoModel.Descricao + " (" + produtoPrecoModel.Descricao + ")";
+
+                        payment.Items.Add(new Item(item.IdProduto.ToString(), nomeProdutoCompleto, item.QtdProduto, Convert.ToDecimal(item.ValorUnitario)));
                     }
 
                     payment.Reference = model.Pedido.Reference;
@@ -295,7 +297,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                     );
 
                     // Sets the url used by PagSeguro for redirect user after ends checkout process
-                    //payment.RedirectUri = new Uri(@"" + model.Pedido.RedirectUri);
+                    payment.RedirectUri = new Uri(@"" + model.Pedido.RedirectUri);
                     
 
                     //payment.RedirectUri = new Uri(HttpRuntime.AppDomainAppPath + @"Configuration\PagSeguroConfig.xml");
@@ -303,7 +305,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                     SenderDocument senderCPF = new SenderDocument(Documents.GetDocumentByType("CPF"), model.Cobrador.CPF);
                     payment.Sender.Documents.Add(senderCPF);
                     string paymentRedirectUri = payment.Register(credentials).ToString();
-
+                    
                     if (!string.IsNullOrEmpty(paymentRedirectUri))
                     {
                         int posicao = paymentRedirectUri.LastIndexOf("code=");

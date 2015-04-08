@@ -7,9 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace IAPromocoes.UI.MVC.Controllers
 {
+    [Authorize]
     public class CarrinhoController : Controller
     {
         private readonly IProdutoAppService _produtoApp;
@@ -30,7 +33,7 @@ namespace IAPromocoes.UI.MVC.Controllers
         {
             if (qtdProduto <= 0 || IdProdutoPreco.Equals("0"))
             {
-                return RedirectToAction("Detalhes", "Produto", new { returnUrl });
+                return RedirectToAction("Detalhes", "Produto", new { IdProduto = IdProduto });
             }
             else
             {
@@ -160,12 +163,14 @@ namespace IAPromocoes.UI.MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                //Guid guid = (Guid) Membership.GetUser().ProviderUserKey;
+
                 var pedidoModel = new PedidoViewModel();
                 pedidoModel.IdPedido = Guid.NewGuid();
                 pedidoModel.DataPedido = DateTime.Now;
                 pedidoModel.DtCadastro = DateTime.Now;
                 pedidoModel.HoraPedido = DateTime.Now;
-                pedidoModel.IdCliente = Guid.NewGuid();
+                pedidoModel.IdCliente = Guid.Parse(User.Identity.GetUserId());
                 pedidoModel.IdStatusPedido = 3;
                 pedidoModel.ValorTotal = carrinho.ObterValorTotal();
 
@@ -175,6 +180,7 @@ namespace IAPromocoes.UI.MVC.Controllers
                     itemModel.IdItemPedido = Guid.NewGuid();
                     itemModel.IdPedido = pedidoModel.IdPedido;
                     itemModel.IdProduto = item.Produto.IdProduto;
+                    itemModel.IdProdutoPreco = item.ProdutoPreco.IdProdutoPreco;
                     itemModel.QtdProduto = item.Quantidade;
                     itemModel.ValorUnitario = item.ProdutoPreco.ValorUnitario;
                     itemModel.DtCadastro = pedidoModel.DtCadastro;

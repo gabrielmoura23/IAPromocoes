@@ -10,7 +10,7 @@ namespace IAPromocoes.Application.ViewModels
     {
         public ProdutoPrecoViewModel()
         {
- 
+            this.ItensPedidoViewModel = new List<ItemPedidoViewModel>();
         }
 
         [Key]
@@ -62,5 +62,6 @@ namespace IAPromocoes.Application.ViewModels
         public System.Nullable<System.DateTime> DtAlteracao { get; set; }
 
         public ProdutoViewModel ProdutoViewModel { get; set; }
+        public virtual ICollection<ItemPedidoViewModel> ItensPedidoViewModel { get; set; }
     }
 }

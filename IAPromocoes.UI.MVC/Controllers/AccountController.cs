@@ -388,7 +388,7 @@ namespace IAPromocoes.UI.MVC.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Entrar");
             }
 
             var user = await UserManager.FindAsync(loginInfo.Login);

@@ -37,7 +37,7 @@
                             <div class="pi-price">@Html.DisplayFor(modelItem => @item.Value.PrecoTexto)</div>
 
 
-                            @using (Html.BeginForm("Adicionar", "Carrinho"))
+                            @*@using (Html.BeginForm("Adicionar", "Carrinho"))
                             {
                                 <div class="pull-right">
                                     @Html.Hidden("IdProduto", @item.Value.IdProduto)
@@ -45,7 +45,9 @@
                                     @Html.Hidden("qtdProduto", 1)
                                     <input type="submit" class="btn btn-default add2cart" value="Comprar" />
                                 </div>
-                            }
+                            }*@
+
+                            @Html.ActionLink("Comprar", "Detalhes", new { IdProduto = item.Value.IdProduto }, new { @class = "btn btn-default add2cart" })
 
 
                             @*<a href="#" class="btn btn-default add2cart">Comprar</a>*@

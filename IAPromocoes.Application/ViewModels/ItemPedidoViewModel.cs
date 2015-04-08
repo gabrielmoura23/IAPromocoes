@@ -25,6 +25,10 @@ namespace IAPromocoes.Application.ViewModels
         public Guid IdProduto { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo [{0}]")]
+        [DisplayName("ID Produto Preço")]
+        public Guid IdProdutoPreco { get; set; }
+
+        [Required(ErrorMessage = "Preencha o campo [{0}]")]
         [RegularExpression(@"^(0|\d{0,16}(\.\d{0,2})?)$")]
         [DisplayName("Valor Unitário")]
         public decimal ValorUnitario { get; set; }
@@ -49,5 +53,6 @@ namespace IAPromocoes.Application.ViewModels
 
         public PedidoViewModel PedidoViewModel { get; set; }
         public ProdutoViewModel ProdutoViewModel { get; set; }
+        public ProdutoPrecoViewModel ProdutoPrecoViewModel { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace IAPromocoes.Domain.Entities
     {
         public ProdutoPreco()
         {
-            //this.ItemPedido = new List<ItemPedido>();
+            this.ItensPedido = new List<ItemPedido>();
         }
 
         public Guid IdProdutoPreco { get; set; }
@@ -29,6 +29,7 @@ namespace IAPromocoes.Domain.Entities
         public System.Nullable<System.DateTime> DtAlteracao { get; set; }
 
         public virtual Produto Produto { get; set; }
+        public virtual ICollection<ItemPedido> ItensPedido { get; set; }
 
         public ValidationResult ResultadoValidacao { get; private set; }
         public bool IsValid()

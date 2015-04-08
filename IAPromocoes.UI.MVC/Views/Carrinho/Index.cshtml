@@ -25,12 +25,14 @@
                     </div>
                     @using (Html.BeginForm("Lista", "Produto"))
                     {
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                         <button class="btn btn-default" type="submit" onclick="parentNode.submit();">Continuar Comprando <i class="fa fa-shopping-cart"></i></button>
                     }
 
                     @using (Html.BeginForm("FecharPedido", "Carrinho", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                         <button class="btn btn-primary" type="submit" onclick="parentNode.submit();">Finalizar Compra <i class="fa fa-check"></i></button>
 
                     }

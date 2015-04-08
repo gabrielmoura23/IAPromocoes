@@ -160,13 +160,20 @@
                 success: function (data) {
                     //alert(data.Success);
                     //alert(data.Message);
-
-                    //alert(dados);
-                    //PagSeguroLightbox(data.Message);
-
-
                     var code = data.Message;
-                    //alert(code);
+
+
+                    //$.ajax({
+                    //    url: "_js/loaddata.php",
+                    //    success: function (results) {
+                    //        $('#listresults').empty();
+                    //        $('#listresults').append(results);
+                    //    }
+                    //});
+
+
+
+
                     isOpenLightbox = PagSeguroLightbox({
                         code: code,
                         success: function (transactionCode) {
@@ -180,9 +187,6 @@
                         location.href = "https://pagseguro.uol.com.br/v2/checkout/payment.html?code=" + code;
                     }
 
-                    //$(dados).each(function (i) {
-                    //    document.writeln("<p>Nome: " + dados[i].Nome + " | URL: " + dados[i].URL + "</p>")
-                    //});
                 }
             });
 

@@ -52,9 +52,20 @@
                 <!-- BEGIN TOP BAR MENU -->
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
-                        <li><a href="/Account/Cadastro/">Minha Conta</a></li>
-                        @*<li><a href="/Pedido/Finalizar/">Finalizar Pedido</a></li>*@
-                        <li><a href="/Account/Entrar/">Entrar</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="/Account/Cadastro/">Minha Conta</a></li>
+                            <li>@User.Identity.Name</li>
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "inline-block", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li><button type="submit" class="acustomizado btn-link">Sair</button></li>
+                            }
+                        }
+                        else
+                        {
+                            <li><a href="/Account/Entrar/">Entrar</a></li>
+                        }
                     </ul>
                 </div>
                 <!-- END TOP BAR MENU -->
@@ -70,70 +81,82 @@
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
             <!-- BEGIN CART -->
-            <div class="top-cart-block">
-                <div class="top-cart-info">
-                    @Html.Action("_Resumo", "Carrinho")
-                    @*<a href="javascript:void(0);" class="top-cart-info-count">3 produtos</a>
-                    <a href="javascript:void(0);" class="top-cart-info-value">r$ 1.260,43</a>*@
-                </div>
-                <i class="fa fa-shopping-cart"></i>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="top-cart-block">
+                    <div class="top-cart-info">
 
-                @Html.Action("_Lista", "Carrinho")
 
-                @*<div class="top-cart-content-wrapper">
-                    <div class="top-cart-content">
-                        @Html.Action("_Lista", "Carrinho")
-                        <ul class="scroller" style="height: 250px;">
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
-                                <span class="cart-content-count">x 1</span>
-                                <strong><a href="shop-item2.html">Produto</a></strong>
-                                <em>$1230</em>
-                                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-                            </li>
-                        </ul>
-                        <div class="text-right">
-                            <a href="/Carrinho/" class="btn btn-default">Ver Carrinho</a>
-                            <a href="/Carrinho/FecharPedido/" class="btn btn-primary">Finalizar Compra</a>
-                        </div>
+                        @Html.Action("_Resumo", "Carrinho")
+
+
+
+                        @*<a href="javascript:void(0);" class="top-cart-info-count">3 produtos</a>
+                            <a href="javascript:void(0);" class="top-cart-info-value">r$ 1.260,43</a>*@
                     </div>
-                </div>*@
-            </div>
+                    <i class="fa fa-shopping-cart"></i>
+
+
+                    @Html.Action("_Lista", "Carrinho")
+
+
+
+
+                    @*<div class="top-cart-content-wrapper">
+                            <div class="top-cart-content">
+                                @Html.Action("_Lista", "Carrinho")
+                                <ul class="scroller" style="height: 250px;">
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-item2.html"><img src="~/assets/frontend/pages/img/cart-img.jpg" alt="Produto" width="37" height="34"></a>
+                                        <span class="cart-content-count">x 1</span>
+                                        <strong><a href="shop-item2.html">Produto</a></strong>
+                                        <em>$1230</em>
+                                        <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                                    </li>
+                                </ul>
+                                <div class="text-right">
+                                    <a href="/Carrinho/" class="btn btn-default">Ver Carrinho</a>
+                                    <a href="/Carrinho/FecharPedido/" class="btn btn-primary">Finalizar Compra</a>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+            }
             <!--END CART -->
             <!-- BEGIN NAVIGATION -->
             <div class="header-navigation">
@@ -141,7 +164,10 @@
                     <li><a href="/Home/Index/">Home</a></li>
                     <li><a href="/Home/About/">Quem Somos</a></li>
                     <li><a href="/Produto/Lista/">Produtos</a></li>
-                    <li><a href="/Account/Cadastro/">Cadastro</a></li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/Account/Cadastro/">Cadastro</a></li>
+                    }
                     <li><a href="/Home/Faq/">Dúvidas</a></li>
                     <li><a href="/Home/Contato/">Contato</a></li>
                 </ul>

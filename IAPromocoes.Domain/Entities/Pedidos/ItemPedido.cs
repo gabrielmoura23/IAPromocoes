@@ -17,6 +17,7 @@ namespace IAPromocoes.Domain.Entities
         public Guid IdItemPedido { get; set; }
         public Guid IdPedido { get; set; }
         public Guid IdProduto { get; set; }
+        public Guid IdProdutoPreco { get; set; }
         public decimal ValorUnitario { get; set; }
         public int QtdProduto { get; set; }
                 
@@ -27,6 +28,7 @@ namespace IAPromocoes.Domain.Entities
 
         public virtual Pedido Pedido { get; set; }
         public virtual Produto Produto { get; set; }
+        public virtual ProdutoPreco ProdutoPreco { get; set; }
 
         public ValidationResult ResultadoValidacao { get; private set; }
         public bool IsValid()
