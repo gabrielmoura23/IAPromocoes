@@ -616,5 +616,65 @@ namespace IAPromocoes.UI.MVC.Controllers
         {
             return View();
         }
+
+
+        public ActionResult MinhaConta()
+        {
+            ViewBag.Message = "Minha Conta";
+
+            //var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            //ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
+            return View();
+        }
+
+
+        public ActionResult AlterarSenha()
+        {
+            ViewBag.Message = "Alterar Senha";
+
+            //var lista = IAPromocoes.Application.Util.CamposLista.GetListaSexo();
+            //ViewBag.SexoList = new SelectList(lista, "Id", "Text");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("AlterarSenha")]
+        public async Task<ActionResult> ConfirmaAlterarSenha(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindAsync(User.Identity.GetUserName(), model.OldPassword);
+                if (user != null)
+                {
+                    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        // update SecurityStamp to prevent logout of this user
+                        //await SignInAsync(IdentityManager.User);
+                        await SignInAsync(user, false);
+
+                        return View("MinhaConta");
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Senha incorreta.");
+                }
+            }
+
+            // No caso de falha, reexibir a view. 
+            return View(model);
+        }
     }
 }

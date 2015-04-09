@@ -54,7 +54,7 @@
                     <ul class="list-unstyled list-inline pull-right">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a href="/Account/Cadastro/">Minha Conta</a></li>
+                            <li><a href="/Account/MinhaConta/">Minha Conta</a></li>
                             <li>@User.Identity.Name</li>
                             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "inline-block", role = "form" }))
                             {

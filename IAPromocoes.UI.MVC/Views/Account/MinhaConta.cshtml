@@ -1,0 +1,92 @@
+﻿@model IAPromocoes.UI.MVC.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Minha Conta";
+    Layout = "~/Views/Shared/__LayoutExterno.cshtml";
+}
+
+@section PageLevelStyles {
+    <link href="~/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+    <link href="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+}
+
+
+<div class="main">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index/">Home</a></li>
+            <li class="active">Minha Conta</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN SIDEBAR -->
+            <div class="sidebar col-md-3 col-sm-5">
+                <ul class="list-group margin-bottom-25 sidebar-menu">
+                    <li class="list-group-item clearfix"><a href="/Account/AlterarCadastro/"><i class="fa fa-angle-right"></i>Alterar Dados Pessoais</a></li>
+                    <li class="list-group-item clearfix"><a href="/Account/AlterarSenha/"><i class="fa fa-angle-right"></i>Alterar Senha</a></li>
+                    <li class="list-group-item clearfix"><a href="#"><i class="fa fa-angle-right"></i>Histórico de Compras</a></li>
+                </ul>
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+                <h1>Minha Conta</h1>
+                <div class="content-page">
+                    <h3>Dados Pessoais</h3>
+                    <ul>
+                        <li><a href="/Account/AlterarCadastro/">Alterar Dados Pessoais</a></li>
+                        <li><a href="/Account/AlterarSenha/">Alterar Senha</a></li>
+                    </ul>
+                    <hr>
+                    <h3>Meus Pedidos</h3>
+                    <ul>
+                        <li><a href="#">Histórico de Compras</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+
+
+@section PageLevelPlugins {
+
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="~/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="~/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="~/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+    <script src='~/assets/global/plugins/zoom/jquery.zoom.min.js' type="text/javascript"></script><!-- product zoom -->
+    <script src="~/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script><!-- Quantity -->
+    <script src="~/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+    <script src="~/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.inputmask/jquery.inputmask.js"></script>
+    <script src="~/Scripts/Interno/clientes-cad.js" type="text/javascript"></script>
+}
+
+@section PageLevelScripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            Layout.init();
+            Layout.initOWL();
+            Layout.initTwitter();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initUniform();
+
+            Layout.initFixHeaderWithPreHeader();
+            Layout.initNavScrolling();
+
+        });
+
+
+    </script>
+}
